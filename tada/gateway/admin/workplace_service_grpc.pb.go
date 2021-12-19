@@ -26,6 +26,7 @@ type WorkplaceClient interface {
 	AddUserInWorkplace(ctx context.Context, in *billing.AddUserInWorkplaceRequest, opts ...grpc.CallOption) (*billing.AddUserInWorkplaceResponse, error)
 	DeleteUserFromWorkplace(ctx context.Context, in *DeleteUserFromWorkplaceRequest, opts ...grpc.CallOption) (*billing.DeleteUserFromWorkplaceResponse, error)
 	GetWorkplacesByPersonalAccount(ctx context.Context, in *billing.GetWorkplacesByPersonalAccountRequest, opts ...grpc.CallOption) (*billing.GetWorkplacesByPersonalAccountResponse, error)
+	GetWorkplacesWithInfoByPersonalAccount(ctx context.Context, in *billing.GetWorkplacesByPersonalAccountRequest, opts ...grpc.CallOption) (*customer.UsersInfo, error)
 	GetCountOfUnpaidWorkplacesByPersonalAccount(ctx context.Context, in *billing.GetCountOfUnpaidWorkplacesByPersonalAccountRequest, opts ...grpc.CallOption) (*billing.GetCountOfUnpaidWorkplacesByPersonalAccountResponse, error)
 	GetWorkplacesWithInfoExcludingTeamByPersonalAccount(ctx context.Context, in *GetWorkplacesWithInfoExcludingTeamByPersonalAccountRequest, opts ...grpc.CallOption) (*customer.UsersInfo, error)
 	AddUserInWorkplaceByJid(ctx context.Context, in *AddUserInWorkplaceByJidRequest, opts ...grpc.CallOption) (*AddUserInWorkplaceByJidResponse, error)
@@ -93,6 +94,15 @@ func (c *workplaceClient) GetWorkplacesByPersonalAccount(ctx context.Context, in
 	return out, nil
 }
 
+func (c *workplaceClient) GetWorkplacesWithInfoByPersonalAccount(ctx context.Context, in *billing.GetWorkplacesByPersonalAccountRequest, opts ...grpc.CallOption) (*customer.UsersInfo, error) {
+	out := new(customer.UsersInfo)
+	err := c.cc.Invoke(ctx, "/tada.gateway.admin.Workplace/GetWorkplacesWithInfoByPersonalAccount", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *workplaceClient) GetCountOfUnpaidWorkplacesByPersonalAccount(ctx context.Context, in *billing.GetCountOfUnpaidWorkplacesByPersonalAccountRequest, opts ...grpc.CallOption) (*billing.GetCountOfUnpaidWorkplacesByPersonalAccountResponse, error) {
 	out := new(billing.GetCountOfUnpaidWorkplacesByPersonalAccountResponse)
 	err := c.cc.Invoke(ctx, "/tada.gateway.admin.Workplace/GetCountOfUnpaidWorkplacesByPersonalAccount", in, out, opts...)
@@ -130,6 +140,7 @@ type WorkplaceServer interface {
 	AddUserInWorkplace(context.Context, *billing.AddUserInWorkplaceRequest) (*billing.AddUserInWorkplaceResponse, error)
 	DeleteUserFromWorkplace(context.Context, *DeleteUserFromWorkplaceRequest) (*billing.DeleteUserFromWorkplaceResponse, error)
 	GetWorkplacesByPersonalAccount(context.Context, *billing.GetWorkplacesByPersonalAccountRequest) (*billing.GetWorkplacesByPersonalAccountResponse, error)
+	GetWorkplacesWithInfoByPersonalAccount(context.Context, *billing.GetWorkplacesByPersonalAccountRequest) (*customer.UsersInfo, error)
 	GetCountOfUnpaidWorkplacesByPersonalAccount(context.Context, *billing.GetCountOfUnpaidWorkplacesByPersonalAccountRequest) (*billing.GetCountOfUnpaidWorkplacesByPersonalAccountResponse, error)
 	GetWorkplacesWithInfoExcludingTeamByPersonalAccount(context.Context, *GetWorkplacesWithInfoExcludingTeamByPersonalAccountRequest) (*customer.UsersInfo, error)
 	AddUserInWorkplaceByJid(context.Context, *AddUserInWorkplaceByJidRequest) (*AddUserInWorkplaceByJidResponse, error)
@@ -157,6 +168,9 @@ func (UnimplementedWorkplaceServer) DeleteUserFromWorkplace(context.Context, *De
 }
 func (UnimplementedWorkplaceServer) GetWorkplacesByPersonalAccount(context.Context, *billing.GetWorkplacesByPersonalAccountRequest) (*billing.GetWorkplacesByPersonalAccountResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetWorkplacesByPersonalAccount not implemented")
+}
+func (UnimplementedWorkplaceServer) GetWorkplacesWithInfoByPersonalAccount(context.Context, *billing.GetWorkplacesByPersonalAccountRequest) (*customer.UsersInfo, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetWorkplacesWithInfoByPersonalAccount not implemented")
 }
 func (UnimplementedWorkplaceServer) GetCountOfUnpaidWorkplacesByPersonalAccount(context.Context, *billing.GetCountOfUnpaidWorkplacesByPersonalAccountRequest) (*billing.GetCountOfUnpaidWorkplacesByPersonalAccountResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCountOfUnpaidWorkplacesByPersonalAccount not implemented")
@@ -288,6 +302,24 @@ func _Workplace_GetWorkplacesByPersonalAccount_Handler(srv interface{}, ctx cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Workplace_GetWorkplacesWithInfoByPersonalAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(billing.GetWorkplacesByPersonalAccountRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WorkplaceServer).GetWorkplacesWithInfoByPersonalAccount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/tada.gateway.admin.Workplace/GetWorkplacesWithInfoByPersonalAccount",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WorkplaceServer).GetWorkplacesWithInfoByPersonalAccount(ctx, req.(*billing.GetWorkplacesByPersonalAccountRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Workplace_GetCountOfUnpaidWorkplacesByPersonalAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(billing.GetCountOfUnpaidWorkplacesByPersonalAccountRequest)
 	if err := dec(in); err != nil {
@@ -372,6 +404,10 @@ var Workplace_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetWorkplacesByPersonalAccount",
 			Handler:    _Workplace_GetWorkplacesByPersonalAccount_Handler,
+		},
+		{
+			MethodName: "GetWorkplacesWithInfoByPersonalAccount",
+			Handler:    _Workplace_GetWorkplacesWithInfoByPersonalAccount_Handler,
 		},
 		{
 			MethodName: "GetCountOfUnpaidWorkplacesByPersonalAccount",
