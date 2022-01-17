@@ -29,7 +29,7 @@ type WorkplaceClient interface {
 	GetWorkplacesWithInfoByPersonalAccount(ctx context.Context, in *billing.GetWorkplacesByPersonalAccountRequest, opts ...grpc.CallOption) (*customer.UsersInfo, error)
 	GetCountOfUnpaidWorkplacesByPersonalAccount(ctx context.Context, in *billing.GetCountOfUnpaidWorkplacesByPersonalAccountRequest, opts ...grpc.CallOption) (*billing.GetCountOfUnpaidWorkplacesByPersonalAccountResponse, error)
 	GetWorkplacesWithInfoExcludingTeamByPersonalAccount(ctx context.Context, in *GetWorkplacesWithInfoExcludingTeamByPersonalAccountRequest, opts ...grpc.CallOption) (*customer.UsersInfo, error)
-	AddUserInWorkplaceByJid(ctx context.Context, in *AddUserInWorkplaceByJidRequest, opts ...grpc.CallOption) (*AddUserInWorkplaceByJidResponse, error)
+	AddUserInWorkplaceByJid(ctx context.Context, in *AddUserInWorkplaceByJidRequest, opts ...grpc.CallOption) (*customer.UsersInfo, error)
 }
 
 type workplaceClient struct {
@@ -121,8 +121,8 @@ func (c *workplaceClient) GetWorkplacesWithInfoExcludingTeamByPersonalAccount(ct
 	return out, nil
 }
 
-func (c *workplaceClient) AddUserInWorkplaceByJid(ctx context.Context, in *AddUserInWorkplaceByJidRequest, opts ...grpc.CallOption) (*AddUserInWorkplaceByJidResponse, error) {
-	out := new(AddUserInWorkplaceByJidResponse)
+func (c *workplaceClient) AddUserInWorkplaceByJid(ctx context.Context, in *AddUserInWorkplaceByJidRequest, opts ...grpc.CallOption) (*customer.UsersInfo, error) {
+	out := new(customer.UsersInfo)
 	err := c.cc.Invoke(ctx, "/tada.gateway.admin.Workplace/AddUserInWorkplaceByJid", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -143,7 +143,7 @@ type WorkplaceServer interface {
 	GetWorkplacesWithInfoByPersonalAccount(context.Context, *billing.GetWorkplacesByPersonalAccountRequest) (*customer.UsersInfo, error)
 	GetCountOfUnpaidWorkplacesByPersonalAccount(context.Context, *billing.GetCountOfUnpaidWorkplacesByPersonalAccountRequest) (*billing.GetCountOfUnpaidWorkplacesByPersonalAccountResponse, error)
 	GetWorkplacesWithInfoExcludingTeamByPersonalAccount(context.Context, *GetWorkplacesWithInfoExcludingTeamByPersonalAccountRequest) (*customer.UsersInfo, error)
-	AddUserInWorkplaceByJid(context.Context, *AddUserInWorkplaceByJidRequest) (*AddUserInWorkplaceByJidResponse, error)
+	AddUserInWorkplaceByJid(context.Context, *AddUserInWorkplaceByJidRequest) (*customer.UsersInfo, error)
 	mustEmbedUnimplementedWorkplaceServer()
 }
 
@@ -178,7 +178,7 @@ func (UnimplementedWorkplaceServer) GetCountOfUnpaidWorkplacesByPersonalAccount(
 func (UnimplementedWorkplaceServer) GetWorkplacesWithInfoExcludingTeamByPersonalAccount(context.Context, *GetWorkplacesWithInfoExcludingTeamByPersonalAccountRequest) (*customer.UsersInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetWorkplacesWithInfoExcludingTeamByPersonalAccount not implemented")
 }
-func (UnimplementedWorkplaceServer) AddUserInWorkplaceByJid(context.Context, *AddUserInWorkplaceByJidRequest) (*AddUserInWorkplaceByJidResponse, error) {
+func (UnimplementedWorkplaceServer) AddUserInWorkplaceByJid(context.Context, *AddUserInWorkplaceByJidRequest) (*customer.UsersInfo, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddUserInWorkplaceByJid not implemented")
 }
 func (UnimplementedWorkplaceServer) mustEmbedUnimplementedWorkplaceServer() {}

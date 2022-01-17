@@ -275,7 +275,7 @@ func local_request_Workplace_GetCountOfUnpaidWorkplacesByPersonalAccount_0(ctx c
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterWorkplaceHandlerFromEndpoint instead.
 func RegisterWorkplaceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server WorkplaceServer) error {
 
-	mux.Handle("PUT", pattern_Workplace_AddWorkplacesOnPersonalAccount_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_Workplace_AddWorkplacesOnPersonalAccount_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -477,7 +477,7 @@ func RegisterWorkplaceHandler(ctx context.Context, mux *runtime.ServeMux, conn *
 // "WorkplaceClient" to call the correct interceptors.
 func RegisterWorkplaceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client WorkplaceClient) error {
 
-	mux.Handle("PUT", pattern_Workplace_AddWorkplacesOnPersonalAccount_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_Workplace_AddWorkplacesOnPersonalAccount_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
