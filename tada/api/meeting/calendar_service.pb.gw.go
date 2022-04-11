@@ -21,6 +21,7 @@ import (
 	"google.golang.org/grpc/metadata"
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/proto"
+	"google.golang.org/protobuf/types/known/wrapperspb"
 )
 
 // Suppress "imported and not used" errors
@@ -66,7 +67,7 @@ func local_request_MeetingApi_GetMeetings_0(ctx context.Context, marshaler runti
 }
 
 func request_MeetingApi_GetMeetingById_0(ctx context.Context, marshaler runtime.Marshaler, client MeetingApiClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetMeetingByIdRequest
+	var protoReq wrapperspb.Int64Value
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -83,7 +84,7 @@ func request_MeetingApi_GetMeetingById_0(ctx context.Context, marshaler runtime.
 }
 
 func local_request_MeetingApi_GetMeetingById_0(ctx context.Context, marshaler runtime.Marshaler, server MeetingApiServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetMeetingByIdRequest
+	var protoReq wrapperspb.Int64Value
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -100,7 +101,7 @@ func local_request_MeetingApi_GetMeetingById_0(ctx context.Context, marshaler ru
 }
 
 func request_MeetingApi_GetMeetingByChatUUID_0(ctx context.Context, marshaler runtime.Marshaler, client MeetingApiClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetMeetingByChatUUIDRequest
+	var protoReq wrapperspb.StringValue
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -117,7 +118,7 @@ func request_MeetingApi_GetMeetingByChatUUID_0(ctx context.Context, marshaler ru
 }
 
 func local_request_MeetingApi_GetMeetingByChatUUID_0(ctx context.Context, marshaler runtime.Marshaler, server MeetingApiServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetMeetingByChatUUIDRequest
+	var protoReq wrapperspb.StringValue
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -202,7 +203,7 @@ func local_request_MeetingApi_UpdateMeeting_0(ctx context.Context, marshaler run
 }
 
 func request_MeetingApi_DeleteMeeting_0(ctx context.Context, marshaler runtime.Marshaler, client MeetingApiClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteMeetingRequest
+	var protoReq wrapperspb.Int64Value
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -219,7 +220,7 @@ func request_MeetingApi_DeleteMeeting_0(ctx context.Context, marshaler runtime.M
 }
 
 func local_request_MeetingApi_DeleteMeeting_0(ctx context.Context, marshaler runtime.Marshaler, server MeetingApiServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteMeetingRequest
+	var protoReq wrapperspb.Int64Value
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)

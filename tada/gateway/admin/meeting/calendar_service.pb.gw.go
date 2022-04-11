@@ -13,15 +13,17 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/deniskelin/tada-proto/tada/api/meeting"
+	meetingApiPb "github.com/deniskelin/tada-proto/tada/api/meeting"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
+	"gitlab.tada.team/tdapis/go-genproto/tada/api/meeting"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/grpclog"
 	"google.golang.org/grpc/metadata"
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/proto"
+	"google.golang.org/protobuf/types/known/wrapperspb"
 )
 
 // Suppress "imported and not used" errors
@@ -67,7 +69,7 @@ func local_request_MeetingGateway_GetMeetings_0(ctx context.Context, marshaler r
 }
 
 func request_MeetingGateway_GetMeetingById_0(ctx context.Context, marshaler runtime.Marshaler, client MeetingGatewayClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq meetingApiPb.GetMeetingByIdRequest
+	var protoReq wrapperspb.Int64Value
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -84,7 +86,7 @@ func request_MeetingGateway_GetMeetingById_0(ctx context.Context, marshaler runt
 }
 
 func local_request_MeetingGateway_GetMeetingById_0(ctx context.Context, marshaler runtime.Marshaler, server MeetingGatewayServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq meetingApiPb.GetMeetingByIdRequest
+	var protoReq wrapperspb.Int64Value
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -101,7 +103,7 @@ func local_request_MeetingGateway_GetMeetingById_0(ctx context.Context, marshale
 }
 
 func request_MeetingGateway_GetMeetingByChatUUID_0(ctx context.Context, marshaler runtime.Marshaler, client MeetingGatewayClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq meetingApiPb.GetMeetingByChatUUIDRequest
+	var protoReq wrapperspb.StringValue
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -118,7 +120,7 @@ func request_MeetingGateway_GetMeetingByChatUUID_0(ctx context.Context, marshale
 }
 
 func local_request_MeetingGateway_GetMeetingByChatUUID_0(ctx context.Context, marshaler runtime.Marshaler, server MeetingGatewayServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq meetingApiPb.GetMeetingByChatUUIDRequest
+	var protoReq wrapperspb.StringValue
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -203,7 +205,7 @@ func local_request_MeetingGateway_UpdateMeeting_0(ctx context.Context, marshaler
 }
 
 func request_MeetingGateway_DeleteMeeting_0(ctx context.Context, marshaler runtime.Marshaler, client MeetingGatewayClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq meetingApiPb.DeleteMeetingRequest
+	var protoReq wrapperspb.Int64Value
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -220,7 +222,7 @@ func request_MeetingGateway_DeleteMeeting_0(ctx context.Context, marshaler runti
 }
 
 func local_request_MeetingGateway_DeleteMeeting_0(ctx context.Context, marshaler runtime.Marshaler, server MeetingGatewayServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq meetingApiPb.DeleteMeetingRequest
+	var protoReq wrapperspb.Int64Value
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
