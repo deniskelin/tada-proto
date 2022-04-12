@@ -33,6 +33,7 @@ type MeetingApiClient interface {
 	AddMemberInMeeting(ctx context.Context, in *AddMemberInMeetingRequest, opts ...grpc.CallOption) (*Member, error)
 	UpdateMemberInMeeting(ctx context.Context, in *UpdateMemberInMeetingRequest, opts ...grpc.CallOption) (*Member, error)
 	DeleteMemberFromMeeting(ctx context.Context, in *DeleteMemberFromMeetingRequest, opts ...grpc.CallOption) (*SuccessResponse, error)
+	GenerateSells(ctx context.Context, in *GenerateSellsRequest, opts ...grpc.CallOption) (*SuccessResponse, error)
 }
 
 type meetingApiClient struct {
@@ -133,6 +134,15 @@ func (c *meetingApiClient) DeleteMemberFromMeeting(ctx context.Context, in *Dele
 	return out, nil
 }
 
+func (c *meetingApiClient) GenerateSells(ctx context.Context, in *GenerateSellsRequest, opts ...grpc.CallOption) (*SuccessResponse, error) {
+	out := new(SuccessResponse)
+	err := c.cc.Invoke(ctx, "/tada.api.meeting.MeetingApi/GenerateSells", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MeetingApiServer is the server API for MeetingApi service.
 // All implementations must embed UnimplementedMeetingApiServer
 // for forward compatibility
@@ -147,6 +157,7 @@ type MeetingApiServer interface {
 	AddMemberInMeeting(context.Context, *AddMemberInMeetingRequest) (*Member, error)
 	UpdateMemberInMeeting(context.Context, *UpdateMemberInMeetingRequest) (*Member, error)
 	DeleteMemberFromMeeting(context.Context, *DeleteMemberFromMeetingRequest) (*SuccessResponse, error)
+	GenerateSells(context.Context, *GenerateSellsRequest) (*SuccessResponse, error)
 	mustEmbedUnimplementedMeetingApiServer()
 }
 
@@ -183,6 +194,9 @@ func (UnimplementedMeetingApiServer) UpdateMemberInMeeting(context.Context, *Upd
 }
 func (UnimplementedMeetingApiServer) DeleteMemberFromMeeting(context.Context, *DeleteMemberFromMeetingRequest) (*SuccessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteMemberFromMeeting not implemented")
+}
+func (UnimplementedMeetingApiServer) GenerateSells(context.Context, *GenerateSellsRequest) (*SuccessResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GenerateSells not implemented")
 }
 func (UnimplementedMeetingApiServer) mustEmbedUnimplementedMeetingApiServer() {}
 
@@ -377,6 +391,24 @@ func _MeetingApi_DeleteMemberFromMeeting_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MeetingApi_GenerateSells_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GenerateSellsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MeetingApiServer).GenerateSells(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/tada.api.meeting.MeetingApi/GenerateSells",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MeetingApiServer).GenerateSells(ctx, req.(*GenerateSellsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MeetingApi_ServiceDesc is the grpc.ServiceDesc for MeetingApi service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -423,6 +455,10 @@ var MeetingApi_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteMemberFromMeeting",
 			Handler:    _MeetingApi_DeleteMemberFromMeeting_Handler,
+		},
+		{
+			MethodName: "GenerateSells",
+			Handler:    _MeetingApi_GenerateSells_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

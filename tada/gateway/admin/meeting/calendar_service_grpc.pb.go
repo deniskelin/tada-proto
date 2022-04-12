@@ -34,6 +34,7 @@ type MeetingGatewayClient interface {
 	AddMemberInMeeting(ctx context.Context, in *meeting.AddMemberInMeetingRequest, opts ...grpc.CallOption) (*meeting.Member, error)
 	UpdateMemberInMeeting(ctx context.Context, in *meeting.UpdateMemberInMeetingRequest, opts ...grpc.CallOption) (*meeting.Member, error)
 	DeleteMemberFromMeeting(ctx context.Context, in *meeting.DeleteMemberFromMeetingRequest, opts ...grpc.CallOption) (*meeting.SuccessResponse, error)
+	GenerateSells(ctx context.Context, in *meeting.GenerateSellsRequest, opts ...grpc.CallOption) (*meeting.SuccessResponse, error)
 }
 
 type meetingGatewayClient struct {
@@ -134,6 +135,15 @@ func (c *meetingGatewayClient) DeleteMemberFromMeeting(ctx context.Context, in *
 	return out, nil
 }
 
+func (c *meetingGatewayClient) GenerateSells(ctx context.Context, in *meeting.GenerateSellsRequest, opts ...grpc.CallOption) (*meeting.SuccessResponse, error) {
+	out := new(meeting.SuccessResponse)
+	err := c.cc.Invoke(ctx, "/tada.gateway.admin.meeting.MeetingGateway/GenerateSells", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MeetingGatewayServer is the server API for MeetingGateway service.
 // All implementations must embed UnimplementedMeetingGatewayServer
 // for forward compatibility
@@ -148,6 +158,7 @@ type MeetingGatewayServer interface {
 	AddMemberInMeeting(context.Context, *meeting.AddMemberInMeetingRequest) (*meeting.Member, error)
 	UpdateMemberInMeeting(context.Context, *meeting.UpdateMemberInMeetingRequest) (*meeting.Member, error)
 	DeleteMemberFromMeeting(context.Context, *meeting.DeleteMemberFromMeetingRequest) (*meeting.SuccessResponse, error)
+	GenerateSells(context.Context, *meeting.GenerateSellsRequest) (*meeting.SuccessResponse, error)
 	mustEmbedUnimplementedMeetingGatewayServer()
 }
 
@@ -184,6 +195,9 @@ func (UnimplementedMeetingGatewayServer) UpdateMemberInMeeting(context.Context, 
 }
 func (UnimplementedMeetingGatewayServer) DeleteMemberFromMeeting(context.Context, *meeting.DeleteMemberFromMeetingRequest) (*meeting.SuccessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteMemberFromMeeting not implemented")
+}
+func (UnimplementedMeetingGatewayServer) GenerateSells(context.Context, *meeting.GenerateSellsRequest) (*meeting.SuccessResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GenerateSells not implemented")
 }
 func (UnimplementedMeetingGatewayServer) mustEmbedUnimplementedMeetingGatewayServer() {}
 
@@ -378,6 +392,24 @@ func _MeetingGateway_DeleteMemberFromMeeting_Handler(srv interface{}, ctx contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MeetingGateway_GenerateSells_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(meeting.GenerateSellsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MeetingGatewayServer).GenerateSells(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/tada.gateway.admin.meeting.MeetingGateway/GenerateSells",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MeetingGatewayServer).GenerateSells(ctx, req.(*meeting.GenerateSellsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MeetingGateway_ServiceDesc is the grpc.ServiceDesc for MeetingGateway service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -424,6 +456,10 @@ var MeetingGateway_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteMemberFromMeeting",
 			Handler:    _MeetingGateway_DeleteMemberFromMeeting_Handler,
+		},
+		{
+			MethodName: "GenerateSells",
+			Handler:    _MeetingGateway_GenerateSells_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
