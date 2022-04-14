@@ -7,7 +7,7 @@
 package meetingGatewayPb
 
 import (
-	meeting "github.com/deniskelin/tada-proto/tada/api/meeting"
+	meeting "gitlab.tada.team/tdapis/go-genproto/tada/api/meeting"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
