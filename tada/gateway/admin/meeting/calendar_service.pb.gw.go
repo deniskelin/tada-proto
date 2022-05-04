@@ -13,9 +13,9 @@ import (
 	"io"
 	"net/http"
 
+	"github.com/deniskelin/tada-proto/tada/api/meeting"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
-	"github.com/deniskelin/tada-proto/tada/api/meeting"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/grpclog"
@@ -74,7 +74,7 @@ var (
 )
 
 func request_MeetingGateway_GetMeetingById_0(ctx context.Context, marshaler runtime.Marshaler, client MeetingGatewayClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq wrapperspb.Int64Value
+	var protoReq wrapperspb.UInt64Value
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -90,7 +90,7 @@ func request_MeetingGateway_GetMeetingById_0(ctx context.Context, marshaler runt
 }
 
 func local_request_MeetingGateway_GetMeetingById_0(ctx context.Context, marshaler runtime.Marshaler, server MeetingGatewayServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq wrapperspb.Int64Value
+	var protoReq wrapperspb.UInt64Value
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -210,7 +210,7 @@ func local_request_MeetingGateway_UpdateMeeting_0(ctx context.Context, marshaler
 }
 
 func request_MeetingGateway_DeleteMeeting_0(ctx context.Context, marshaler runtime.Marshaler, client MeetingGatewayClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq wrapperspb.Int64Value
+	var protoReq wrapperspb.UInt64Value
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -227,7 +227,7 @@ func request_MeetingGateway_DeleteMeeting_0(ctx context.Context, marshaler runti
 }
 
 func local_request_MeetingGateway_DeleteMeeting_0(ctx context.Context, marshaler runtime.Marshaler, server MeetingGatewayServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq wrapperspb.Int64Value
+	var protoReq wrapperspb.UInt64Value
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
