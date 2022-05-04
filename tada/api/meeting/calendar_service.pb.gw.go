@@ -73,7 +73,7 @@ var (
 )
 
 func request_MeetingApi_GetMeetingById_0(ctx context.Context, marshaler runtime.Marshaler, client MeetingApiClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq wrapperspb.Int64Value
+	var protoReq wrapperspb.UInt64Value
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -89,7 +89,7 @@ func request_MeetingApi_GetMeetingById_0(ctx context.Context, marshaler runtime.
 }
 
 func local_request_MeetingApi_GetMeetingById_0(ctx context.Context, marshaler runtime.Marshaler, server MeetingApiServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq wrapperspb.Int64Value
+	var protoReq wrapperspb.UInt64Value
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
@@ -209,7 +209,7 @@ func local_request_MeetingApi_UpdateMeeting_0(ctx context.Context, marshaler run
 }
 
 func request_MeetingApi_DeleteMeeting_0(ctx context.Context, marshaler runtime.Marshaler, client MeetingApiClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq wrapperspb.Int64Value
+	var protoReq wrapperspb.UInt64Value
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -226,7 +226,7 @@ func request_MeetingApi_DeleteMeeting_0(ctx context.Context, marshaler runtime.M
 }
 
 func local_request_MeetingApi_DeleteMeeting_0(ctx context.Context, marshaler runtime.Marshaler, server MeetingApiServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq wrapperspb.Int64Value
+	var protoReq wrapperspb.UInt64Value
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
