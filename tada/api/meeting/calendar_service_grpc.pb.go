@@ -24,6 +24,8 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MeetingApiClient interface {
 	GetMeetings(ctx context.Context, in *GetMeetingsRequest, opts ...grpc.CallOption) (*GetMeetingsResponse, error)
+	GetMeetingsDates(ctx context.Context, in *GetMeetingsRequest, opts ...grpc.CallOption) (*GetMeetingsDatesResponse, error)
+	GetMeetingsCounts(ctx context.Context, in *GetMeetingsRequest, opts ...grpc.CallOption) (*GetMeetingsCountsResponse, error)
 	GetMeetingById(ctx context.Context, in *wrapperspb.UInt64Value, opts ...grpc.CallOption) (*Meeting, error)
 	GetMeetingByChatUUID(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*Meeting, error)
 	CreateMeeting(ctx context.Context, in *CreateMeetingRequest, opts ...grpc.CallOption) (*Meeting, error)
@@ -47,6 +49,24 @@ func NewMeetingApiClient(cc grpc.ClientConnInterface) MeetingApiClient {
 func (c *meetingApiClient) GetMeetings(ctx context.Context, in *GetMeetingsRequest, opts ...grpc.CallOption) (*GetMeetingsResponse, error) {
 	out := new(GetMeetingsResponse)
 	err := c.cc.Invoke(ctx, "/tada.api.meeting.MeetingApi/GetMeetings", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *meetingApiClient) GetMeetingsDates(ctx context.Context, in *GetMeetingsRequest, opts ...grpc.CallOption) (*GetMeetingsDatesResponse, error) {
+	out := new(GetMeetingsDatesResponse)
+	err := c.cc.Invoke(ctx, "/tada.api.meeting.MeetingApi/GetMeetingsDates", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *meetingApiClient) GetMeetingsCounts(ctx context.Context, in *GetMeetingsRequest, opts ...grpc.CallOption) (*GetMeetingsCountsResponse, error) {
+	out := new(GetMeetingsCountsResponse)
+	err := c.cc.Invoke(ctx, "/tada.api.meeting.MeetingApi/GetMeetingsCounts", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -148,6 +168,8 @@ func (c *meetingApiClient) GenerateSells(ctx context.Context, in *GenerateSellsR
 // for forward compatibility
 type MeetingApiServer interface {
 	GetMeetings(context.Context, *GetMeetingsRequest) (*GetMeetingsResponse, error)
+	GetMeetingsDates(context.Context, *GetMeetingsRequest) (*GetMeetingsDatesResponse, error)
+	GetMeetingsCounts(context.Context, *GetMeetingsRequest) (*GetMeetingsCountsResponse, error)
 	GetMeetingById(context.Context, *wrapperspb.UInt64Value) (*Meeting, error)
 	GetMeetingByChatUUID(context.Context, *wrapperspb.StringValue) (*Meeting, error)
 	CreateMeeting(context.Context, *CreateMeetingRequest) (*Meeting, error)
@@ -167,6 +189,12 @@ type UnimplementedMeetingApiServer struct {
 
 func (UnimplementedMeetingApiServer) GetMeetings(context.Context, *GetMeetingsRequest) (*GetMeetingsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMeetings not implemented")
+}
+func (UnimplementedMeetingApiServer) GetMeetingsDates(context.Context, *GetMeetingsRequest) (*GetMeetingsDatesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMeetingsDates not implemented")
+}
+func (UnimplementedMeetingApiServer) GetMeetingsCounts(context.Context, *GetMeetingsRequest) (*GetMeetingsCountsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMeetingsCounts not implemented")
 }
 func (UnimplementedMeetingApiServer) GetMeetingById(context.Context, *wrapperspb.UInt64Value) (*Meeting, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMeetingById not implemented")
@@ -225,6 +253,42 @@ func _MeetingApi_GetMeetings_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MeetingApiServer).GetMeetings(ctx, req.(*GetMeetingsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MeetingApi_GetMeetingsDates_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetMeetingsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MeetingApiServer).GetMeetingsDates(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/tada.api.meeting.MeetingApi/GetMeetingsDates",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MeetingApiServer).GetMeetingsDates(ctx, req.(*GetMeetingsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MeetingApi_GetMeetingsCounts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetMeetingsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MeetingApiServer).GetMeetingsCounts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/tada.api.meeting.MeetingApi/GetMeetingsCounts",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MeetingApiServer).GetMeetingsCounts(ctx, req.(*GetMeetingsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -419,6 +483,14 @@ var MeetingApi_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetMeetings",
 			Handler:    _MeetingApi_GetMeetings_Handler,
+		},
+		{
+			MethodName: "GetMeetingsDates",
+			Handler:    _MeetingApi_GetMeetingsDates_Handler,
+		},
+		{
+			MethodName: "GetMeetingsCounts",
+			Handler:    _MeetingApi_GetMeetingsCounts_Handler,
 		},
 		{
 			MethodName: "GetMeetingById",
