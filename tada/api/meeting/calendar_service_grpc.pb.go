@@ -30,7 +30,7 @@ type MeetingApiClient interface {
 	GetMeetingByChatUUID(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*Meeting, error)
 	CreateMeeting(ctx context.Context, in *CreateMeetingRequest, opts ...grpc.CallOption) (*Meeting, error)
 	UpdateMeeting(ctx context.Context, in *UpdateMeetingRequest, opts ...grpc.CallOption) (*Meeting, error)
-	DeleteMeeting(ctx context.Context, in *wrapperspb.UInt64Value, opts ...grpc.CallOption) (*SuccessResponse, error)
+	DeleteMeeting(ctx context.Context, in *DeleteMeetingRequest, opts ...grpc.CallOption) (*SuccessResponse, error)
 	GetMeetingMembers(ctx context.Context, in *GetMeetingMembersRequest, opts ...grpc.CallOption) (*GetMeetingMembersResponse, error)
 	AddMemberInMeeting(ctx context.Context, in *AddMemberInMeetingRequest, opts ...grpc.CallOption) (*Member, error)
 	UpdateMemberInMeeting(ctx context.Context, in *UpdateMemberInMeetingRequest, opts ...grpc.CallOption) (*Member, error)
@@ -109,7 +109,7 @@ func (c *meetingApiClient) UpdateMeeting(ctx context.Context, in *UpdateMeetingR
 	return out, nil
 }
 
-func (c *meetingApiClient) DeleteMeeting(ctx context.Context, in *wrapperspb.UInt64Value, opts ...grpc.CallOption) (*SuccessResponse, error) {
+func (c *meetingApiClient) DeleteMeeting(ctx context.Context, in *DeleteMeetingRequest, opts ...grpc.CallOption) (*SuccessResponse, error) {
 	out := new(SuccessResponse)
 	err := c.cc.Invoke(ctx, "/tada.api.meeting.MeetingApi/DeleteMeeting", in, out, opts...)
 	if err != nil {
@@ -174,7 +174,7 @@ type MeetingApiServer interface {
 	GetMeetingByChatUUID(context.Context, *wrapperspb.StringValue) (*Meeting, error)
 	CreateMeeting(context.Context, *CreateMeetingRequest) (*Meeting, error)
 	UpdateMeeting(context.Context, *UpdateMeetingRequest) (*Meeting, error)
-	DeleteMeeting(context.Context, *wrapperspb.UInt64Value) (*SuccessResponse, error)
+	DeleteMeeting(context.Context, *DeleteMeetingRequest) (*SuccessResponse, error)
 	GetMeetingMembers(context.Context, *GetMeetingMembersRequest) (*GetMeetingMembersResponse, error)
 	AddMemberInMeeting(context.Context, *AddMemberInMeetingRequest) (*Member, error)
 	UpdateMemberInMeeting(context.Context, *UpdateMemberInMeetingRequest) (*Member, error)
@@ -208,7 +208,7 @@ func (UnimplementedMeetingApiServer) CreateMeeting(context.Context, *CreateMeeti
 func (UnimplementedMeetingApiServer) UpdateMeeting(context.Context, *UpdateMeetingRequest) (*Meeting, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateMeeting not implemented")
 }
-func (UnimplementedMeetingApiServer) DeleteMeeting(context.Context, *wrapperspb.UInt64Value) (*SuccessResponse, error) {
+func (UnimplementedMeetingApiServer) DeleteMeeting(context.Context, *DeleteMeetingRequest) (*SuccessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteMeeting not implemented")
 }
 func (UnimplementedMeetingApiServer) GetMeetingMembers(context.Context, *GetMeetingMembersRequest) (*GetMeetingMembersResponse, error) {
@@ -366,7 +366,7 @@ func _MeetingApi_UpdateMeeting_Handler(srv interface{}, ctx context.Context, dec
 }
 
 func _MeetingApi_DeleteMeeting_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(wrapperspb.UInt64Value)
+	in := new(DeleteMeetingRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -378,7 +378,7 @@ func _MeetingApi_DeleteMeeting_Handler(srv interface{}, ctx context.Context, dec
 		FullMethod: "/tada.api.meeting.MeetingApi/DeleteMeeting",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MeetingApiServer).DeleteMeeting(ctx, req.(*wrapperspb.UInt64Value))
+		return srv.(MeetingApiServer).DeleteMeeting(ctx, req.(*DeleteMeetingRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
