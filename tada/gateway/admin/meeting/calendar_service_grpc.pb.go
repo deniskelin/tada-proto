@@ -28,7 +28,7 @@ type MeetingGatewayClient interface {
 	GetMeetingsDates(ctx context.Context, in *meeting.GetMeetingsRequest, opts ...grpc.CallOption) (*meeting.GetMeetingsDatesResponse, error)
 	GetMeetingsCounts(ctx context.Context, in *meeting.GetMeetingsRequest, opts ...grpc.CallOption) (*meeting.GetMeetingsCountsResponse, error)
 	GetMeetingById(ctx context.Context, in *wrapperspb.UInt64Value, opts ...grpc.CallOption) (*meeting.Meeting, error)
-	GetMeetingByChatUUID(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*meeting.Meeting, error)
+	GetMeetingByGroupUUID(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*meeting.Meeting, error)
 	CreateMeeting(ctx context.Context, in *meeting.CreateMeetingRequest, opts ...grpc.CallOption) (*meeting.Meeting, error)
 	UpdateMeeting(ctx context.Context, in *meeting.UpdateMeetingRequest, opts ...grpc.CallOption) (*meeting.Meeting, error)
 	DeleteMeeting(ctx context.Context, in *meeting.DeleteMeetingRequest, opts ...grpc.CallOption) (*meeting.SuccessResponse, error)
@@ -83,9 +83,9 @@ func (c *meetingGatewayClient) GetMeetingById(ctx context.Context, in *wrappersp
 	return out, nil
 }
 
-func (c *meetingGatewayClient) GetMeetingByChatUUID(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*meeting.Meeting, error) {
+func (c *meetingGatewayClient) GetMeetingByGroupUUID(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*meeting.Meeting, error) {
 	out := new(meeting.Meeting)
-	err := c.cc.Invoke(ctx, "/tada.gateway.admin.meeting.MeetingGateway/GetMeetingByChatUUID", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/tada.gateway.admin.meeting.MeetingGateway/GetMeetingByGroupUUID", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -172,7 +172,7 @@ type MeetingGatewayServer interface {
 	GetMeetingsDates(context.Context, *meeting.GetMeetingsRequest) (*meeting.GetMeetingsDatesResponse, error)
 	GetMeetingsCounts(context.Context, *meeting.GetMeetingsRequest) (*meeting.GetMeetingsCountsResponse, error)
 	GetMeetingById(context.Context, *wrapperspb.UInt64Value) (*meeting.Meeting, error)
-	GetMeetingByChatUUID(context.Context, *wrapperspb.StringValue) (*meeting.Meeting, error)
+	GetMeetingByGroupUUID(context.Context, *wrapperspb.StringValue) (*meeting.Meeting, error)
 	CreateMeeting(context.Context, *meeting.CreateMeetingRequest) (*meeting.Meeting, error)
 	UpdateMeeting(context.Context, *meeting.UpdateMeetingRequest) (*meeting.Meeting, error)
 	DeleteMeeting(context.Context, *meeting.DeleteMeetingRequest) (*meeting.SuccessResponse, error)
@@ -200,8 +200,8 @@ func (UnimplementedMeetingGatewayServer) GetMeetingsCounts(context.Context, *mee
 func (UnimplementedMeetingGatewayServer) GetMeetingById(context.Context, *wrapperspb.UInt64Value) (*meeting.Meeting, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMeetingById not implemented")
 }
-func (UnimplementedMeetingGatewayServer) GetMeetingByChatUUID(context.Context, *wrapperspb.StringValue) (*meeting.Meeting, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetMeetingByChatUUID not implemented")
+func (UnimplementedMeetingGatewayServer) GetMeetingByGroupUUID(context.Context, *wrapperspb.StringValue) (*meeting.Meeting, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMeetingByGroupUUID not implemented")
 }
 func (UnimplementedMeetingGatewayServer) CreateMeeting(context.Context, *meeting.CreateMeetingRequest) (*meeting.Meeting, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateMeeting not implemented")
@@ -312,20 +312,20 @@ func _MeetingGateway_GetMeetingById_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MeetingGateway_GetMeetingByChatUUID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _MeetingGateway_GetMeetingByGroupUUID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(wrapperspb.StringValue)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MeetingGatewayServer).GetMeetingByChatUUID(ctx, in)
+		return srv.(MeetingGatewayServer).GetMeetingByGroupUUID(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/tada.gateway.admin.meeting.MeetingGateway/GetMeetingByChatUUID",
+		FullMethod: "/tada.gateway.admin.meeting.MeetingGateway/GetMeetingByGroupUUID",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MeetingGatewayServer).GetMeetingByChatUUID(ctx, req.(*wrapperspb.StringValue))
+		return srv.(MeetingGatewayServer).GetMeetingByGroupUUID(ctx, req.(*wrapperspb.StringValue))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -498,8 +498,8 @@ var MeetingGateway_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _MeetingGateway_GetMeetingById_Handler,
 		},
 		{
-			MethodName: "GetMeetingByChatUUID",
-			Handler:    _MeetingGateway_GetMeetingByChatUUID_Handler,
+			MethodName: "GetMeetingByGroupUUID",
+			Handler:    _MeetingGateway_GetMeetingByGroupUUID_Handler,
 		},
 		{
 			MethodName: "CreateMeeting",

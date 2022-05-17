@@ -27,7 +27,7 @@ type MeetingApiClient interface {
 	GetMeetingsDates(ctx context.Context, in *GetMeetingsRequest, opts ...grpc.CallOption) (*GetMeetingsDatesResponse, error)
 	GetMeetingsCounts(ctx context.Context, in *GetMeetingsRequest, opts ...grpc.CallOption) (*GetMeetingsCountsResponse, error)
 	GetMeetingById(ctx context.Context, in *wrapperspb.UInt64Value, opts ...grpc.CallOption) (*Meeting, error)
-	GetMeetingByChatUUID(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*Meeting, error)
+	GetMeetingByGroupUUID(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*Meeting, error)
 	CreateMeeting(ctx context.Context, in *CreateMeetingRequest, opts ...grpc.CallOption) (*Meeting, error)
 	UpdateMeeting(ctx context.Context, in *UpdateMeetingRequest, opts ...grpc.CallOption) (*Meeting, error)
 	DeleteMeeting(ctx context.Context, in *DeleteMeetingRequest, opts ...grpc.CallOption) (*SuccessResponse, error)
@@ -82,9 +82,9 @@ func (c *meetingApiClient) GetMeetingById(ctx context.Context, in *wrapperspb.UI
 	return out, nil
 }
 
-func (c *meetingApiClient) GetMeetingByChatUUID(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*Meeting, error) {
+func (c *meetingApiClient) GetMeetingByGroupUUID(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*Meeting, error) {
 	out := new(Meeting)
-	err := c.cc.Invoke(ctx, "/tada.api.meeting.MeetingApi/GetMeetingByChatUUID", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/tada.api.meeting.MeetingApi/GetMeetingByGroupUUID", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -171,7 +171,7 @@ type MeetingApiServer interface {
 	GetMeetingsDates(context.Context, *GetMeetingsRequest) (*GetMeetingsDatesResponse, error)
 	GetMeetingsCounts(context.Context, *GetMeetingsRequest) (*GetMeetingsCountsResponse, error)
 	GetMeetingById(context.Context, *wrapperspb.UInt64Value) (*Meeting, error)
-	GetMeetingByChatUUID(context.Context, *wrapperspb.StringValue) (*Meeting, error)
+	GetMeetingByGroupUUID(context.Context, *wrapperspb.StringValue) (*Meeting, error)
 	CreateMeeting(context.Context, *CreateMeetingRequest) (*Meeting, error)
 	UpdateMeeting(context.Context, *UpdateMeetingRequest) (*Meeting, error)
 	DeleteMeeting(context.Context, *DeleteMeetingRequest) (*SuccessResponse, error)
@@ -199,8 +199,8 @@ func (UnimplementedMeetingApiServer) GetMeetingsCounts(context.Context, *GetMeet
 func (UnimplementedMeetingApiServer) GetMeetingById(context.Context, *wrapperspb.UInt64Value) (*Meeting, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMeetingById not implemented")
 }
-func (UnimplementedMeetingApiServer) GetMeetingByChatUUID(context.Context, *wrapperspb.StringValue) (*Meeting, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetMeetingByChatUUID not implemented")
+func (UnimplementedMeetingApiServer) GetMeetingByGroupUUID(context.Context, *wrapperspb.StringValue) (*Meeting, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMeetingByGroupUUID not implemented")
 }
 func (UnimplementedMeetingApiServer) CreateMeeting(context.Context, *CreateMeetingRequest) (*Meeting, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateMeeting not implemented")
@@ -311,20 +311,20 @@ func _MeetingApi_GetMeetingById_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MeetingApi_GetMeetingByChatUUID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _MeetingApi_GetMeetingByGroupUUID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(wrapperspb.StringValue)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MeetingApiServer).GetMeetingByChatUUID(ctx, in)
+		return srv.(MeetingApiServer).GetMeetingByGroupUUID(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/tada.api.meeting.MeetingApi/GetMeetingByChatUUID",
+		FullMethod: "/tada.api.meeting.MeetingApi/GetMeetingByGroupUUID",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MeetingApiServer).GetMeetingByChatUUID(ctx, req.(*wrapperspb.StringValue))
+		return srv.(MeetingApiServer).GetMeetingByGroupUUID(ctx, req.(*wrapperspb.StringValue))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -497,8 +497,8 @@ var MeetingApi_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _MeetingApi_GetMeetingById_Handler,
 		},
 		{
-			MethodName: "GetMeetingByChatUUID",
-			Handler:    _MeetingApi_GetMeetingByChatUUID_Handler,
+			MethodName: "GetMeetingByGroupUUID",
+			Handler:    _MeetingApi_GetMeetingByGroupUUID_Handler,
 		},
 		{
 			MethodName: "CreateMeeting",

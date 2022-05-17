@@ -178,37 +178,37 @@ func local_request_MeetingGateway_GetMeetingById_0(ctx context.Context, marshale
 }
 
 var (
-	filter_MeetingGateway_GetMeetingByChatUUID_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+	filter_MeetingGateway_GetMeetingByGroupUUID_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 )
 
-func request_MeetingGateway_GetMeetingByChatUUID_0(ctx context.Context, marshaler runtime.Marshaler, client MeetingGatewayClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_MeetingGateway_GetMeetingByGroupUUID_0(ctx context.Context, marshaler runtime.Marshaler, client MeetingGatewayClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq wrapperspb.StringValue
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MeetingGateway_GetMeetingByChatUUID_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MeetingGateway_GetMeetingByGroupUUID_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.GetMeetingByChatUUID(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetMeetingByGroupUUID(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_MeetingGateway_GetMeetingByChatUUID_0(ctx context.Context, marshaler runtime.Marshaler, server MeetingGatewayServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_MeetingGateway_GetMeetingByGroupUUID_0(ctx context.Context, marshaler runtime.Marshaler, server MeetingGatewayServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq wrapperspb.StringValue
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MeetingGateway_GetMeetingByChatUUID_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_MeetingGateway_GetMeetingByGroupUUID_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.GetMeetingByChatUUID(ctx, &protoReq)
+	msg, err := server.GetMeetingByGroupUUID(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -585,18 +585,18 @@ func RegisterMeetingGatewayHandlerServer(ctx context.Context, mux *runtime.Serve
 
 	})
 
-	mux.Handle("GET", pattern_MeetingGateway_GetMeetingByChatUUID_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_MeetingGateway_GetMeetingByGroupUUID_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GetMeetingByChatUUID", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/GetMeetingByChatUUID"))
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GetMeetingByGroupUUID", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/GetMeetingByGroupUUID"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_MeetingGateway_GetMeetingByChatUUID_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MeetingGateway_GetMeetingByGroupUUID_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -604,7 +604,7 @@ func RegisterMeetingGatewayHandlerServer(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_MeetingGateway_GetMeetingByChatUUID_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MeetingGateway_GetMeetingByGroupUUID_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -913,23 +913,23 @@ func RegisterMeetingGatewayHandlerClient(ctx context.Context, mux *runtime.Serve
 
 	})
 
-	mux.Handle("GET", pattern_MeetingGateway_GetMeetingByChatUUID_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_MeetingGateway_GetMeetingByGroupUUID_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GetMeetingByChatUUID", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/GetMeetingByChatUUID"))
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GetMeetingByGroupUUID", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/GetMeetingByGroupUUID"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_MeetingGateway_GetMeetingByChatUUID_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_MeetingGateway_GetMeetingByGroupUUID_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_MeetingGateway_GetMeetingByChatUUID_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_MeetingGateway_GetMeetingByGroupUUID_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1105,7 +1105,7 @@ var (
 
 	pattern_MeetingGateway_GetMeetingById_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"gateway", "v1", "meeting.calendar", "GetMeetingById"}, ""))
 
-	pattern_MeetingGateway_GetMeetingByChatUUID_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "meeting.calendar", "GetMeetingByChatUUID"}, ""))
+	pattern_MeetingGateway_GetMeetingByGroupUUID_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "meeting.calendar", "GetMeetingByGroupUUID"}, ""))
 
 	pattern_MeetingGateway_CreateMeeting_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"gateway", "v1", "meeting.calendar", "CreateMeeting"}, ""))
 
@@ -1133,7 +1133,7 @@ var (
 
 	forward_MeetingGateway_GetMeetingById_0 = runtime.ForwardResponseMessage
 
-	forward_MeetingGateway_GetMeetingByChatUUID_0 = runtime.ForwardResponseMessage
+	forward_MeetingGateway_GetMeetingByGroupUUID_0 = runtime.ForwardResponseMessage
 
 	forward_MeetingGateway_CreateMeeting_0 = runtime.ForwardResponseMessage
 
