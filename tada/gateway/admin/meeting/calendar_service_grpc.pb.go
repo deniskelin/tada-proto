@@ -36,7 +36,9 @@ type MeetingGatewayClient interface {
 	AddMemberInMeeting(ctx context.Context, in *meeting.AddMemberInMeetingRequest, opts ...grpc.CallOption) (*meeting.Member, error)
 	UpdateMemberInMeeting(ctx context.Context, in *meeting.UpdateMemberInMeetingRequest, opts ...grpc.CallOption) (*meeting.Member, error)
 	DeleteMemberFromMeeting(ctx context.Context, in *meeting.DeleteMemberFromMeetingRequest, opts ...grpc.CallOption) (*meeting.SuccessResponse, error)
-	GenerateSells(ctx context.Context, in *meeting.GenerateSellsRequest, opts ...grpc.CallOption) (*meeting.SuccessResponse, error)
+	UpdateMeetingCell(ctx context.Context, in *meeting.UpdateMeetingCellRequest, opts ...grpc.CallOption) (*meeting.Meeting, error)
+	DeleteMeetingCell(ctx context.Context, in *meeting.DeleteMeetingCellRequest, opts ...grpc.CallOption) (*meeting.SuccessResponse, error)
+	GenerateMeetingCells(ctx context.Context, in *meeting.GenerateMeetingCellsRequest, opts ...grpc.CallOption) (*meeting.SuccessResponse, error)
 }
 
 type meetingGatewayClient struct {
@@ -155,9 +157,27 @@ func (c *meetingGatewayClient) DeleteMemberFromMeeting(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *meetingGatewayClient) GenerateSells(ctx context.Context, in *meeting.GenerateSellsRequest, opts ...grpc.CallOption) (*meeting.SuccessResponse, error) {
+func (c *meetingGatewayClient) UpdateMeetingCell(ctx context.Context, in *meeting.UpdateMeetingCellRequest, opts ...grpc.CallOption) (*meeting.Meeting, error) {
+	out := new(meeting.Meeting)
+	err := c.cc.Invoke(ctx, "/tada.gateway.admin.meeting.MeetingGateway/UpdateMeetingCell", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *meetingGatewayClient) DeleteMeetingCell(ctx context.Context, in *meeting.DeleteMeetingCellRequest, opts ...grpc.CallOption) (*meeting.SuccessResponse, error) {
 	out := new(meeting.SuccessResponse)
-	err := c.cc.Invoke(ctx, "/tada.gateway.admin.meeting.MeetingGateway/GenerateSells", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/tada.gateway.admin.meeting.MeetingGateway/DeleteMeetingCell", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *meetingGatewayClient) GenerateMeetingCells(ctx context.Context, in *meeting.GenerateMeetingCellsRequest, opts ...grpc.CallOption) (*meeting.SuccessResponse, error) {
+	out := new(meeting.SuccessResponse)
+	err := c.cc.Invoke(ctx, "/tada.gateway.admin.meeting.MeetingGateway/GenerateMeetingCells", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -180,7 +200,9 @@ type MeetingGatewayServer interface {
 	AddMemberInMeeting(context.Context, *meeting.AddMemberInMeetingRequest) (*meeting.Member, error)
 	UpdateMemberInMeeting(context.Context, *meeting.UpdateMemberInMeetingRequest) (*meeting.Member, error)
 	DeleteMemberFromMeeting(context.Context, *meeting.DeleteMemberFromMeetingRequest) (*meeting.SuccessResponse, error)
-	GenerateSells(context.Context, *meeting.GenerateSellsRequest) (*meeting.SuccessResponse, error)
+	UpdateMeetingCell(context.Context, *meeting.UpdateMeetingCellRequest) (*meeting.Meeting, error)
+	DeleteMeetingCell(context.Context, *meeting.DeleteMeetingCellRequest) (*meeting.SuccessResponse, error)
+	GenerateMeetingCells(context.Context, *meeting.GenerateMeetingCellsRequest) (*meeting.SuccessResponse, error)
 	mustEmbedUnimplementedMeetingGatewayServer()
 }
 
@@ -224,8 +246,14 @@ func (UnimplementedMeetingGatewayServer) UpdateMemberInMeeting(context.Context, 
 func (UnimplementedMeetingGatewayServer) DeleteMemberFromMeeting(context.Context, *meeting.DeleteMemberFromMeetingRequest) (*meeting.SuccessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteMemberFromMeeting not implemented")
 }
-func (UnimplementedMeetingGatewayServer) GenerateSells(context.Context, *meeting.GenerateSellsRequest) (*meeting.SuccessResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GenerateSells not implemented")
+func (UnimplementedMeetingGatewayServer) UpdateMeetingCell(context.Context, *meeting.UpdateMeetingCellRequest) (*meeting.Meeting, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateMeetingCell not implemented")
+}
+func (UnimplementedMeetingGatewayServer) DeleteMeetingCell(context.Context, *meeting.DeleteMeetingCellRequest) (*meeting.SuccessResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteMeetingCell not implemented")
+}
+func (UnimplementedMeetingGatewayServer) GenerateMeetingCells(context.Context, *meeting.GenerateMeetingCellsRequest) (*meeting.SuccessResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GenerateMeetingCells not implemented")
 }
 func (UnimplementedMeetingGatewayServer) mustEmbedUnimplementedMeetingGatewayServer() {}
 
@@ -456,20 +484,56 @@ func _MeetingGateway_DeleteMemberFromMeeting_Handler(srv interface{}, ctx contex
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MeetingGateway_GenerateSells_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(meeting.GenerateSellsRequest)
+func _MeetingGateway_UpdateMeetingCell_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(meeting.UpdateMeetingCellRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MeetingGatewayServer).GenerateSells(ctx, in)
+		return srv.(MeetingGatewayServer).UpdateMeetingCell(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/tada.gateway.admin.meeting.MeetingGateway/GenerateSells",
+		FullMethod: "/tada.gateway.admin.meeting.MeetingGateway/UpdateMeetingCell",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MeetingGatewayServer).GenerateSells(ctx, req.(*meeting.GenerateSellsRequest))
+		return srv.(MeetingGatewayServer).UpdateMeetingCell(ctx, req.(*meeting.UpdateMeetingCellRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MeetingGateway_DeleteMeetingCell_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(meeting.DeleteMeetingCellRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MeetingGatewayServer).DeleteMeetingCell(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/tada.gateway.admin.meeting.MeetingGateway/DeleteMeetingCell",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MeetingGatewayServer).DeleteMeetingCell(ctx, req.(*meeting.DeleteMeetingCellRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MeetingGateway_GenerateMeetingCells_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(meeting.GenerateMeetingCellsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MeetingGatewayServer).GenerateMeetingCells(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/tada.gateway.admin.meeting.MeetingGateway/GenerateMeetingCells",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MeetingGatewayServer).GenerateMeetingCells(ctx, req.(*meeting.GenerateMeetingCellsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -530,8 +594,16 @@ var MeetingGateway_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _MeetingGateway_DeleteMemberFromMeeting_Handler,
 		},
 		{
-			MethodName: "GenerateSells",
-			Handler:    _MeetingGateway_GenerateSells_Handler,
+			MethodName: "UpdateMeetingCell",
+			Handler:    _MeetingGateway_UpdateMeetingCell_Handler,
+		},
+		{
+			MethodName: "DeleteMeetingCell",
+			Handler:    _MeetingGateway_DeleteMeetingCell_Handler,
+		},
+		{
+			MethodName: "GenerateMeetingCells",
+			Handler:    _MeetingGateway_GenerateMeetingCells_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
