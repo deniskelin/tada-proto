@@ -191,24 +191,39 @@ func (MeetingRepeatabilityType) EnumDescriptor() ([]byte, []int) {
 	return file_tada_api_meeting_calendar_service_proto_rawDescGZIP(), []int{2}
 }
 
+//*
+// Meeting is proto struct of meeting in meeting-api service
 type Meeting struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	MeetingId         uint64                 `protobuf:"varint,1,opt,name=meeting_id,json=meetingId,proto3" json:"meeting_id,omitempty"`
-	PersonalAccountId uint64                 `protobuf:"varint,2,opt,name=personal_account_id,json=personalAccountId,proto3" json:"personal_account_id,omitempty"`
-	Duration          int32                  `protobuf:"varint,3,opt,name=duration,proto3" json:"duration,omitempty"`
-	IsOutside         bool                   `protobuf:"varint,4,opt,name=is_outside,json=isOutside,proto3" json:"is_outside,omitempty"`
-	GroupUuid         string                 `protobuf:"bytes,5,opt,name=group_uuid,json=groupUuid,proto3" json:"group_uuid,omitempty"`
-	TeamUuid          string                 `protobuf:"bytes,6,opt,name=team_uuid,json=teamUuid,proto3" json:"team_uuid,omitempty"`
-	OwnerUserUuid     string                 `protobuf:"bytes,7,opt,name=owner_user_uuid,json=ownerUserUuid,proto3" json:"owner_user_uuid,omitempty"`
-	OwnerContactUuid  string                 `protobuf:"bytes,8,opt,name=owner_contact_uuid,json=ownerContactUuid,proto3" json:"owner_contact_uuid,omitempty"`
-	StartAt           *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=start_at,json=startAt,proto3,oneof" json:"start_at,omitempty"`
-	StartGenDate      *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=start_gen_date,json=startGenDate,proto3,oneof" json:"start_gen_date,omitempty"`
-	EndGenDate        *timestamppb.Timestamp `protobuf:"bytes,11,opt,name=end_gen_date,json=endGenDate,proto3,oneof" json:"end_gen_date,omitempty"`
-	Freq              *Freq                  `protobuf:"bytes,12,opt,name=freq,proto3,oneof" json:"freq,omitempty"`
-	Members           []*Member              `protobuf:"bytes,13,rep,name=members,proto3" json:"members,omitempty"`
+	// meeting_id is field of identifier of meeting on format snowflake-ID
+	MeetingId uint64 `protobuf:"varint,1,opt,name=meeting_id,json=meetingId,proto3" json:"meeting_id,omitempty"`
+	// personal_account_id is identifier of personal account on format snowflake-ID
+	PersonalAccountId uint64 `protobuf:"varint,2,opt,name=personal_account_id,json=personalAccountId,proto3" json:"personal_account_id,omitempty"`
+	// duration is duration of meeting
+	Duration int32 `protobuf:"varint,3,opt,name=duration,proto3" json:"duration,omitempty"`
+	// is_outside is flag of the meeting outside the tada
+	IsOutside bool `protobuf:"varint,4,opt,name=is_outside,json=isOutside,proto3" json:"is_outside,omitempty"`
+	// group_uuid is uuid of group on tada back
+	GroupUuid string `protobuf:"bytes,5,opt,name=group_uuid,json=groupUuid,proto3" json:"group_uuid,omitempty"`
+	// team_uuid is uuid of team on tada back
+	TeamUuid string `protobuf:"bytes,6,opt,name=team_uuid,json=teamUuid,proto3" json:"team_uuid,omitempty"`
+	// owner_user_uuid is uuid of owner on tada back
+	OwnerUserUuid string `protobuf:"bytes,7,opt,name=owner_user_uuid,json=ownerUserUuid,proto3" json:"owner_user_uuid,omitempty"`
+	// owner_contact_uuid is jid of owner on tada back
+	OwnerContactUuid string `protobuf:"bytes,8,opt,name=owner_contact_uuid,json=ownerContactUuid,proto3" json:"owner_contact_uuid,omitempty"`
+	// start_at is datetime of starts of cell of meeting
+	StartAt *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=start_at,json=startAt,proto3,oneof" json:"start_at,omitempty"`
+	// start_gen_date is datetime of start generating of cell of meeting
+	StartGenDate *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=start_gen_date,json=startGenDate,proto3,oneof" json:"start_gen_date,omitempty"`
+	// end_gen_date is datetime of end generating of cell of meeting
+	EndGenDate *timestamppb.Timestamp `protobuf:"bytes,11,opt,name=end_gen_date,json=endGenDate,proto3,oneof" json:"end_gen_date,omitempty"`
+	// freq is struct of Frequency of meeting
+	Freq *Freq `protobuf:"bytes,12,opt,name=freq,proto3,oneof" json:"freq,omitempty"`
+	// members is struct of members of meeting
+	Members []*Member `protobuf:"bytes,13,rep,name=members,proto3" json:"members,omitempty"`
 }
 
 func (x *Meeting) Reset() {
@@ -334,6 +349,8 @@ func (x *Meeting) GetMembers() []*Member {
 	return nil
 }
 
+//*
+// Frequency of meeting
 type Freq struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -397,6 +414,8 @@ func (x *Freq) GetDaysWeek() []int32 {
 	return nil
 }
 
+//*
+// Member of meeting
 type Member struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -484,6 +503,8 @@ func (x *Member) GetPresenceStatus() MeetingPresenceStatus {
 	return MeetingPresenceStatus_MEETING_PRESENCE_STATUS_UNSPECIFIED
 }
 
+//*
+// Request of get meeting cells with filters
 type GetMeetingsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -595,6 +616,8 @@ func (x *GetMeetingsRequest) GetUserUuid() []string {
 	return nil
 }
 
+//*
+// Response of get meeting cells for range of dates
 type GetMeetingsResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -666,6 +689,8 @@ func (x *GetMeetingsResponse) GetTotal() int32 {
 	return 0
 }
 
+//*
+// Response of get meeting exist dates
 type GetMeetingsDatesResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -713,6 +738,8 @@ func (x *GetMeetingsDatesResponse) GetDate() []*timestamppb.Timestamp {
 	return nil
 }
 
+//*
+// Response of get meeting counts
 type GetMeetingsCountsResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -768,6 +795,8 @@ func (x *GetMeetingsCountsResponse) GetCountMeetings() int32 {
 	return 0
 }
 
+//*
+// Request of create meeting
 type CreateMeetingRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -895,6 +924,8 @@ func (x *CreateMeetingRequest) GetMembers() []*Member {
 	return nil
 }
 
+//*
+// Request of update meeting
 type UpdateMeetingRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1022,6 +1053,8 @@ func (x *UpdateMeetingRequest) GetEndGenDate() *timestamppb.Timestamp {
 	return nil
 }
 
+//*
+// Request of delete meeting
 type DeleteMeetingRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1077,6 +1110,8 @@ func (x *DeleteMeetingRequest) GetMeetingId() uint64 {
 	return 0
 }
 
+//*
+// Request of get members of meeting
 type GetMeetingMembersRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1164,6 +1199,8 @@ func (x *GetMeetingMembersRequest) GetUuidSection() []string {
 	return nil
 }
 
+//*
+// Response of get members of meeting
 type GetMeetingMembersResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1235,6 +1272,8 @@ func (x *GetMeetingMembersResponse) GetTotal() int32 {
 	return 0
 }
 
+//*
+// Request of add members in meeting
 type AddMemberInMeetingRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1322,6 +1361,8 @@ func (x *AddMemberInMeetingRequest) GetPresenceStatus() MeetingPresenceStatus {
 	return MeetingPresenceStatus_MEETING_PRESENCE_STATUS_UNSPECIFIED
 }
 
+//*
+// Request of update members in meeting
 type UpdateMemberInMeetingRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1401,13 +1442,15 @@ func (x *UpdateMemberInMeetingRequest) GetPresenceStatus() MeetingPresenceStatus
 	return MeetingPresenceStatus_MEETING_PRESENCE_STATUS_UNSPECIFIED
 }
 
+//*
+// Request of delete members from meeting
 type DeleteMemberFromMeetingRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	MeetingId uint64 `protobuf:"varint,1,opt,name=meeting_id,json=meetingId,proto3" json:"meeting_id,omitempty"`
-	UserUuid  string `protobuf:"bytes,2,opt,name=user_uuid,json=userUuid,proto3" json:"user_uuid,omitempty"`
+	MeetingId uint64   `protobuf:"varint,1,opt,name=meeting_id,json=meetingId,proto3" json:"meeting_id,omitempty"`
+	UserUuid  []string `protobuf:"bytes,2,rep,name=user_uuid,json=userUuid,proto3" json:"user_uuid,omitempty"`
 }
 
 func (x *DeleteMemberFromMeetingRequest) Reset() {
@@ -1449,13 +1492,15 @@ func (x *DeleteMemberFromMeetingRequest) GetMeetingId() uint64 {
 	return 0
 }
 
-func (x *DeleteMemberFromMeetingRequest) GetUserUuid() string {
+func (x *DeleteMemberFromMeetingRequest) GetUserUuid() []string {
 	if x != nil {
 		return x.UserUuid
 	}
-	return ""
+	return nil
 }
 
+//*
+// Successful of Response
 type SuccessResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1503,6 +1548,8 @@ func (x *SuccessResponse) GetSuccess() bool {
 	return false
 }
 
+//*
+// Request of update one of cell of meeting
 type UpdateMeetingCellRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1590,6 +1637,8 @@ func (x *UpdateMeetingCellRequest) GetStartAtNewValue() *timestamppb.Timestamp {
 	return nil
 }
 
+//*
+// Request of delete one of cell of meeting
 type DeleteMeetingCellRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -1653,6 +1702,8 @@ func (x *DeleteMeetingCellRequest) GetStartAtCellRequest() *timestamppb.Timestam
 	return nil
 }
 
+//*
+// Request of generate cells of meeting for range of dates
 type GenerateMeetingCellsRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -2016,7 +2067,7 @@ var file_tada_api_meeting_calendar_service_proto_rawDesc = []byte{
 	0x65, 0x73, 0x74, 0x12, 0x1d, 0x0a, 0x0a, 0x6d, 0x65, 0x65, 0x74, 0x69, 0x6e, 0x67, 0x5f, 0x69,
 	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x09, 0x6d, 0x65, 0x65, 0x74, 0x69, 0x6e, 0x67,
 	0x49, 0x64, 0x12, 0x1b, 0x0a, 0x09, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x75, 0x75, 0x69, 0x64, 0x18,
-	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x55, 0x75, 0x69, 0x64, 0x22,
+	0x02, 0x20, 0x03, 0x28, 0x09, 0x52, 0x08, 0x75, 0x73, 0x65, 0x72, 0x55, 0x75, 0x69, 0x64, 0x22,
 	0x2b, 0x0a, 0x0f, 0x53, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
 	0x73, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x73, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x18, 0x01, 0x20,
 	0x01, 0x28, 0x08, 0x52, 0x07, 0x73, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x22, 0xfe, 0x02, 0x0a,
