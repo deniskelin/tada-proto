@@ -35,7 +35,7 @@ type MeetingGatewayClient interface {
 	GetMeetingMembers(ctx context.Context, in *meeting.GetMeetingMembersRequest, opts ...grpc.CallOption) (*meeting.GetMeetingMembersResponse, error)
 	AddMemberInMeeting(ctx context.Context, in *meeting.AddMemberInMeetingRequest, opts ...grpc.CallOption) (*meeting.Member, error)
 	UpdateMemberInMeeting(ctx context.Context, in *meeting.UpdateMemberInMeetingRequest, opts ...grpc.CallOption) (*meeting.Member, error)
-	DeleteMemberFromMeeting(ctx context.Context, in *meeting.DeleteMemberFromMeetingRequest, opts ...grpc.CallOption) (*meeting.SuccessResponse, error)
+	DeleteMemberFromMeeting(ctx context.Context, in *DeleteMemberFromMeetingRequest, opts ...grpc.CallOption) (*meeting.SuccessResponse, error)
 	UpdateMeetingCell(ctx context.Context, in *meeting.UpdateMeetingCellRequest, opts ...grpc.CallOption) (*meeting.Meeting, error)
 	DeleteMeetingCell(ctx context.Context, in *meeting.DeleteMeetingCellRequest, opts ...grpc.CallOption) (*meeting.SuccessResponse, error)
 	GenerateMeetingCells(ctx context.Context, in *meeting.GenerateMeetingCellsRequest, opts ...grpc.CallOption) (*meeting.SuccessResponse, error)
@@ -148,7 +148,7 @@ func (c *meetingGatewayClient) UpdateMemberInMeeting(ctx context.Context, in *me
 	return out, nil
 }
 
-func (c *meetingGatewayClient) DeleteMemberFromMeeting(ctx context.Context, in *meeting.DeleteMemberFromMeetingRequest, opts ...grpc.CallOption) (*meeting.SuccessResponse, error) {
+func (c *meetingGatewayClient) DeleteMemberFromMeeting(ctx context.Context, in *DeleteMemberFromMeetingRequest, opts ...grpc.CallOption) (*meeting.SuccessResponse, error) {
 	out := new(meeting.SuccessResponse)
 	err := c.cc.Invoke(ctx, "/tada.gateway.admin.meeting.MeetingGateway/DeleteMemberFromMeeting", in, out, opts...)
 	if err != nil {
@@ -199,7 +199,7 @@ type MeetingGatewayServer interface {
 	GetMeetingMembers(context.Context, *meeting.GetMeetingMembersRequest) (*meeting.GetMeetingMembersResponse, error)
 	AddMemberInMeeting(context.Context, *meeting.AddMemberInMeetingRequest) (*meeting.Member, error)
 	UpdateMemberInMeeting(context.Context, *meeting.UpdateMemberInMeetingRequest) (*meeting.Member, error)
-	DeleteMemberFromMeeting(context.Context, *meeting.DeleteMemberFromMeetingRequest) (*meeting.SuccessResponse, error)
+	DeleteMemberFromMeeting(context.Context, *DeleteMemberFromMeetingRequest) (*meeting.SuccessResponse, error)
 	UpdateMeetingCell(context.Context, *meeting.UpdateMeetingCellRequest) (*meeting.Meeting, error)
 	DeleteMeetingCell(context.Context, *meeting.DeleteMeetingCellRequest) (*meeting.SuccessResponse, error)
 	GenerateMeetingCells(context.Context, *meeting.GenerateMeetingCellsRequest) (*meeting.SuccessResponse, error)
@@ -243,7 +243,7 @@ func (UnimplementedMeetingGatewayServer) AddMemberInMeeting(context.Context, *me
 func (UnimplementedMeetingGatewayServer) UpdateMemberInMeeting(context.Context, *meeting.UpdateMemberInMeetingRequest) (*meeting.Member, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateMemberInMeeting not implemented")
 }
-func (UnimplementedMeetingGatewayServer) DeleteMemberFromMeeting(context.Context, *meeting.DeleteMemberFromMeetingRequest) (*meeting.SuccessResponse, error) {
+func (UnimplementedMeetingGatewayServer) DeleteMemberFromMeeting(context.Context, *DeleteMemberFromMeetingRequest) (*meeting.SuccessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteMemberFromMeeting not implemented")
 }
 func (UnimplementedMeetingGatewayServer) UpdateMeetingCell(context.Context, *meeting.UpdateMeetingCellRequest) (*meeting.Meeting, error) {
@@ -467,7 +467,7 @@ func _MeetingGateway_UpdateMemberInMeeting_Handler(srv interface{}, ctx context.
 }
 
 func _MeetingGateway_DeleteMemberFromMeeting_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(meeting.DeleteMemberFromMeetingRequest)
+	in := new(DeleteMemberFromMeetingRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -479,7 +479,7 @@ func _MeetingGateway_DeleteMemberFromMeeting_Handler(srv interface{}, ctx contex
 		FullMethod: "/tada.gateway.admin.meeting.MeetingGateway/DeleteMemberFromMeeting",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MeetingGatewayServer).DeleteMemberFromMeeting(ctx, req.(*meeting.DeleteMemberFromMeetingRequest))
+		return srv.(MeetingGatewayServer).DeleteMemberFromMeeting(ctx, req.(*DeleteMemberFromMeetingRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
