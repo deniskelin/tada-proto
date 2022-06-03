@@ -26,6 +26,7 @@ type MeetingApiClient interface {
 	GetMeetings(ctx context.Context, in *GetMeetingsRequest, opts ...grpc.CallOption) (*GetMeetingsResponse, error)
 	GetMeetingsDates(ctx context.Context, in *GetMeetingsRequest, opts ...grpc.CallOption) (*GetMeetingsDatesResponse, error)
 	GetMeetingsCounts(ctx context.Context, in *GetMeetingsRequest, opts ...grpc.CallOption) (*GetMeetingsCountsResponse, error)
+	GetMeetingsGroupsByInterval(ctx context.Context, in *GetMeetingsGroupsByIntervalRequest, opts ...grpc.CallOption) (*GetMeetingsGroupsByIntervalResponse, error)
 	GetMeetingById(ctx context.Context, in *wrapperspb.UInt64Value, opts ...grpc.CallOption) (*Meeting, error)
 	GetMeetingByGroupUUID(ctx context.Context, in *wrapperspb.StringValue, opts ...grpc.CallOption) (*Meeting, error)
 	CreateMeeting(ctx context.Context, in *CreateMeetingRequest, opts ...grpc.CallOption) (*Meeting, error)
@@ -69,6 +70,15 @@ func (c *meetingApiClient) GetMeetingsDates(ctx context.Context, in *GetMeetings
 func (c *meetingApiClient) GetMeetingsCounts(ctx context.Context, in *GetMeetingsRequest, opts ...grpc.CallOption) (*GetMeetingsCountsResponse, error) {
 	out := new(GetMeetingsCountsResponse)
 	err := c.cc.Invoke(ctx, "/tada.api.meeting.MeetingApi/GetMeetingsCounts", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *meetingApiClient) GetMeetingsGroupsByInterval(ctx context.Context, in *GetMeetingsGroupsByIntervalRequest, opts ...grpc.CallOption) (*GetMeetingsGroupsByIntervalResponse, error) {
+	out := new(GetMeetingsGroupsByIntervalResponse)
+	err := c.cc.Invoke(ctx, "/tada.api.meeting.MeetingApi/GetMeetingsGroupsByInterval", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -190,6 +200,7 @@ type MeetingApiServer interface {
 	GetMeetings(context.Context, *GetMeetingsRequest) (*GetMeetingsResponse, error)
 	GetMeetingsDates(context.Context, *GetMeetingsRequest) (*GetMeetingsDatesResponse, error)
 	GetMeetingsCounts(context.Context, *GetMeetingsRequest) (*GetMeetingsCountsResponse, error)
+	GetMeetingsGroupsByInterval(context.Context, *GetMeetingsGroupsByIntervalRequest) (*GetMeetingsGroupsByIntervalResponse, error)
 	GetMeetingById(context.Context, *wrapperspb.UInt64Value) (*Meeting, error)
 	GetMeetingByGroupUUID(context.Context, *wrapperspb.StringValue) (*Meeting, error)
 	CreateMeeting(context.Context, *CreateMeetingRequest) (*Meeting, error)
@@ -217,6 +228,9 @@ func (UnimplementedMeetingApiServer) GetMeetingsDates(context.Context, *GetMeeti
 }
 func (UnimplementedMeetingApiServer) GetMeetingsCounts(context.Context, *GetMeetingsRequest) (*GetMeetingsCountsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMeetingsCounts not implemented")
+}
+func (UnimplementedMeetingApiServer) GetMeetingsGroupsByInterval(context.Context, *GetMeetingsGroupsByIntervalRequest) (*GetMeetingsGroupsByIntervalResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMeetingsGroupsByInterval not implemented")
 }
 func (UnimplementedMeetingApiServer) GetMeetingById(context.Context, *wrapperspb.UInt64Value) (*Meeting, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMeetingById not implemented")
@@ -317,6 +331,24 @@ func _MeetingApi_GetMeetingsCounts_Handler(srv interface{}, ctx context.Context,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MeetingApiServer).GetMeetingsCounts(ctx, req.(*GetMeetingsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MeetingApi_GetMeetingsGroupsByInterval_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetMeetingsGroupsByIntervalRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MeetingApiServer).GetMeetingsGroupsByInterval(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/tada.api.meeting.MeetingApi/GetMeetingsGroupsByInterval",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MeetingApiServer).GetMeetingsGroupsByInterval(ctx, req.(*GetMeetingsGroupsByIntervalRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -555,6 +587,10 @@ var MeetingApi_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetMeetingsCounts",
 			Handler:    _MeetingApi_GetMeetingsCounts_Handler,
+		},
+		{
+			MethodName: "GetMeetingsGroupsByInterval",
+			Handler:    _MeetingApi_GetMeetingsGroupsByInterval_Handler,
 		},
 		{
 			MethodName: "GetMeetingById",
