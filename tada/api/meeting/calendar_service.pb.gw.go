@@ -602,12 +602,13 @@ func RegisterMeetingApiHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/GetMeetings", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/GetMeetings"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/GetMeetings", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/GetMeetings"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_MeetingApi_GetMeetings_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MeetingApi_GetMeetings_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -625,12 +626,13 @@ func RegisterMeetingApiHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/GetMeetingsDates", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/GetMeetingsDates"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/GetMeetingsDates", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/GetMeetingsDates"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_MeetingApi_GetMeetingsDates_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MeetingApi_GetMeetingsDates_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -648,12 +650,13 @@ func RegisterMeetingApiHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/GetMeetingsCounts", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/GetMeetingsCounts"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/GetMeetingsCounts", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/GetMeetingsCounts"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_MeetingApi_GetMeetingsCounts_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MeetingApi_GetMeetingsCounts_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -671,12 +674,13 @@ func RegisterMeetingApiHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/GetMeetingsGroupsByInterval", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/GetMeetingsGroupsByInterval"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/GetMeetingsGroupsByInterval", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/GetMeetingsGroupsByInterval"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_MeetingApi_GetMeetingsGroupsByInterval_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MeetingApi_GetMeetingsGroupsByInterval_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -694,12 +698,13 @@ func RegisterMeetingApiHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/GetMeetingById", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/GetMeetingById"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/GetMeetingById", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/GetMeetingById"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_MeetingApi_GetMeetingById_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MeetingApi_GetMeetingById_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -717,12 +722,13 @@ func RegisterMeetingApiHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/GetMeetingByGroupUUID", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/GetMeetingByGroupUUID"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/GetMeetingByGroupUUID", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/GetMeetingByGroupUUID"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_MeetingApi_GetMeetingByGroupUUID_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MeetingApi_GetMeetingByGroupUUID_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -740,12 +746,13 @@ func RegisterMeetingApiHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/CreateMeeting", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/CreateMeeting"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/CreateMeeting", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/CreateMeeting"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_MeetingApi_CreateMeeting_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MeetingApi_CreateMeeting_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -763,12 +770,13 @@ func RegisterMeetingApiHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/UpdateMeeting", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/UpdateMeeting"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/UpdateMeeting", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/UpdateMeeting"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_MeetingApi_UpdateMeeting_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MeetingApi_UpdateMeeting_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -786,12 +794,13 @@ func RegisterMeetingApiHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/DeleteMeeting", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/DeleteMeeting"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/DeleteMeeting", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/DeleteMeeting"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_MeetingApi_DeleteMeeting_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MeetingApi_DeleteMeeting_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -809,12 +818,13 @@ func RegisterMeetingApiHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/GetMeetingMembers", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/GetMeetingMembers"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/GetMeetingMembers", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/GetMeetingMembers"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_MeetingApi_GetMeetingMembers_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MeetingApi_GetMeetingMembers_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -832,12 +842,13 @@ func RegisterMeetingApiHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/AddMemberInMeeting", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/AddMemberInMeeting"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/AddMemberInMeeting", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/AddMemberInMeeting"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_MeetingApi_AddMemberInMeeting_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MeetingApi_AddMemberInMeeting_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -855,12 +866,13 @@ func RegisterMeetingApiHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/UpdateMemberInMeeting", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/UpdateMemberInMeeting"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/UpdateMemberInMeeting", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/UpdateMemberInMeeting"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_MeetingApi_UpdateMemberInMeeting_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MeetingApi_UpdateMemberInMeeting_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -878,12 +890,13 @@ func RegisterMeetingApiHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/DeleteMemberFromMeeting", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/DeleteMemberFromMeeting"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/DeleteMemberFromMeeting", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/DeleteMemberFromMeeting"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_MeetingApi_DeleteMemberFromMeeting_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MeetingApi_DeleteMemberFromMeeting_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -901,12 +914,13 @@ func RegisterMeetingApiHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/UpdateMeetingCell", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/UpdateMeetingCell"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/UpdateMeetingCell", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/UpdateMeetingCell"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_MeetingApi_UpdateMeetingCell_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MeetingApi_UpdateMeetingCell_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -924,12 +938,13 @@ func RegisterMeetingApiHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/DeleteMeetingCell", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/DeleteMeetingCell"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/DeleteMeetingCell", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/DeleteMeetingCell"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_MeetingApi_DeleteMeetingCell_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MeetingApi_DeleteMeetingCell_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -947,12 +962,13 @@ func RegisterMeetingApiHandlerServer(ctx context.Context, mux *runtime.ServeMux,
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/GenerateMeetingCells", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/GenerateMeetingCells"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/GenerateMeetingCells", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/GenerateMeetingCells"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_MeetingApi_GenerateMeetingCells_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_MeetingApi_GenerateMeetingCells_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1009,12 +1025,13 @@ func RegisterMeetingApiHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/GetMeetings", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/GetMeetings"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/GetMeetings", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/GetMeetings"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_MeetingApi_GetMeetings_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_MeetingApi_GetMeetings_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1029,12 +1046,13 @@ func RegisterMeetingApiHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/GetMeetingsDates", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/GetMeetingsDates"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/GetMeetingsDates", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/GetMeetingsDates"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_MeetingApi_GetMeetingsDates_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_MeetingApi_GetMeetingsDates_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1049,12 +1067,13 @@ func RegisterMeetingApiHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/GetMeetingsCounts", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/GetMeetingsCounts"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/GetMeetingsCounts", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/GetMeetingsCounts"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_MeetingApi_GetMeetingsCounts_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_MeetingApi_GetMeetingsCounts_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1069,12 +1088,13 @@ func RegisterMeetingApiHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/GetMeetingsGroupsByInterval", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/GetMeetingsGroupsByInterval"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/GetMeetingsGroupsByInterval", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/GetMeetingsGroupsByInterval"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_MeetingApi_GetMeetingsGroupsByInterval_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_MeetingApi_GetMeetingsGroupsByInterval_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1089,12 +1109,13 @@ func RegisterMeetingApiHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/GetMeetingById", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/GetMeetingById"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/GetMeetingById", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/GetMeetingById"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_MeetingApi_GetMeetingById_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_MeetingApi_GetMeetingById_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1109,12 +1130,13 @@ func RegisterMeetingApiHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/GetMeetingByGroupUUID", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/GetMeetingByGroupUUID"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/GetMeetingByGroupUUID", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/GetMeetingByGroupUUID"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_MeetingApi_GetMeetingByGroupUUID_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_MeetingApi_GetMeetingByGroupUUID_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1129,12 +1151,13 @@ func RegisterMeetingApiHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/CreateMeeting", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/CreateMeeting"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/CreateMeeting", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/CreateMeeting"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_MeetingApi_CreateMeeting_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_MeetingApi_CreateMeeting_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1149,12 +1172,13 @@ func RegisterMeetingApiHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/UpdateMeeting", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/UpdateMeeting"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/UpdateMeeting", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/UpdateMeeting"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_MeetingApi_UpdateMeeting_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_MeetingApi_UpdateMeeting_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1169,12 +1193,13 @@ func RegisterMeetingApiHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/DeleteMeeting", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/DeleteMeeting"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/DeleteMeeting", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/DeleteMeeting"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_MeetingApi_DeleteMeeting_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_MeetingApi_DeleteMeeting_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1189,12 +1214,13 @@ func RegisterMeetingApiHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/GetMeetingMembers", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/GetMeetingMembers"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/GetMeetingMembers", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/GetMeetingMembers"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_MeetingApi_GetMeetingMembers_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_MeetingApi_GetMeetingMembers_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1209,12 +1235,13 @@ func RegisterMeetingApiHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/AddMemberInMeeting", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/AddMemberInMeeting"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/AddMemberInMeeting", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/AddMemberInMeeting"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_MeetingApi_AddMemberInMeeting_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_MeetingApi_AddMemberInMeeting_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1229,12 +1256,13 @@ func RegisterMeetingApiHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/UpdateMemberInMeeting", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/UpdateMemberInMeeting"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/UpdateMemberInMeeting", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/UpdateMemberInMeeting"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_MeetingApi_UpdateMemberInMeeting_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_MeetingApi_UpdateMemberInMeeting_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1249,12 +1277,13 @@ func RegisterMeetingApiHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/DeleteMemberFromMeeting", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/DeleteMemberFromMeeting"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/DeleteMemberFromMeeting", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/DeleteMemberFromMeeting"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_MeetingApi_DeleteMemberFromMeeting_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_MeetingApi_DeleteMemberFromMeeting_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1269,12 +1298,13 @@ func RegisterMeetingApiHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/UpdateMeetingCell", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/UpdateMeetingCell"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/UpdateMeetingCell", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/UpdateMeetingCell"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_MeetingApi_UpdateMeetingCell_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_MeetingApi_UpdateMeetingCell_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1289,12 +1319,13 @@ func RegisterMeetingApiHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/DeleteMeetingCell", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/DeleteMeetingCell"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/DeleteMeetingCell", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/DeleteMeetingCell"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_MeetingApi_DeleteMeetingCell_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_MeetingApi_DeleteMeetingCell_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1309,12 +1340,13 @@ func RegisterMeetingApiHandlerClient(ctx context.Context, mux *runtime.ServeMux,
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/GenerateMeetingCells", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/GenerateMeetingCells"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.api.meeting.MeetingApi/GenerateMeetingCells", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/GenerateMeetingCells"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_MeetingApi_GenerateMeetingCells_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_MeetingApi_GenerateMeetingCells_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
