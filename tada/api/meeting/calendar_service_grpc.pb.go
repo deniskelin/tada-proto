@@ -40,6 +40,7 @@ type MeetingApiClient interface {
 	UpdateMeetingCell(ctx context.Context, in *UpdateMeetingCellRequest, opts ...grpc.CallOption) (*Meeting, error)
 	DeleteMeetingCell(ctx context.Context, in *DeleteMeetingCellRequest, opts ...grpc.CallOption) (*SuccessResponse, error)
 	GenerateMeetingCells(ctx context.Context, in *GenerateMeetingCellsRequest, opts ...grpc.CallOption) (*SuccessResponse, error)
+	ConvertFrequencyToString(ctx context.Context, in *FrequencyToStringRequest, opts ...grpc.CallOption) (*FrequencyToStringResponse, error)
 }
 
 type meetingApiClient struct {
@@ -203,6 +204,15 @@ func (c *meetingApiClient) GenerateMeetingCells(ctx context.Context, in *Generat
 	return out, nil
 }
 
+func (c *meetingApiClient) ConvertFrequencyToString(ctx context.Context, in *FrequencyToStringRequest, opts ...grpc.CallOption) (*FrequencyToStringResponse, error) {
+	out := new(FrequencyToStringResponse)
+	err := c.cc.Invoke(ctx, "/tada.api.meeting.MeetingApi/ConvertFrequencyToString", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MeetingApiServer is the server API for MeetingApi service.
 // All implementations must embed UnimplementedMeetingApiServer
 // for forward compatibility
@@ -224,6 +234,7 @@ type MeetingApiServer interface {
 	UpdateMeetingCell(context.Context, *UpdateMeetingCellRequest) (*Meeting, error)
 	DeleteMeetingCell(context.Context, *DeleteMeetingCellRequest) (*SuccessResponse, error)
 	GenerateMeetingCells(context.Context, *GenerateMeetingCellsRequest) (*SuccessResponse, error)
+	ConvertFrequencyToString(context.Context, *FrequencyToStringRequest) (*FrequencyToStringResponse, error)
 	mustEmbedUnimplementedMeetingApiServer()
 }
 
@@ -281,6 +292,9 @@ func (UnimplementedMeetingApiServer) DeleteMeetingCell(context.Context, *DeleteM
 }
 func (UnimplementedMeetingApiServer) GenerateMeetingCells(context.Context, *GenerateMeetingCellsRequest) (*SuccessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GenerateMeetingCells not implemented")
+}
+func (UnimplementedMeetingApiServer) ConvertFrequencyToString(context.Context, *FrequencyToStringRequest) (*FrequencyToStringResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ConvertFrequencyToString not implemented")
 }
 func (UnimplementedMeetingApiServer) mustEmbedUnimplementedMeetingApiServer() {}
 
@@ -601,6 +615,24 @@ func _MeetingApi_GenerateMeetingCells_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MeetingApi_ConvertFrequencyToString_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FrequencyToStringRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MeetingApiServer).ConvertFrequencyToString(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/tada.api.meeting.MeetingApi/ConvertFrequencyToString",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MeetingApiServer).ConvertFrequencyToString(ctx, req.(*FrequencyToStringRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MeetingApi_ServiceDesc is the grpc.ServiceDesc for MeetingApi service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -675,6 +707,10 @@ var MeetingApi_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GenerateMeetingCells",
 			Handler:    _MeetingApi_GenerateMeetingCells_Handler,
+		},
+		{
+			MethodName: "ConvertFrequencyToString",
+			Handler:    _MeetingApi_ConvertFrequencyToString_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

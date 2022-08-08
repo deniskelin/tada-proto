@@ -41,6 +41,7 @@ type MeetingGatewayClient interface {
 	UpdateMeetingCell(ctx context.Context, in *meeting.UpdateMeetingCellRequest, opts ...grpc.CallOption) (*meeting.Meeting, error)
 	DeleteMeetingCell(ctx context.Context, in *meeting.DeleteMeetingCellRequest, opts ...grpc.CallOption) (*meeting.SuccessResponse, error)
 	GenerateMeetingCells(ctx context.Context, in *meeting.GenerateMeetingCellsRequest, opts ...grpc.CallOption) (*meeting.SuccessResponse, error)
+	ConvertFrequencyToString(ctx context.Context, in *meeting.FrequencyToStringRequest, opts ...grpc.CallOption) (*meeting.FrequencyToStringResponse, error)
 }
 
 type meetingGatewayClient struct {
@@ -204,6 +205,15 @@ func (c *meetingGatewayClient) GenerateMeetingCells(ctx context.Context, in *mee
 	return out, nil
 }
 
+func (c *meetingGatewayClient) ConvertFrequencyToString(ctx context.Context, in *meeting.FrequencyToStringRequest, opts ...grpc.CallOption) (*meeting.FrequencyToStringResponse, error) {
+	out := new(meeting.FrequencyToStringResponse)
+	err := c.cc.Invoke(ctx, "/tada.gateway.admin.meeting.MeetingGateway/ConvertFrequencyToString", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MeetingGatewayServer is the server API for MeetingGateway service.
 // All implementations must embed UnimplementedMeetingGatewayServer
 // for forward compatibility
@@ -225,6 +235,7 @@ type MeetingGatewayServer interface {
 	UpdateMeetingCell(context.Context, *meeting.UpdateMeetingCellRequest) (*meeting.Meeting, error)
 	DeleteMeetingCell(context.Context, *meeting.DeleteMeetingCellRequest) (*meeting.SuccessResponse, error)
 	GenerateMeetingCells(context.Context, *meeting.GenerateMeetingCellsRequest) (*meeting.SuccessResponse, error)
+	ConvertFrequencyToString(context.Context, *meeting.FrequencyToStringRequest) (*meeting.FrequencyToStringResponse, error)
 	mustEmbedUnimplementedMeetingGatewayServer()
 }
 
@@ -282,6 +293,9 @@ func (UnimplementedMeetingGatewayServer) DeleteMeetingCell(context.Context, *mee
 }
 func (UnimplementedMeetingGatewayServer) GenerateMeetingCells(context.Context, *meeting.GenerateMeetingCellsRequest) (*meeting.SuccessResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GenerateMeetingCells not implemented")
+}
+func (UnimplementedMeetingGatewayServer) ConvertFrequencyToString(context.Context, *meeting.FrequencyToStringRequest) (*meeting.FrequencyToStringResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ConvertFrequencyToString not implemented")
 }
 func (UnimplementedMeetingGatewayServer) mustEmbedUnimplementedMeetingGatewayServer() {}
 
@@ -602,6 +616,24 @@ func _MeetingGateway_GenerateMeetingCells_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MeetingGateway_ConvertFrequencyToString_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(meeting.FrequencyToStringRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MeetingGatewayServer).ConvertFrequencyToString(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/tada.gateway.admin.meeting.MeetingGateway/ConvertFrequencyToString",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MeetingGatewayServer).ConvertFrequencyToString(ctx, req.(*meeting.FrequencyToStringRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MeetingGateway_ServiceDesc is the grpc.ServiceDesc for MeetingGateway service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -676,6 +708,10 @@ var MeetingGateway_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GenerateMeetingCells",
 			Handler:    _MeetingGateway_GenerateMeetingCells_Handler,
+		},
+		{
+			MethodName: "ConvertFrequencyToString",
+			Handler:    _MeetingGateway_ConvertFrequencyToString_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
