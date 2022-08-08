@@ -25,6 +25,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MeetingGatewayClient interface {
 	GetMeetings(ctx context.Context, in *meeting.GetMeetingsRequest, opts ...grpc.CallOption) (*meeting.GetMeetingsResponse, error)
+	GetMeetingsInstances(ctx context.Context, in *meeting.GetMeetingsRequest, opts ...grpc.CallOption) (*meeting.GetMeetingsResponse, error)
 	GetMeetingsDates(ctx context.Context, in *meeting.GetMeetingsRequest, opts ...grpc.CallOption) (*meeting.GetMeetingsDatesResponse, error)
 	GetMeetingsCounts(ctx context.Context, in *meeting.GetMeetingsRequest, opts ...grpc.CallOption) (*meeting.GetMeetingsCountsResponse, error)
 	GetMeetingsGroupsByInterval(ctx context.Context, in *meeting.GetMeetingsGroupsByIntervalRequest, opts ...grpc.CallOption) (*meeting.GetMeetingsGroupsByIntervalResponse, error)
@@ -53,6 +54,15 @@ func NewMeetingGatewayClient(cc grpc.ClientConnInterface) MeetingGatewayClient {
 func (c *meetingGatewayClient) GetMeetings(ctx context.Context, in *meeting.GetMeetingsRequest, opts ...grpc.CallOption) (*meeting.GetMeetingsResponse, error) {
 	out := new(meeting.GetMeetingsResponse)
 	err := c.cc.Invoke(ctx, "/tada.gateway.admin.meeting.MeetingGateway/GetMeetings", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *meetingGatewayClient) GetMeetingsInstances(ctx context.Context, in *meeting.GetMeetingsRequest, opts ...grpc.CallOption) (*meeting.GetMeetingsResponse, error) {
+	out := new(meeting.GetMeetingsResponse)
+	err := c.cc.Invoke(ctx, "/tada.gateway.admin.meeting.MeetingGateway/GetMeetingsInstances", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -199,6 +209,7 @@ func (c *meetingGatewayClient) GenerateMeetingCells(ctx context.Context, in *mee
 // for forward compatibility
 type MeetingGatewayServer interface {
 	GetMeetings(context.Context, *meeting.GetMeetingsRequest) (*meeting.GetMeetingsResponse, error)
+	GetMeetingsInstances(context.Context, *meeting.GetMeetingsRequest) (*meeting.GetMeetingsResponse, error)
 	GetMeetingsDates(context.Context, *meeting.GetMeetingsRequest) (*meeting.GetMeetingsDatesResponse, error)
 	GetMeetingsCounts(context.Context, *meeting.GetMeetingsRequest) (*meeting.GetMeetingsCountsResponse, error)
 	GetMeetingsGroupsByInterval(context.Context, *meeting.GetMeetingsGroupsByIntervalRequest) (*meeting.GetMeetingsGroupsByIntervalResponse, error)
@@ -223,6 +234,9 @@ type UnimplementedMeetingGatewayServer struct {
 
 func (UnimplementedMeetingGatewayServer) GetMeetings(context.Context, *meeting.GetMeetingsRequest) (*meeting.GetMeetingsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMeetings not implemented")
+}
+func (UnimplementedMeetingGatewayServer) GetMeetingsInstances(context.Context, *meeting.GetMeetingsRequest) (*meeting.GetMeetingsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMeetingsInstances not implemented")
 }
 func (UnimplementedMeetingGatewayServer) GetMeetingsDates(context.Context, *meeting.GetMeetingsRequest) (*meeting.GetMeetingsDatesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMeetingsDates not implemented")
@@ -296,6 +310,24 @@ func _MeetingGateway_GetMeetings_Handler(srv interface{}, ctx context.Context, d
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MeetingGatewayServer).GetMeetings(ctx, req.(*meeting.GetMeetingsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MeetingGateway_GetMeetingsInstances_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(meeting.GetMeetingsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MeetingGatewayServer).GetMeetingsInstances(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/tada.gateway.admin.meeting.MeetingGateway/GetMeetingsInstances",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MeetingGatewayServer).GetMeetingsInstances(ctx, req.(*meeting.GetMeetingsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -580,6 +612,10 @@ var MeetingGateway_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetMeetings",
 			Handler:    _MeetingGateway_GetMeetings_Handler,
+		},
+		{
+			MethodName: "GetMeetingsInstances",
+			Handler:    _MeetingGateway_GetMeetingsInstances_Handler,
 		},
 		{
 			MethodName: "GetMeetingsDates",
