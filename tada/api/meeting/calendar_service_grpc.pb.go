@@ -24,6 +24,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MeetingApiClient interface {
 	GetMeetings(ctx context.Context, in *GetMeetingsRequest, opts ...grpc.CallOption) (*GetMeetingsResponse, error)
+	GetAnotherMeetings(ctx context.Context, in *GetAnotherMeetingsRequest, opts ...grpc.CallOption) (*GetAnotherMeetingsResponse, error)
 	GetMeetingsInstances(ctx context.Context, in *GetMeetingsRequest, opts ...grpc.CallOption) (*GetMeetingsResponse, error)
 	GetMeetingsDates(ctx context.Context, in *GetMeetingsRequest, opts ...grpc.CallOption) (*GetMeetingsDatesResponse, error)
 	GetMeetingsCounts(ctx context.Context, in *GetMeetingsRequest, opts ...grpc.CallOption) (*GetMeetingsCountsResponse, error)
@@ -54,6 +55,15 @@ func NewMeetingApiClient(cc grpc.ClientConnInterface) MeetingApiClient {
 func (c *meetingApiClient) GetMeetings(ctx context.Context, in *GetMeetingsRequest, opts ...grpc.CallOption) (*GetMeetingsResponse, error) {
 	out := new(GetMeetingsResponse)
 	err := c.cc.Invoke(ctx, "/tada.api.meeting.MeetingApi/GetMeetings", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *meetingApiClient) GetAnotherMeetings(ctx context.Context, in *GetAnotherMeetingsRequest, opts ...grpc.CallOption) (*GetAnotherMeetingsResponse, error) {
+	out := new(GetAnotherMeetingsResponse)
+	err := c.cc.Invoke(ctx, "/tada.api.meeting.MeetingApi/GetAnotherMeetings", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -218,6 +228,7 @@ func (c *meetingApiClient) ConvertFrequencyToString(ctx context.Context, in *Fre
 // for forward compatibility
 type MeetingApiServer interface {
 	GetMeetings(context.Context, *GetMeetingsRequest) (*GetMeetingsResponse, error)
+	GetAnotherMeetings(context.Context, *GetAnotherMeetingsRequest) (*GetAnotherMeetingsResponse, error)
 	GetMeetingsInstances(context.Context, *GetMeetingsRequest) (*GetMeetingsResponse, error)
 	GetMeetingsDates(context.Context, *GetMeetingsRequest) (*GetMeetingsDatesResponse, error)
 	GetMeetingsCounts(context.Context, *GetMeetingsRequest) (*GetMeetingsCountsResponse, error)
@@ -244,6 +255,9 @@ type UnimplementedMeetingApiServer struct {
 
 func (UnimplementedMeetingApiServer) GetMeetings(context.Context, *GetMeetingsRequest) (*GetMeetingsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMeetings not implemented")
+}
+func (UnimplementedMeetingApiServer) GetAnotherMeetings(context.Context, *GetAnotherMeetingsRequest) (*GetAnotherMeetingsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAnotherMeetings not implemented")
 }
 func (UnimplementedMeetingApiServer) GetMeetingsInstances(context.Context, *GetMeetingsRequest) (*GetMeetingsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMeetingsInstances not implemented")
@@ -323,6 +337,24 @@ func _MeetingApi_GetMeetings_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MeetingApiServer).GetMeetings(ctx, req.(*GetMeetingsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MeetingApi_GetAnotherMeetings_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAnotherMeetingsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MeetingApiServer).GetAnotherMeetings(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/tada.api.meeting.MeetingApi/GetAnotherMeetings",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MeetingApiServer).GetAnotherMeetings(ctx, req.(*GetAnotherMeetingsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -643,6 +675,10 @@ var MeetingApi_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetMeetings",
 			Handler:    _MeetingApi_GetMeetings_Handler,
+		},
+		{
+			MethodName: "GetAnotherMeetings",
+			Handler:    _MeetingApi_GetAnotherMeetings_Handler,
 		},
 		{
 			MethodName: "GetMeetingsInstances",
