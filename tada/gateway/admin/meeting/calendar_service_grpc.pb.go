@@ -25,7 +25,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MeetingGatewayClient interface {
 	GetMeetings(ctx context.Context, in *meeting.GetMeetingsRequest, opts ...grpc.CallOption) (*meeting.GetMeetingsResponse, error)
-	GetAnotherMeetings(ctx context.Context, in *meeting.GetAnotherMeetingsRequest, opts ...grpc.CallOption) (*meeting.GetAnotherMeetingsResponse, error)
+	GetAnotherMeetings(ctx context.Context, in *meeting.GetAnotherMeetingsRequest, opts ...grpc.CallOption) (*meeting.GetMeetingsResponse, error)
 	GetMeetingsInstances(ctx context.Context, in *meeting.GetMeetingsRequest, opts ...grpc.CallOption) (*meeting.GetMeetingsResponse, error)
 	GetMeetingsDates(ctx context.Context, in *meeting.GetMeetingsRequest, opts ...grpc.CallOption) (*meeting.GetMeetingsDatesResponse, error)
 	GetMeetingsCounts(ctx context.Context, in *meeting.GetMeetingsRequest, opts ...grpc.CallOption) (*meeting.GetMeetingsCountsResponse, error)
@@ -62,8 +62,8 @@ func (c *meetingGatewayClient) GetMeetings(ctx context.Context, in *meeting.GetM
 	return out, nil
 }
 
-func (c *meetingGatewayClient) GetAnotherMeetings(ctx context.Context, in *meeting.GetAnotherMeetingsRequest, opts ...grpc.CallOption) (*meeting.GetAnotherMeetingsResponse, error) {
-	out := new(meeting.GetAnotherMeetingsResponse)
+func (c *meetingGatewayClient) GetAnotherMeetings(ctx context.Context, in *meeting.GetAnotherMeetingsRequest, opts ...grpc.CallOption) (*meeting.GetMeetingsResponse, error) {
+	out := new(meeting.GetMeetingsResponse)
 	err := c.cc.Invoke(ctx, "/tada.gateway.admin.meeting.MeetingGateway/GetAnotherMeetings", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -229,7 +229,7 @@ func (c *meetingGatewayClient) ConvertFrequencyToString(ctx context.Context, in 
 // for forward compatibility
 type MeetingGatewayServer interface {
 	GetMeetings(context.Context, *meeting.GetMeetingsRequest) (*meeting.GetMeetingsResponse, error)
-	GetAnotherMeetings(context.Context, *meeting.GetAnotherMeetingsRequest) (*meeting.GetAnotherMeetingsResponse, error)
+	GetAnotherMeetings(context.Context, *meeting.GetAnotherMeetingsRequest) (*meeting.GetMeetingsResponse, error)
 	GetMeetingsInstances(context.Context, *meeting.GetMeetingsRequest) (*meeting.GetMeetingsResponse, error)
 	GetMeetingsDates(context.Context, *meeting.GetMeetingsRequest) (*meeting.GetMeetingsDatesResponse, error)
 	GetMeetingsCounts(context.Context, *meeting.GetMeetingsRequest) (*meeting.GetMeetingsCountsResponse, error)
@@ -257,7 +257,7 @@ type UnimplementedMeetingGatewayServer struct {
 func (UnimplementedMeetingGatewayServer) GetMeetings(context.Context, *meeting.GetMeetingsRequest) (*meeting.GetMeetingsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMeetings not implemented")
 }
-func (UnimplementedMeetingGatewayServer) GetAnotherMeetings(context.Context, *meeting.GetAnotherMeetingsRequest) (*meeting.GetAnotherMeetingsResponse, error) {
+func (UnimplementedMeetingGatewayServer) GetAnotherMeetings(context.Context, *meeting.GetAnotherMeetingsRequest) (*meeting.GetMeetingsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAnotherMeetings not implemented")
 }
 func (UnimplementedMeetingGatewayServer) GetMeetingsInstances(context.Context, *meeting.GetMeetingsRequest) (*meeting.GetMeetingsResponse, error) {
