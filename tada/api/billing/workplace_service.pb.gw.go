@@ -275,18 +275,19 @@ func local_request_Workplace_GetCountOfUnpaidWorkplacesByPersonalAccount_0(ctx c
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterWorkplaceHandlerFromEndpoint instead.
 func RegisterWorkplaceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server WorkplaceServer) error {
 
-	mux.Handle("POST", pattern_Workplace_AddWorkplacesOnPersonalAccount_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PUT", pattern_Workplace_AddWorkplacesOnPersonalAccount_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.billing.Workplace/AddWorkplacesOnPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.Workplace/AddWorkplacesOnPersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.billing.Workplace/AddWorkplacesOnPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.Workplace/AddWorkplacesOnPersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Workplace_AddWorkplacesOnPersonalAccount_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Workplace_AddWorkplacesOnPersonalAccount_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -304,12 +305,13 @@ func RegisterWorkplaceHandlerServer(ctx context.Context, mux *runtime.ServeMux, 
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.billing.Workplace/ActivateWorkplacesOnPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.Workplace/ActivateWorkplacesOnPersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.billing.Workplace/ActivateWorkplacesOnPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.Workplace/ActivateWorkplacesOnPersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Workplace_ActivateWorkplacesOnPersonalAccount_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Workplace_ActivateWorkplacesOnPersonalAccount_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -327,12 +329,13 @@ func RegisterWorkplaceHandlerServer(ctx context.Context, mux *runtime.ServeMux, 
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.billing.Workplace/DeleteWorkplacesFromPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.Workplace/DeleteWorkplacesFromPersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.billing.Workplace/DeleteWorkplacesFromPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.Workplace/DeleteWorkplacesFromPersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Workplace_DeleteWorkplacesFromPersonalAccount_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Workplace_DeleteWorkplacesFromPersonalAccount_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -350,12 +353,13 @@ func RegisterWorkplaceHandlerServer(ctx context.Context, mux *runtime.ServeMux, 
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.billing.Workplace/AddUserInWorkplace", runtime.WithHTTPPathPattern("/api/v1/billing.Workplace/AddUserInWorkplace"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.billing.Workplace/AddUserInWorkplace", runtime.WithHTTPPathPattern("/api/v1/billing.Workplace/AddUserInWorkplace"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Workplace_AddUserInWorkplace_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Workplace_AddUserInWorkplace_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -373,12 +377,13 @@ func RegisterWorkplaceHandlerServer(ctx context.Context, mux *runtime.ServeMux, 
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.billing.Workplace/DeleteUserFromWorkplace", runtime.WithHTTPPathPattern("/api/v1/billing.Workplace/DeleteUserFromWorkplace"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.billing.Workplace/DeleteUserFromWorkplace", runtime.WithHTTPPathPattern("/api/v1/billing.Workplace/DeleteUserFromWorkplace"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Workplace_DeleteUserFromWorkplace_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Workplace_DeleteUserFromWorkplace_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -396,12 +401,13 @@ func RegisterWorkplaceHandlerServer(ctx context.Context, mux *runtime.ServeMux, 
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.billing.Workplace/GetWorkplacesByPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.Workplace/GetWorkplacesByPersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.billing.Workplace/GetWorkplacesByPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.Workplace/GetWorkplacesByPersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Workplace_GetWorkplacesByPersonalAccount_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Workplace_GetWorkplacesByPersonalAccount_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -419,12 +425,13 @@ func RegisterWorkplaceHandlerServer(ctx context.Context, mux *runtime.ServeMux, 
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.billing.Workplace/GetCountOfUnpaidWorkplacesByPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.Workplace/GetCountOfUnpaidWorkplacesByPersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.billing.Workplace/GetCountOfUnpaidWorkplacesByPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.Workplace/GetCountOfUnpaidWorkplacesByPersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Workplace_GetCountOfUnpaidWorkplacesByPersonalAccount_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Workplace_GetCountOfUnpaidWorkplacesByPersonalAccount_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -477,16 +484,17 @@ func RegisterWorkplaceHandler(ctx context.Context, mux *runtime.ServeMux, conn *
 // "WorkplaceClient" to call the correct interceptors.
 func RegisterWorkplaceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client WorkplaceClient) error {
 
-	mux.Handle("POST", pattern_Workplace_AddWorkplacesOnPersonalAccount_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PUT", pattern_Workplace_AddWorkplacesOnPersonalAccount_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.api.billing.Workplace/AddWorkplacesOnPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.Workplace/AddWorkplacesOnPersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.api.billing.Workplace/AddWorkplacesOnPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.Workplace/AddWorkplacesOnPersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Workplace_AddWorkplacesOnPersonalAccount_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Workplace_AddWorkplacesOnPersonalAccount_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -501,12 +509,13 @@ func RegisterWorkplaceHandlerClient(ctx context.Context, mux *runtime.ServeMux, 
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.api.billing.Workplace/ActivateWorkplacesOnPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.Workplace/ActivateWorkplacesOnPersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.api.billing.Workplace/ActivateWorkplacesOnPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.Workplace/ActivateWorkplacesOnPersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Workplace_ActivateWorkplacesOnPersonalAccount_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Workplace_ActivateWorkplacesOnPersonalAccount_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -521,12 +530,13 @@ func RegisterWorkplaceHandlerClient(ctx context.Context, mux *runtime.ServeMux, 
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.api.billing.Workplace/DeleteWorkplacesFromPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.Workplace/DeleteWorkplacesFromPersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.api.billing.Workplace/DeleteWorkplacesFromPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.Workplace/DeleteWorkplacesFromPersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Workplace_DeleteWorkplacesFromPersonalAccount_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Workplace_DeleteWorkplacesFromPersonalAccount_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -541,12 +551,13 @@ func RegisterWorkplaceHandlerClient(ctx context.Context, mux *runtime.ServeMux, 
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.api.billing.Workplace/AddUserInWorkplace", runtime.WithHTTPPathPattern("/api/v1/billing.Workplace/AddUserInWorkplace"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.api.billing.Workplace/AddUserInWorkplace", runtime.WithHTTPPathPattern("/api/v1/billing.Workplace/AddUserInWorkplace"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Workplace_AddUserInWorkplace_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Workplace_AddUserInWorkplace_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -561,12 +572,13 @@ func RegisterWorkplaceHandlerClient(ctx context.Context, mux *runtime.ServeMux, 
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.api.billing.Workplace/DeleteUserFromWorkplace", runtime.WithHTTPPathPattern("/api/v1/billing.Workplace/DeleteUserFromWorkplace"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.api.billing.Workplace/DeleteUserFromWorkplace", runtime.WithHTTPPathPattern("/api/v1/billing.Workplace/DeleteUserFromWorkplace"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Workplace_DeleteUserFromWorkplace_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Workplace_DeleteUserFromWorkplace_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -581,12 +593,13 @@ func RegisterWorkplaceHandlerClient(ctx context.Context, mux *runtime.ServeMux, 
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.api.billing.Workplace/GetWorkplacesByPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.Workplace/GetWorkplacesByPersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.api.billing.Workplace/GetWorkplacesByPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.Workplace/GetWorkplacesByPersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Workplace_GetWorkplacesByPersonalAccount_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Workplace_GetWorkplacesByPersonalAccount_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -601,12 +614,13 @@ func RegisterWorkplaceHandlerClient(ctx context.Context, mux *runtime.ServeMux, 
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.api.billing.Workplace/GetCountOfUnpaidWorkplacesByPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.Workplace/GetCountOfUnpaidWorkplacesByPersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.api.billing.Workplace/GetCountOfUnpaidWorkplacesByPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.Workplace/GetCountOfUnpaidWorkplacesByPersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Workplace_GetCountOfUnpaidWorkplacesByPersonalAccount_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Workplace_GetCountOfUnpaidWorkplacesByPersonalAccount_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)

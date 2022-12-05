@@ -282,12 +282,13 @@ func RegisterTariffHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.Tariff/GetTariffById", runtime.WithHTTPPathPattern("/gateway/v1/admin.Tariff/GetTariffById"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.Tariff/GetTariffById", runtime.WithHTTPPathPattern("/gateway/v1/admin.Tariff/GetTariffById"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Tariff_GetTariffById_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Tariff_GetTariffById_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -305,12 +306,13 @@ func RegisterTariffHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.Tariff/GetTariffsList", runtime.WithHTTPPathPattern("/gateway/v1/admin.Tariff/GetUsersInfoByUserUUIDArray"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.Tariff/GetTariffsList", runtime.WithHTTPPathPattern("/gateway/v1/admin.Tariff/GetUsersInfoByUserUUIDArray"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Tariff_GetTariffsList_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Tariff_GetTariffsList_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -328,12 +330,13 @@ func RegisterTariffHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.Tariff/GetActiveTariffsList", runtime.WithHTTPPathPattern("/gateway/v1/admin.Tariff/GetTariffsList"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.Tariff/GetActiveTariffsList", runtime.WithHTTPPathPattern("/gateway/v1/admin.Tariff/GetTariffsList"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Tariff_GetActiveTariffsList_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Tariff_GetActiveTariffsList_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -351,12 +354,13 @@ func RegisterTariffHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.Tariff/CreateTariff", runtime.WithHTTPPathPattern("/gateway/v1/admin.Tariff/CreateTariff"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.Tariff/CreateTariff", runtime.WithHTTPPathPattern("/gateway/v1/admin.Tariff/CreateTariff"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Tariff_CreateTariff_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Tariff_CreateTariff_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -374,12 +378,13 @@ func RegisterTariffHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.Tariff/CloseTariff", runtime.WithHTTPPathPattern("/gateway/v1/admin.Tariff/CloseTariff"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.Tariff/CloseTariff", runtime.WithHTTPPathPattern("/gateway/v1/admin.Tariff/CloseTariff"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Tariff_CloseTariff_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Tariff_CloseTariff_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -397,12 +402,13 @@ func RegisterTariffHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.Tariff/SetTariffAsDefault", runtime.WithHTTPPathPattern("/gateway/v1/admin.Tariff/SetTariffAsDefault"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.Tariff/SetTariffAsDefault", runtime.WithHTTPPathPattern("/gateway/v1/admin.Tariff/SetTariffAsDefault"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Tariff_SetTariffAsDefault_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Tariff_SetTariffAsDefault_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -420,12 +426,13 @@ func RegisterTariffHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.Tariff/UpdateTariff", runtime.WithHTTPPathPattern("/gateway/v1/admin.Tariff/UpdateTariff"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.Tariff/UpdateTariff", runtime.WithHTTPPathPattern("/gateway/v1/admin.Tariff/UpdateTariff"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Tariff_UpdateTariff_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Tariff_UpdateTariff_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -482,12 +489,13 @@ func RegisterTariffHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.Tariff/GetTariffById", runtime.WithHTTPPathPattern("/gateway/v1/admin.Tariff/GetTariffById"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.Tariff/GetTariffById", runtime.WithHTTPPathPattern("/gateway/v1/admin.Tariff/GetTariffById"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Tariff_GetTariffById_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Tariff_GetTariffById_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -502,12 +510,13 @@ func RegisterTariffHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.Tariff/GetTariffsList", runtime.WithHTTPPathPattern("/gateway/v1/admin.Tariff/GetUsersInfoByUserUUIDArray"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.Tariff/GetTariffsList", runtime.WithHTTPPathPattern("/gateway/v1/admin.Tariff/GetUsersInfoByUserUUIDArray"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Tariff_GetTariffsList_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Tariff_GetTariffsList_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -522,12 +531,13 @@ func RegisterTariffHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.Tariff/GetActiveTariffsList", runtime.WithHTTPPathPattern("/gateway/v1/admin.Tariff/GetTariffsList"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.Tariff/GetActiveTariffsList", runtime.WithHTTPPathPattern("/gateway/v1/admin.Tariff/GetTariffsList"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Tariff_GetActiveTariffsList_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Tariff_GetActiveTariffsList_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -542,12 +552,13 @@ func RegisterTariffHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.Tariff/CreateTariff", runtime.WithHTTPPathPattern("/gateway/v1/admin.Tariff/CreateTariff"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.Tariff/CreateTariff", runtime.WithHTTPPathPattern("/gateway/v1/admin.Tariff/CreateTariff"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Tariff_CreateTariff_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Tariff_CreateTariff_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -562,12 +573,13 @@ func RegisterTariffHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.Tariff/CloseTariff", runtime.WithHTTPPathPattern("/gateway/v1/admin.Tariff/CloseTariff"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.Tariff/CloseTariff", runtime.WithHTTPPathPattern("/gateway/v1/admin.Tariff/CloseTariff"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Tariff_CloseTariff_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Tariff_CloseTariff_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -582,12 +594,13 @@ func RegisterTariffHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.Tariff/SetTariffAsDefault", runtime.WithHTTPPathPattern("/gateway/v1/admin.Tariff/SetTariffAsDefault"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.Tariff/SetTariffAsDefault", runtime.WithHTTPPathPattern("/gateway/v1/admin.Tariff/SetTariffAsDefault"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Tariff_SetTariffAsDefault_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Tariff_SetTariffAsDefault_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -602,12 +615,13 @@ func RegisterTariffHandlerClient(ctx context.Context, mux *runtime.ServeMux, cli
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.Tariff/UpdateTariff", runtime.WithHTTPPathPattern("/gateway/v1/admin.Tariff/UpdateTariff"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.Tariff/UpdateTariff", runtime.WithHTTPPathPattern("/gateway/v1/admin.Tariff/UpdateTariff"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Tariff_UpdateTariff_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Tariff_UpdateTariff_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)

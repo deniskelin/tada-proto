@@ -213,12 +213,13 @@ func RegisterTeamHandlerServer(ctx context.Context, mux *runtime.ServeMux, serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.billing.Team/AddTeamOnPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.Team/AddTeamOnPersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.billing.Team/AddTeamOnPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.Team/AddTeamOnPersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Team_AddTeamOnPersonalAccount_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Team_AddTeamOnPersonalAccount_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -236,12 +237,13 @@ func RegisterTeamHandlerServer(ctx context.Context, mux *runtime.ServeMux, serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.billing.Team/DeleteTeamFromPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.Team/DeleteTeamFromPersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.billing.Team/DeleteTeamFromPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.Team/DeleteTeamFromPersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Team_DeleteTeamFromPersonalAccount_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Team_DeleteTeamFromPersonalAccount_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -259,12 +261,13 @@ func RegisterTeamHandlerServer(ctx context.Context, mux *runtime.ServeMux, serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.billing.Team/GetTeamsOnPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.Team/GetTeamsOnPersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.billing.Team/GetTeamsOnPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.Team/GetTeamsOnPersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Team_GetTeamsOnPersonalAccount_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Team_GetTeamsOnPersonalAccount_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -282,12 +285,13 @@ func RegisterTeamHandlerServer(ctx context.Context, mux *runtime.ServeMux, serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.billing.Team/CheckTeamOnPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.Team/CheckTeamOnPersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.billing.Team/CheckTeamOnPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.Team/CheckTeamOnPersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Team_CheckTeamOnPersonalAccount_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Team_CheckTeamOnPersonalAccount_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -305,12 +309,13 @@ func RegisterTeamHandlerServer(ctx context.Context, mux *runtime.ServeMux, serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.billing.Team/GetTeamBitrate", runtime.WithHTTPPathPattern("/api/v1/billing.Team/GetTeamBitrate"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.billing.Team/GetTeamBitrate", runtime.WithHTTPPathPattern("/api/v1/billing.Team/GetTeamBitrate"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Team_GetTeamBitrate_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Team_GetTeamBitrate_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -367,12 +372,13 @@ func RegisterTeamHandlerClient(ctx context.Context, mux *runtime.ServeMux, clien
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.api.billing.Team/AddTeamOnPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.Team/AddTeamOnPersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.api.billing.Team/AddTeamOnPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.Team/AddTeamOnPersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Team_AddTeamOnPersonalAccount_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Team_AddTeamOnPersonalAccount_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -387,12 +393,13 @@ func RegisterTeamHandlerClient(ctx context.Context, mux *runtime.ServeMux, clien
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.api.billing.Team/DeleteTeamFromPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.Team/DeleteTeamFromPersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.api.billing.Team/DeleteTeamFromPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.Team/DeleteTeamFromPersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Team_DeleteTeamFromPersonalAccount_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Team_DeleteTeamFromPersonalAccount_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -407,12 +414,13 @@ func RegisterTeamHandlerClient(ctx context.Context, mux *runtime.ServeMux, clien
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.api.billing.Team/GetTeamsOnPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.Team/GetTeamsOnPersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.api.billing.Team/GetTeamsOnPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.Team/GetTeamsOnPersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Team_GetTeamsOnPersonalAccount_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Team_GetTeamsOnPersonalAccount_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -427,12 +435,13 @@ func RegisterTeamHandlerClient(ctx context.Context, mux *runtime.ServeMux, clien
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.api.billing.Team/CheckTeamOnPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.Team/CheckTeamOnPersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.api.billing.Team/CheckTeamOnPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.Team/CheckTeamOnPersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Team_CheckTeamOnPersonalAccount_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Team_CheckTeamOnPersonalAccount_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -447,12 +456,13 @@ func RegisterTeamHandlerClient(ctx context.Context, mux *runtime.ServeMux, clien
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.api.billing.Team/GetTeamBitrate", runtime.WithHTTPPathPattern("/api/v1/billing.Team/GetTeamBitrate"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.api.billing.Team/GetTeamBitrate", runtime.WithHTTPPathPattern("/api/v1/billing.Team/GetTeamBitrate"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Team_GetTeamBitrate_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Team_GetTeamBitrate_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)

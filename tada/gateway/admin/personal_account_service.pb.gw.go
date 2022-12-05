@@ -134,6 +134,40 @@ func local_request_PersonalAccount_GetPersonalAccountIDByOwnerUUID_0(ctx context
 
 }
 
+func request_PersonalAccount_GetPersonalAccountIDByTeamUUID_0(ctx context.Context, marshaler runtime.Marshaler, client PersonalAccountClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq billing.GetPersonalAccountIDByTeamUUIDRequest
+	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.GetPersonalAccountIDByTeamUUID(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_PersonalAccount_GetPersonalAccountIDByTeamUUID_0(ctx context.Context, marshaler runtime.Marshaler, server PersonalAccountServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq billing.GetPersonalAccountIDByTeamUUIDRequest
+	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.GetPersonalAccountIDByTeamUUID(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
 func request_PersonalAccount_GetUsersByPersonalAccount_0(ctx context.Context, marshaler runtime.Marshaler, client PersonalAccountClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq billing.GetUsersByPersonalAccountRequest
 	var metadata runtime.ServerMetadata
@@ -588,12 +622,13 @@ func RegisterPersonalAccountHandlerServer(ctx context.Context, mux *runtime.Serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/GetPersonalAccountByID", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/get_personal_account_by_id"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/GetPersonalAccountByID", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/get_personal_account_by_id"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PersonalAccount_GetPersonalAccountByID_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PersonalAccount_GetPersonalAccountByID_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -611,12 +646,13 @@ func RegisterPersonalAccountHandlerServer(ctx context.Context, mux *runtime.Serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/GetPersonalAccountsList", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/GetPersonalAccountsList"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/GetPersonalAccountsList", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/GetPersonalAccountsList"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PersonalAccount_GetPersonalAccountsList_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PersonalAccount_GetPersonalAccountsList_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -634,12 +670,13 @@ func RegisterPersonalAccountHandlerServer(ctx context.Context, mux *runtime.Serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/GetPersonalAccountIDByOwnerUUID", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/GetPersonalAccountIDByOwnerUUID"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/GetPersonalAccountIDByOwnerUUID", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/GetPersonalAccountIDByOwnerUUID"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PersonalAccount_GetPersonalAccountIDByOwnerUUID_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PersonalAccount_GetPersonalAccountIDByOwnerUUID_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -651,18 +688,43 @@ func RegisterPersonalAccountHandlerServer(ctx context.Context, mux *runtime.Serv
 
 	})
 
+	mux.Handle("POST", pattern_PersonalAccount_GetPersonalAccountIDByTeamUUID_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/GetPersonalAccountIDByTeamUUID", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/GetPersonalAccountIDByTeamUUID"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_PersonalAccount_GetPersonalAccountIDByTeamUUID_0(ctx, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_PersonalAccount_GetPersonalAccountIDByTeamUUID_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
 	mux.Handle("POST", pattern_PersonalAccount_GetUsersByPersonalAccount_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/GetUsersByPersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/GetUsersByPersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/GetUsersByPersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/GetUsersByPersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PersonalAccount_GetUsersByPersonalAccount_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PersonalAccount_GetUsersByPersonalAccount_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -680,12 +742,13 @@ func RegisterPersonalAccountHandlerServer(ctx context.Context, mux *runtime.Serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/GetCostOfWorkplacesOnPersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/GetCostOfWorkplacesOnPersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/GetCostOfWorkplacesOnPersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/GetCostOfWorkplacesOnPersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PersonalAccount_GetCostOfWorkplacesOnPersonalAccount_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PersonalAccount_GetCostOfWorkplacesOnPersonalAccount_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -703,12 +766,13 @@ func RegisterPersonalAccountHandlerServer(ctx context.Context, mux *runtime.Serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/GetDiskSpaceQuotaOnPersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/GetDiskSpaceQuotaOnPersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/GetDiskSpaceQuotaOnPersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/GetDiskSpaceQuotaOnPersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PersonalAccount_GetDiskSpaceQuotaOnPersonalAccount_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PersonalAccount_GetDiskSpaceQuotaOnPersonalAccount_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -726,12 +790,13 @@ func RegisterPersonalAccountHandlerServer(ctx context.Context, mux *runtime.Serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/CreatePersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/CreatePersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/CreatePersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/CreatePersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PersonalAccount_CreatePersonalAccount_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PersonalAccount_CreatePersonalAccount_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -749,12 +814,13 @@ func RegisterPersonalAccountHandlerServer(ctx context.Context, mux *runtime.Serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/UpdatePersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/UpdatePersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/UpdatePersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/UpdatePersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PersonalAccount_UpdatePersonalAccount_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PersonalAccount_UpdatePersonalAccount_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -772,12 +838,13 @@ func RegisterPersonalAccountHandlerServer(ctx context.Context, mux *runtime.Serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/ChangeDateOfDebitingFundsOnPersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/ChangeDateOfDebitingFundsOnPersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/ChangeDateOfDebitingFundsOnPersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/ChangeDateOfDebitingFundsOnPersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PersonalAccount_ChangeDateOfDebitingFundsOnPersonalAccount_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PersonalAccount_ChangeDateOfDebitingFundsOnPersonalAccount_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -795,12 +862,13 @@ func RegisterPersonalAccountHandlerServer(ctx context.Context, mux *runtime.Serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/DeletePersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/DeletePersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/DeletePersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/DeletePersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PersonalAccount_DeletePersonalAccount_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PersonalAccount_DeletePersonalAccount_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -818,12 +886,13 @@ func RegisterPersonalAccountHandlerServer(ctx context.Context, mux *runtime.Serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/SuspendPersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/SuspendPersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/SuspendPersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/SuspendPersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PersonalAccount_SuspendPersonalAccount_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PersonalAccount_SuspendPersonalAccount_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -841,12 +910,13 @@ func RegisterPersonalAccountHandlerServer(ctx context.Context, mux *runtime.Serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/ActivatePersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/ActivatePersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/ActivatePersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/ActivatePersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PersonalAccount_ActivatePersonalAccount_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PersonalAccount_ActivatePersonalAccount_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -864,12 +934,13 @@ func RegisterPersonalAccountHandlerServer(ctx context.Context, mux *runtime.Serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/BlockPersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/BlockPersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/BlockPersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/BlockPersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PersonalAccount_BlockPersonalAccount_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PersonalAccount_BlockPersonalAccount_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -887,12 +958,13 @@ func RegisterPersonalAccountHandlerServer(ctx context.Context, mux *runtime.Serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/UnblockPersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/UnblockPersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/UnblockPersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/UnblockPersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PersonalAccount_UnblockPersonalAccount_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PersonalAccount_UnblockPersonalAccount_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -910,12 +982,13 @@ func RegisterPersonalAccountHandlerServer(ctx context.Context, mux *runtime.Serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/CheckActivePersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/CheckActivePersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/CheckActivePersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/CheckActivePersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PersonalAccount_CheckActivePersonalAccount_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PersonalAccount_CheckActivePersonalAccount_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -933,12 +1006,13 @@ func RegisterPersonalAccountHandlerServer(ctx context.Context, mux *runtime.Serv
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/ProcessSuccessfulPaymentInBilling", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/ProcessSuccessfulPaymentInBilling"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/ProcessSuccessfulPaymentInBilling", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/ProcessSuccessfulPaymentInBilling"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_PersonalAccount_ProcessSuccessfulPaymentInBilling_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_PersonalAccount_ProcessSuccessfulPaymentInBilling_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -995,12 +1069,13 @@ func RegisterPersonalAccountHandlerClient(ctx context.Context, mux *runtime.Serv
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/GetPersonalAccountByID", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/get_personal_account_by_id"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/GetPersonalAccountByID", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/get_personal_account_by_id"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PersonalAccount_GetPersonalAccountByID_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PersonalAccount_GetPersonalAccountByID_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1015,12 +1090,13 @@ func RegisterPersonalAccountHandlerClient(ctx context.Context, mux *runtime.Serv
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/GetPersonalAccountsList", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/GetPersonalAccountsList"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/GetPersonalAccountsList", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/GetPersonalAccountsList"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PersonalAccount_GetPersonalAccountsList_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PersonalAccount_GetPersonalAccountsList_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1035,12 +1111,13 @@ func RegisterPersonalAccountHandlerClient(ctx context.Context, mux *runtime.Serv
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/GetPersonalAccountIDByOwnerUUID", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/GetPersonalAccountIDByOwnerUUID"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/GetPersonalAccountIDByOwnerUUID", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/GetPersonalAccountIDByOwnerUUID"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PersonalAccount_GetPersonalAccountIDByOwnerUUID_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PersonalAccount_GetPersonalAccountIDByOwnerUUID_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1051,16 +1128,38 @@ func RegisterPersonalAccountHandlerClient(ctx context.Context, mux *runtime.Serv
 
 	})
 
-	mux.Handle("POST", pattern_PersonalAccount_GetUsersByPersonalAccount_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_PersonalAccount_GetPersonalAccountIDByTeamUUID_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/GetUsersByPersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/GetUsersByPersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/GetPersonalAccountIDByTeamUUID", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/GetPersonalAccountIDByTeamUUID"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PersonalAccount_GetUsersByPersonalAccount_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PersonalAccount_GetPersonalAccountIDByTeamUUID_0(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_PersonalAccount_GetPersonalAccountIDByTeamUUID_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("POST", pattern_PersonalAccount_GetUsersByPersonalAccount_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/GetUsersByPersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/GetUsersByPersonalAccount"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_PersonalAccount_GetUsersByPersonalAccount_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1075,12 +1174,13 @@ func RegisterPersonalAccountHandlerClient(ctx context.Context, mux *runtime.Serv
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/GetCostOfWorkplacesOnPersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/GetCostOfWorkplacesOnPersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/GetCostOfWorkplacesOnPersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/GetCostOfWorkplacesOnPersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PersonalAccount_GetCostOfWorkplacesOnPersonalAccount_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PersonalAccount_GetCostOfWorkplacesOnPersonalAccount_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1095,12 +1195,13 @@ func RegisterPersonalAccountHandlerClient(ctx context.Context, mux *runtime.Serv
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/GetDiskSpaceQuotaOnPersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/GetDiskSpaceQuotaOnPersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/GetDiskSpaceQuotaOnPersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/GetDiskSpaceQuotaOnPersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PersonalAccount_GetDiskSpaceQuotaOnPersonalAccount_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PersonalAccount_GetDiskSpaceQuotaOnPersonalAccount_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1115,12 +1216,13 @@ func RegisterPersonalAccountHandlerClient(ctx context.Context, mux *runtime.Serv
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/CreatePersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/CreatePersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/CreatePersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/CreatePersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PersonalAccount_CreatePersonalAccount_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PersonalAccount_CreatePersonalAccount_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1135,12 +1237,13 @@ func RegisterPersonalAccountHandlerClient(ctx context.Context, mux *runtime.Serv
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/UpdatePersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/UpdatePersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/UpdatePersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/UpdatePersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PersonalAccount_UpdatePersonalAccount_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PersonalAccount_UpdatePersonalAccount_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1155,12 +1258,13 @@ func RegisterPersonalAccountHandlerClient(ctx context.Context, mux *runtime.Serv
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/ChangeDateOfDebitingFundsOnPersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/ChangeDateOfDebitingFundsOnPersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/ChangeDateOfDebitingFundsOnPersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/ChangeDateOfDebitingFundsOnPersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PersonalAccount_ChangeDateOfDebitingFundsOnPersonalAccount_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PersonalAccount_ChangeDateOfDebitingFundsOnPersonalAccount_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1175,12 +1279,13 @@ func RegisterPersonalAccountHandlerClient(ctx context.Context, mux *runtime.Serv
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/DeletePersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/DeletePersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/DeletePersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/DeletePersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PersonalAccount_DeletePersonalAccount_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PersonalAccount_DeletePersonalAccount_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1195,12 +1300,13 @@ func RegisterPersonalAccountHandlerClient(ctx context.Context, mux *runtime.Serv
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/SuspendPersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/SuspendPersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/SuspendPersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/SuspendPersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PersonalAccount_SuspendPersonalAccount_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PersonalAccount_SuspendPersonalAccount_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1215,12 +1321,13 @@ func RegisterPersonalAccountHandlerClient(ctx context.Context, mux *runtime.Serv
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/ActivatePersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/ActivatePersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/ActivatePersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/ActivatePersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PersonalAccount_ActivatePersonalAccount_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PersonalAccount_ActivatePersonalAccount_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1235,12 +1342,13 @@ func RegisterPersonalAccountHandlerClient(ctx context.Context, mux *runtime.Serv
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/BlockPersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/BlockPersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/BlockPersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/BlockPersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PersonalAccount_BlockPersonalAccount_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PersonalAccount_BlockPersonalAccount_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1255,12 +1363,13 @@ func RegisterPersonalAccountHandlerClient(ctx context.Context, mux *runtime.Serv
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/UnblockPersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/UnblockPersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/UnblockPersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/UnblockPersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PersonalAccount_UnblockPersonalAccount_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PersonalAccount_UnblockPersonalAccount_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1275,12 +1384,13 @@ func RegisterPersonalAccountHandlerClient(ctx context.Context, mux *runtime.Serv
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/CheckActivePersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/CheckActivePersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/CheckActivePersonalAccount", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/CheckActivePersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PersonalAccount_CheckActivePersonalAccount_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PersonalAccount_CheckActivePersonalAccount_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1295,12 +1405,13 @@ func RegisterPersonalAccountHandlerClient(ctx context.Context, mux *runtime.Serv
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/ProcessSuccessfulPaymentInBilling", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/ProcessSuccessfulPaymentInBilling"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.PersonalAccount/ProcessSuccessfulPaymentInBilling", runtime.WithHTTPPathPattern("/gateway/v1/admin.PersonalAccount/ProcessSuccessfulPaymentInBilling"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_PersonalAccount_ProcessSuccessfulPaymentInBilling_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_PersonalAccount_ProcessSuccessfulPaymentInBilling_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1320,6 +1431,8 @@ var (
 	pattern_PersonalAccount_GetPersonalAccountsList_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"gateway", "v1", "admin.PersonalAccount", "GetPersonalAccountsList"}, ""))
 
 	pattern_PersonalAccount_GetPersonalAccountIDByOwnerUUID_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"gateway", "v1", "admin.PersonalAccount", "GetPersonalAccountIDByOwnerUUID"}, ""))
+
+	pattern_PersonalAccount_GetPersonalAccountIDByTeamUUID_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"gateway", "v1", "admin.PersonalAccount", "GetPersonalAccountIDByTeamUUID"}, ""))
 
 	pattern_PersonalAccount_GetUsersByPersonalAccount_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"gateway", "v1", "admin.PersonalAccount", "GetUsersByPersonalAccount"}, ""))
 
@@ -1354,6 +1467,8 @@ var (
 	forward_PersonalAccount_GetPersonalAccountsList_0 = runtime.ForwardResponseMessage
 
 	forward_PersonalAccount_GetPersonalAccountIDByOwnerUUID_0 = runtime.ForwardResponseMessage
+
+	forward_PersonalAccount_GetPersonalAccountIDByTeamUUID_0 = runtime.ForwardResponseMessage
 
 	forward_PersonalAccount_GetUsersByPersonalAccount_0 = runtime.ForwardResponseMessage
 

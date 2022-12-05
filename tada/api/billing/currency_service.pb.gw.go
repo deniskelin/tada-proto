@@ -145,12 +145,13 @@ func RegisterCurrencyHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.billing.Currency/GetCurrenciesList", runtime.WithHTTPPathPattern("/api/v1/billing.Currency/GetCurrenciesList"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.billing.Currency/GetCurrenciesList", runtime.WithHTTPPathPattern("/api/v1/billing.Currency/GetCurrenciesList"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Currency_GetCurrenciesList_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Currency_GetCurrenciesList_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -168,12 +169,13 @@ func RegisterCurrencyHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.billing.Currency/GetVisibleCurrenciesList", runtime.WithHTTPPathPattern("/api/v1/billing.Currency/GetVisibleCurrenciesList"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.billing.Currency/GetVisibleCurrenciesList", runtime.WithHTTPPathPattern("/api/v1/billing.Currency/GetVisibleCurrenciesList"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Currency_GetVisibleCurrenciesList_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Currency_GetVisibleCurrenciesList_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -191,12 +193,13 @@ func RegisterCurrencyHandlerServer(ctx context.Context, mux *runtime.ServeMux, s
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.billing.Currency/SetCurrencyVisibility", runtime.WithHTTPPathPattern("/api/v1/billing.Currency/SetCurrencyVisibility"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.billing.Currency/SetCurrencyVisibility", runtime.WithHTTPPathPattern("/api/v1/billing.Currency/SetCurrencyVisibility"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_Currency_SetCurrencyVisibility_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_Currency_SetCurrencyVisibility_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -253,12 +256,13 @@ func RegisterCurrencyHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.api.billing.Currency/GetCurrenciesList", runtime.WithHTTPPathPattern("/api/v1/billing.Currency/GetCurrenciesList"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.api.billing.Currency/GetCurrenciesList", runtime.WithHTTPPathPattern("/api/v1/billing.Currency/GetCurrenciesList"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Currency_GetCurrenciesList_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Currency_GetCurrenciesList_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -273,12 +277,13 @@ func RegisterCurrencyHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.api.billing.Currency/GetVisibleCurrenciesList", runtime.WithHTTPPathPattern("/api/v1/billing.Currency/GetVisibleCurrenciesList"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.api.billing.Currency/GetVisibleCurrenciesList", runtime.WithHTTPPathPattern("/api/v1/billing.Currency/GetVisibleCurrenciesList"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Currency_GetVisibleCurrenciesList_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Currency_GetVisibleCurrenciesList_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -293,12 +298,13 @@ func RegisterCurrencyHandlerClient(ctx context.Context, mux *runtime.ServeMux, c
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.api.billing.Currency/SetCurrencyVisibility", runtime.WithHTTPPathPattern("/api/v1/billing.Currency/SetCurrencyVisibility"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.api.billing.Currency/SetCurrencyVisibility", runtime.WithHTTPPathPattern("/api/v1/billing.Currency/SetCurrencyVisibility"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Currency_SetCurrencyVisibility_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Currency_SetCurrencyVisibility_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)

@@ -145,12 +145,13 @@ func RegisterChangeTariffHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.billing.ChangeTariff/GetChangesTariffsByPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.ChangeTariff/GetChangesTariffsByPersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.billing.ChangeTariff/GetChangesTariffsByPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.ChangeTariff/GetChangesTariffsByPersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ChangeTariff_GetChangesTariffsByPersonalAccount_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ChangeTariff_GetChangesTariffsByPersonalAccount_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -168,12 +169,13 @@ func RegisterChangeTariffHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.billing.ChangeTariff/CreateChangeTariffOnPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.ChangeTariff/CreateChangeTariffOnPersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.billing.ChangeTariff/CreateChangeTariffOnPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.ChangeTariff/CreateChangeTariffOnPersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ChangeTariff_CreateChangeTariffOnPersonalAccount_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ChangeTariff_CreateChangeTariffOnPersonalAccount_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -191,12 +193,13 @@ func RegisterChangeTariffHandlerServer(ctx context.Context, mux *runtime.ServeMu
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.billing.ChangeTariff/DeleteChangeTariffOnPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.ChangeTariff/DeleteChangeTariffOnPersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.billing.ChangeTariff/DeleteChangeTariffOnPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.ChangeTariff/DeleteChangeTariffOnPersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ChangeTariff_DeleteChangeTariffOnPersonalAccount_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ChangeTariff_DeleteChangeTariffOnPersonalAccount_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -253,12 +256,13 @@ func RegisterChangeTariffHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.api.billing.ChangeTariff/GetChangesTariffsByPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.ChangeTariff/GetChangesTariffsByPersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.api.billing.ChangeTariff/GetChangesTariffsByPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.ChangeTariff/GetChangesTariffsByPersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ChangeTariff_GetChangesTariffsByPersonalAccount_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ChangeTariff_GetChangesTariffsByPersonalAccount_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -273,12 +277,13 @@ func RegisterChangeTariffHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.api.billing.ChangeTariff/CreateChangeTariffOnPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.ChangeTariff/CreateChangeTariffOnPersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.api.billing.ChangeTariff/CreateChangeTariffOnPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.ChangeTariff/CreateChangeTariffOnPersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ChangeTariff_CreateChangeTariffOnPersonalAccount_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ChangeTariff_CreateChangeTariffOnPersonalAccount_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -293,12 +298,13 @@ func RegisterChangeTariffHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.api.billing.ChangeTariff/DeleteChangeTariffOnPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.ChangeTariff/DeleteChangeTariffOnPersonalAccount"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.api.billing.ChangeTariff/DeleteChangeTariffOnPersonalAccount", runtime.WithHTTPPathPattern("/api/v1/billing.ChangeTariff/DeleteChangeTariffOnPersonalAccount"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ChangeTariff_DeleteChangeTariffOnPersonalAccount_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ChangeTariff_DeleteChangeTariffOnPersonalAccount_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)

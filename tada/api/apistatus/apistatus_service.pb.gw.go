@@ -79,12 +79,13 @@ func RegisterAPIStatusHandlerServer(ctx context.Context, mux *runtime.ServeMux, 
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.apistatus.APIStatus/Version", runtime.WithHTTPPathPattern("/v1/api/apistatus.APIStatus/version"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.apistatus.APIStatus/Version", runtime.WithHTTPPathPattern("/v1/api/apistatus.APIStatus/version"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_APIStatus_Version_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_APIStatus_Version_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -102,12 +103,13 @@ func RegisterAPIStatusHandlerServer(ctx context.Context, mux *runtime.ServeMux, 
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.apistatus.APIStatus/Info", runtime.WithHTTPPathPattern("/v1/api/apistatus.APIStatus/info"))
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.api.apistatus.APIStatus/Info", runtime.WithHTTPPathPattern("/v1/api/apistatus.APIStatus/info"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_APIStatus_Info_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_APIStatus_Info_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -164,12 +166,13 @@ func RegisterAPIStatusHandlerClient(ctx context.Context, mux *runtime.ServeMux, 
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.api.apistatus.APIStatus/Version", runtime.WithHTTPPathPattern("/v1/api/apistatus.APIStatus/version"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.api.apistatus.APIStatus/Version", runtime.WithHTTPPathPattern("/v1/api/apistatus.APIStatus/version"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_APIStatus_Version_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_APIStatus_Version_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -184,12 +187,13 @@ func RegisterAPIStatusHandlerClient(ctx context.Context, mux *runtime.ServeMux, 
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/tada.api.apistatus.APIStatus/Info", runtime.WithHTTPPathPattern("/v1/api/apistatus.APIStatus/info"))
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.api.apistatus.APIStatus/Info", runtime.WithHTTPPathPattern("/v1/api/apistatus.APIStatus/info"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_APIStatus_Info_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_APIStatus_Info_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
