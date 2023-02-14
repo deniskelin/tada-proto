@@ -33,6 +33,7 @@ type PersonalAccountClient interface {
 	SuspendPersonalAccount(ctx context.Context, in *SuspendPersonalAccountRequest, opts ...grpc.CallOption) (*SuspendPersonalAccountResponse, error)
 	UpdatePersonalAccount(ctx context.Context, in *UpdatePersonalAccountRequest, opts ...grpc.CallOption) (*UpdatePersonalAccountResponse, error)
 	CheckActivePersonalAccount(ctx context.Context, in *CheckActivePersonalAccountRequest, opts ...grpc.CallOption) (*CheckActivePersonalAccountResponse, error)
+	GetPersonalAccountStatus(ctx context.Context, in *GetPersonalAccountStatusRequest, opts ...grpc.CallOption) (*GetPersonalAccountStatusResponse, error)
 	ChangeDateOfDebitingFundsOnPersonalAccount(ctx context.Context, in *ChangeDateOfDebitingFundsOnPersonalAccountRequest, opts ...grpc.CallOption) (*ChangeDateOfDebitingFundsOnPersonalAccountResponse, error)
 	GetUsersByPersonalAccount(ctx context.Context, in *GetUsersByPersonalAccountRequest, opts ...grpc.CallOption) (*GetUsersByPersonalAccountResponse, error)
 	GetDiskSpaceQuotaOnPersonalAccount(ctx context.Context, in *GetDiskSpaceQuotaOnPersonalAccountRequest, opts ...grpc.CallOption) (*GetDiskSpaceQuotaOnPersonalAccountResponse, error)
@@ -147,6 +148,15 @@ func (c *personalAccountClient) CheckActivePersonalAccount(ctx context.Context, 
 	return out, nil
 }
 
+func (c *personalAccountClient) GetPersonalAccountStatus(ctx context.Context, in *GetPersonalAccountStatusRequest, opts ...grpc.CallOption) (*GetPersonalAccountStatusResponse, error) {
+	out := new(GetPersonalAccountStatusResponse)
+	err := c.cc.Invoke(ctx, "/tada.api.billing.PersonalAccount/GetPersonalAccountStatus", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *personalAccountClient) ChangeDateOfDebitingFundsOnPersonalAccount(ctx context.Context, in *ChangeDateOfDebitingFundsOnPersonalAccountRequest, opts ...grpc.CallOption) (*ChangeDateOfDebitingFundsOnPersonalAccountResponse, error) {
 	out := new(ChangeDateOfDebitingFundsOnPersonalAccountResponse)
 	err := c.cc.Invoke(ctx, "/tada.api.billing.PersonalAccount/ChangeDateOfDebitingFundsOnPersonalAccount", in, out, opts...)
@@ -207,6 +217,7 @@ type PersonalAccountServer interface {
 	SuspendPersonalAccount(context.Context, *SuspendPersonalAccountRequest) (*SuspendPersonalAccountResponse, error)
 	UpdatePersonalAccount(context.Context, *UpdatePersonalAccountRequest) (*UpdatePersonalAccountResponse, error)
 	CheckActivePersonalAccount(context.Context, *CheckActivePersonalAccountRequest) (*CheckActivePersonalAccountResponse, error)
+	GetPersonalAccountStatus(context.Context, *GetPersonalAccountStatusRequest) (*GetPersonalAccountStatusResponse, error)
 	ChangeDateOfDebitingFundsOnPersonalAccount(context.Context, *ChangeDateOfDebitingFundsOnPersonalAccountRequest) (*ChangeDateOfDebitingFundsOnPersonalAccountResponse, error)
 	GetUsersByPersonalAccount(context.Context, *GetUsersByPersonalAccountRequest) (*GetUsersByPersonalAccountResponse, error)
 	GetDiskSpaceQuotaOnPersonalAccount(context.Context, *GetDiskSpaceQuotaOnPersonalAccountRequest) (*GetDiskSpaceQuotaOnPersonalAccountResponse, error)
@@ -251,6 +262,9 @@ func (UnimplementedPersonalAccountServer) UpdatePersonalAccount(context.Context,
 }
 func (UnimplementedPersonalAccountServer) CheckActivePersonalAccount(context.Context, *CheckActivePersonalAccountRequest) (*CheckActivePersonalAccountResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckActivePersonalAccount not implemented")
+}
+func (UnimplementedPersonalAccountServer) GetPersonalAccountStatus(context.Context, *GetPersonalAccountStatusRequest) (*GetPersonalAccountStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPersonalAccountStatus not implemented")
 }
 func (UnimplementedPersonalAccountServer) ChangeDateOfDebitingFundsOnPersonalAccount(context.Context, *ChangeDateOfDebitingFundsOnPersonalAccountRequest) (*ChangeDateOfDebitingFundsOnPersonalAccountResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangeDateOfDebitingFundsOnPersonalAccount not implemented")
@@ -478,6 +492,24 @@ func _PersonalAccount_CheckActivePersonalAccount_Handler(srv interface{}, ctx co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PersonalAccount_GetPersonalAccountStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPersonalAccountStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PersonalAccountServer).GetPersonalAccountStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/tada.api.billing.PersonalAccount/GetPersonalAccountStatus",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PersonalAccountServer).GetPersonalAccountStatus(ctx, req.(*GetPersonalAccountStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _PersonalAccount_ChangeDateOfDebitingFundsOnPersonalAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ChangeDateOfDebitingFundsOnPersonalAccountRequest)
 	if err := dec(in); err != nil {
@@ -618,6 +650,10 @@ var PersonalAccount_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CheckActivePersonalAccount",
 			Handler:    _PersonalAccount_CheckActivePersonalAccount_Handler,
+		},
+		{
+			MethodName: "GetPersonalAccountStatus",
+			Handler:    _PersonalAccount_GetPersonalAccountStatus_Handler,
 		},
 		{
 			MethodName: "ChangeDateOfDebitingFundsOnPersonalAccount",
