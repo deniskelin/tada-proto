@@ -8,8 +8,8 @@ package workplace
 
 import (
 	context "context"
-	v1 "gitlab.tada.team/tdapis/go-genproto/tada/billing/api/personal_account/workplace/v1"
-	v11 "gitlab.tada.team/tdapis/go-genproto/tada/user/api/v1"
+	v1 "github.com/deniskelin/tada-proto/tada/billing/api/personal_account/workplace/v1"
+	v11 "github.com/deniskelin/tada-proto/tada/user/api/v1"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"

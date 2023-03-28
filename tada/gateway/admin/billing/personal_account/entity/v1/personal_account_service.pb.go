@@ -7,7 +7,7 @@
 package personal_account
 
 import (
-	v1 "gitlab.tada.team/tdapis/go-genproto/tada/billing/api/personal_account/entity/v1"
+	v1 "github.com/deniskelin/tada-proto/tada/billing/api/personal_account/entity/v1"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"

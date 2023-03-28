@@ -13,9 +13,9 @@ import (
 	"io"
 	"net/http"
 
+	"github.com/deniskelin/tada-proto/tada/api/billing"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
-	"gitlab.tada.team/tdapis/go-genproto/tada/api/billing"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/grpclog"

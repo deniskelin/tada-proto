@@ -7,7 +7,7 @@
 package responsible_person
 
 import (
-	_ "gitlab.tada.team/tdapis/go-genproto/tada/common"
+	_ "github.com/deniskelin/tada-proto/tada/common"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"

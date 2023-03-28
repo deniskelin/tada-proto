@@ -8,7 +8,7 @@ package admin
 
 import (
 	context "context"
-	billing "gitlab.tada.team/tdapis/go-genproto/tada/api/billing"
+	billing "github.com/deniskelin/tada-proto/tada/api/billing"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"

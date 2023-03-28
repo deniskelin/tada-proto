@@ -8,7 +8,7 @@ package tariff
 
 import (
 	context "context"
-	v1 "gitlab.tada.team/tdapis/go-genproto/tada/billing/api/tariff/v1"
+	v1 "github.com/deniskelin/tada-proto/tada/billing/api/tariff/v1"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"

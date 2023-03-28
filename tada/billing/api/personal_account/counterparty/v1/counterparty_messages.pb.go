@@ -7,7 +7,7 @@
 package counterparty
 
 import (
-	common "gitlab.tada.team/tdapis/go-genproto/tada/common"
+	common "github.com/deniskelin/tada-proto/tada/common"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
