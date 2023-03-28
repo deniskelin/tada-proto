@@ -8,8 +8,8 @@ package workplace
 
 import (
 	context "context"
-	v1 "github.com/deniskelin/tada-proto/tada/billing/api/personal_account/workplace/v1"
-	v11 "github.com/deniskelin/tada-proto/tada/user/api/v1"
+	v1 "gitlab.tada.team/tdapis/go-genproto/tada/billing/api/personal_account/workplace/v1"
+	v11 "gitlab.tada.team/tdapis/go-genproto/tada/user/api/v1"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -28,6 +28,7 @@ type WorkplaceServiceClient interface {
 	Activate(ctx context.Context, in *v1.ActivateRequest, opts ...grpc.CallOption) (*v1.ActivateResponse, error)
 	Delete(ctx context.Context, in *v1.DeleteRequest, opts ...grpc.CallOption) (*v1.DeleteResponse, error)
 	AddUser(ctx context.Context, in *v1.AddUserRequest, opts ...grpc.CallOption) (*v1.AddUserResponse, error)
+	AddUserByContact(ctx context.Context, in *AddUserByContactRequest, opts ...grpc.CallOption) (*AddUserByContactResponse, error)
 	DeleteUser(ctx context.Context, in *v1.DeleteUserRequest, opts ...grpc.CallOption) (*v1.DeleteUserResponse, error)
 	Get(ctx context.Context, in *v1.GetRequest, opts ...grpc.CallOption) (*v1.GetResponse, error)
 	GetEnriched(ctx context.Context, in *v1.GetRequest, opts ...grpc.CallOption) (*v11.GetResponse, error)
@@ -77,6 +78,15 @@ func (c *workplaceServiceClient) AddUser(ctx context.Context, in *v1.AddUserRequ
 	return out, nil
 }
 
+func (c *workplaceServiceClient) AddUserByContact(ctx context.Context, in *AddUserByContactRequest, opts ...grpc.CallOption) (*AddUserByContactResponse, error) {
+	out := new(AddUserByContactResponse)
+	err := c.cc.Invoke(ctx, "/tada.gateway.admin.billing.personal_account.workplace.v1.WorkplaceService/AddUserByContact", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *workplaceServiceClient) DeleteUser(ctx context.Context, in *v1.DeleteUserRequest, opts ...grpc.CallOption) (*v1.DeleteUserResponse, error) {
 	out := new(v1.DeleteUserResponse)
 	err := c.cc.Invoke(ctx, "/tada.gateway.admin.billing.personal_account.workplace.v1.WorkplaceService/DeleteUser", in, out, opts...)
@@ -112,6 +122,7 @@ type WorkplaceServiceServer interface {
 	Activate(context.Context, *v1.ActivateRequest) (*v1.ActivateResponse, error)
 	Delete(context.Context, *v1.DeleteRequest) (*v1.DeleteResponse, error)
 	AddUser(context.Context, *v1.AddUserRequest) (*v1.AddUserResponse, error)
+	AddUserByContact(context.Context, *AddUserByContactRequest) (*AddUserByContactResponse, error)
 	DeleteUser(context.Context, *v1.DeleteUserRequest) (*v1.DeleteUserResponse, error)
 	Get(context.Context, *v1.GetRequest) (*v1.GetResponse, error)
 	GetEnriched(context.Context, *v1.GetRequest) (*v11.GetResponse, error)
@@ -133,6 +144,9 @@ func (UnimplementedWorkplaceServiceServer) Delete(context.Context, *v1.DeleteReq
 }
 func (UnimplementedWorkplaceServiceServer) AddUser(context.Context, *v1.AddUserRequest) (*v1.AddUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddUser not implemented")
+}
+func (UnimplementedWorkplaceServiceServer) AddUserByContact(context.Context, *AddUserByContactRequest) (*AddUserByContactResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddUserByContact not implemented")
 }
 func (UnimplementedWorkplaceServiceServer) DeleteUser(context.Context, *v1.DeleteUserRequest) (*v1.DeleteUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteUser not implemented")
@@ -228,6 +242,24 @@ func _WorkplaceService_AddUser_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _WorkplaceService_AddUserByContact_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddUserByContactRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WorkplaceServiceServer).AddUserByContact(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/tada.gateway.admin.billing.personal_account.workplace.v1.WorkplaceService/AddUserByContact",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WorkplaceServiceServer).AddUserByContact(ctx, req.(*AddUserByContactRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _WorkplaceService_DeleteUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(v1.DeleteUserRequest)
 	if err := dec(in); err != nil {
@@ -304,6 +336,10 @@ var WorkplaceService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AddUser",
 			Handler:    _WorkplaceService_AddUser_Handler,
+		},
+		{
+			MethodName: "AddUserByContact",
+			Handler:    _WorkplaceService_AddUserByContact_Handler,
 		},
 		{
 			MethodName: "DeleteUser",

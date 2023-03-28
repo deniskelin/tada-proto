@@ -7,7 +7,7 @@
 package tariff
 
 import (
-	v1 "github.com/deniskelin/tada-proto/tada/billing/api/tariff/v1"
+	v1 "gitlab.tada.team/tdapis/go-genproto/tada/billing/api/tariff/v1"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"

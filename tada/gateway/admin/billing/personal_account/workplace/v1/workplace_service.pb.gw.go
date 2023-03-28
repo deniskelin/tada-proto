@@ -13,9 +13,9 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/deniskelin/tada-proto/tada/billing/api/personal_account/workplace/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
+	workplace_0 "gitlab.tada.team/tdapis/go-genproto/tada/billing/api/personal_account/workplace/v1"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/grpclog"
@@ -33,7 +33,7 @@ var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
 func request_WorkplaceService_Add_0(ctx context.Context, marshaler runtime.Marshaler, client WorkplaceServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq workplace.AddRequest
+	var protoReq workplace_0.AddRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -50,7 +50,7 @@ func request_WorkplaceService_Add_0(ctx context.Context, marshaler runtime.Marsh
 }
 
 func local_request_WorkplaceService_Add_0(ctx context.Context, marshaler runtime.Marshaler, server WorkplaceServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq workplace.AddRequest
+	var protoReq workplace_0.AddRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -67,7 +67,7 @@ func local_request_WorkplaceService_Add_0(ctx context.Context, marshaler runtime
 }
 
 func request_WorkplaceService_Activate_0(ctx context.Context, marshaler runtime.Marshaler, client WorkplaceServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq workplace.ActivateRequest
+	var protoReq workplace_0.ActivateRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -84,7 +84,7 @@ func request_WorkplaceService_Activate_0(ctx context.Context, marshaler runtime.
 }
 
 func local_request_WorkplaceService_Activate_0(ctx context.Context, marshaler runtime.Marshaler, server WorkplaceServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq workplace.ActivateRequest
+	var protoReq workplace_0.ActivateRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -101,7 +101,7 @@ func local_request_WorkplaceService_Activate_0(ctx context.Context, marshaler ru
 }
 
 func request_WorkplaceService_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client WorkplaceServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq workplace.DeleteRequest
+	var protoReq workplace_0.DeleteRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -118,7 +118,7 @@ func request_WorkplaceService_Delete_0(ctx context.Context, marshaler runtime.Ma
 }
 
 func local_request_WorkplaceService_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server WorkplaceServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq workplace.DeleteRequest
+	var protoReq workplace_0.DeleteRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -135,7 +135,7 @@ func local_request_WorkplaceService_Delete_0(ctx context.Context, marshaler runt
 }
 
 func request_WorkplaceService_AddUser_0(ctx context.Context, marshaler runtime.Marshaler, client WorkplaceServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq workplace.AddUserRequest
+	var protoReq workplace_0.AddUserRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -152,7 +152,7 @@ func request_WorkplaceService_AddUser_0(ctx context.Context, marshaler runtime.M
 }
 
 func local_request_WorkplaceService_AddUser_0(ctx context.Context, marshaler runtime.Marshaler, server WorkplaceServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq workplace.AddUserRequest
+	var protoReq workplace_0.AddUserRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -168,8 +168,42 @@ func local_request_WorkplaceService_AddUser_0(ctx context.Context, marshaler run
 
 }
 
+func request_WorkplaceService_AddUserByContact_0(ctx context.Context, marshaler runtime.Marshaler, client WorkplaceServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq AddUserByContactRequest
+	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.AddUserByContact(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_WorkplaceService_AddUserByContact_0(ctx context.Context, marshaler runtime.Marshaler, server WorkplaceServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq AddUserByContactRequest
+	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.AddUserByContact(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
 func request_WorkplaceService_DeleteUser_0(ctx context.Context, marshaler runtime.Marshaler, client WorkplaceServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq workplace.DeleteUserRequest
+	var protoReq workplace_0.DeleteUserRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -186,7 +220,7 @@ func request_WorkplaceService_DeleteUser_0(ctx context.Context, marshaler runtim
 }
 
 func local_request_WorkplaceService_DeleteUser_0(ctx context.Context, marshaler runtime.Marshaler, server WorkplaceServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq workplace.DeleteUserRequest
+	var protoReq workplace_0.DeleteUserRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -203,7 +237,7 @@ func local_request_WorkplaceService_DeleteUser_0(ctx context.Context, marshaler 
 }
 
 func request_WorkplaceService_Get_0(ctx context.Context, marshaler runtime.Marshaler, client WorkplaceServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq workplace.GetRequest
+	var protoReq workplace_0.GetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -220,7 +254,7 @@ func request_WorkplaceService_Get_0(ctx context.Context, marshaler runtime.Marsh
 }
 
 func local_request_WorkplaceService_Get_0(ctx context.Context, marshaler runtime.Marshaler, server WorkplaceServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq workplace.GetRequest
+	var protoReq workplace_0.GetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -237,7 +271,7 @@ func local_request_WorkplaceService_Get_0(ctx context.Context, marshaler runtime
 }
 
 func request_WorkplaceService_GetEnriched_0(ctx context.Context, marshaler runtime.Marshaler, client WorkplaceServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq workplace.GetRequest
+	var protoReq workplace_0.GetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -254,7 +288,7 @@ func request_WorkplaceService_GetEnriched_0(ctx context.Context, marshaler runti
 }
 
 func local_request_WorkplaceService_GetEnriched_0(ctx context.Context, marshaler runtime.Marshaler, server WorkplaceServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq workplace.GetRequest
+	var protoReq workplace_0.GetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -369,6 +403,30 @@ func RegisterWorkplaceServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		}
 
 		forward_WorkplaceService_AddUser_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("POST", pattern_WorkplaceService_AddUserByContact_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.billing.personal_account.workplace.v1.WorkplaceService/AddUserByContact", runtime.WithHTTPPathPattern("/personal_account.workplace/v1/AddUserByContact"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_WorkplaceService_AddUserByContact_0(ctx, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_WorkplaceService_AddUserByContact_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -569,6 +627,27 @@ func RegisterWorkplaceServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 
 	})
 
+	mux.Handle("POST", pattern_WorkplaceService_AddUserByContact_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.billing.personal_account.workplace.v1.WorkplaceService/AddUserByContact", runtime.WithHTTPPathPattern("/personal_account.workplace/v1/AddUserByContact"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_WorkplaceService_AddUserByContact_0(ctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_WorkplaceService_AddUserByContact_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
 	mux.Handle("POST", pattern_WorkplaceService_DeleteUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -644,6 +723,8 @@ var (
 
 	pattern_WorkplaceService_AddUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"personal_account.workplace", "v1", "AddUser"}, ""))
 
+	pattern_WorkplaceService_AddUserByContact_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"personal_account.workplace", "v1", "AddUserByContact"}, ""))
+
 	pattern_WorkplaceService_DeleteUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"personal_account.workplace", "v1", "DeleteUser"}, ""))
 
 	pattern_WorkplaceService_Get_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"personal_account.workplace", "v1", "Get"}, ""))
@@ -659,6 +740,8 @@ var (
 	forward_WorkplaceService_Delete_0 = runtime.ForwardResponseMessage
 
 	forward_WorkplaceService_AddUser_0 = runtime.ForwardResponseMessage
+
+	forward_WorkplaceService_AddUserByContact_0 = runtime.ForwardResponseMessage
 
 	forward_WorkplaceService_DeleteUser_0 = runtime.ForwardResponseMessage
 

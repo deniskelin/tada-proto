@@ -7,7 +7,7 @@
 package admin
 
 import (
-	billing "github.com/deniskelin/tada-proto/tada/api/billing"
+	billing "gitlab.tada.team/tdapis/go-genproto/tada/api/billing"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"

@@ -13,9 +13,9 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/deniskelin/tada-proto/tada/api/meeting"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
+	"gitlab.tada.team/tdapis/go-genproto/tada/api/meeting"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/grpclog"
@@ -710,7 +710,7 @@ func RegisterMeetingGatewayHandlerServer(ctx context.Context, mux *runtime.Serve
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GetMeetings", runtime.WithHTTPPathPattern("/gateway/v1/meeting.calendar/GetMeetings"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GetMeetings", runtime.WithHTTPPathPattern("/calendar/GetMeetings"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -734,7 +734,7 @@ func RegisterMeetingGatewayHandlerServer(ctx context.Context, mux *runtime.Serve
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GetAnotherMeetings", runtime.WithHTTPPathPattern("/gateway/v1/meeting.calendar/GetAnotherMeetings"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GetAnotherMeetings", runtime.WithHTTPPathPattern("/calendar/GetAnotherMeetings"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -758,7 +758,7 @@ func RegisterMeetingGatewayHandlerServer(ctx context.Context, mux *runtime.Serve
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GetMeetingsInstances", runtime.WithHTTPPathPattern("/gateway/v1/meeting.calendar/GetMeetingsInstances"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GetMeetingsInstances", runtime.WithHTTPPathPattern("/calendar/GetMeetingsInstances"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -782,7 +782,7 @@ func RegisterMeetingGatewayHandlerServer(ctx context.Context, mux *runtime.Serve
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GetMeetingsDates", runtime.WithHTTPPathPattern("/gateway/v1/meeting.calendar/GetMeetingsDates"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GetMeetingsDates", runtime.WithHTTPPathPattern("/calendar/GetMeetingsDates"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -806,7 +806,7 @@ func RegisterMeetingGatewayHandlerServer(ctx context.Context, mux *runtime.Serve
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GetMeetingsCounts", runtime.WithHTTPPathPattern("/gateway/v1/meeting.calendar/GetMeetingsCounts"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GetMeetingsCounts", runtime.WithHTTPPathPattern("/calendar/GetMeetingsCounts"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -830,7 +830,7 @@ func RegisterMeetingGatewayHandlerServer(ctx context.Context, mux *runtime.Serve
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GetMeetingsGroupsByInterval", runtime.WithHTTPPathPattern("/gateway/v1/meeting.calendar/GetMeetingsGroupsByInterval"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GetMeetingsGroupsByInterval", runtime.WithHTTPPathPattern("/calendar/GetMeetingsGroupsByInterval"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -854,7 +854,7 @@ func RegisterMeetingGatewayHandlerServer(ctx context.Context, mux *runtime.Serve
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GetMeetingById", runtime.WithHTTPPathPattern("/gateway/v1/meeting.calendar/GetMeetingById"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GetMeetingById", runtime.WithHTTPPathPattern("/calendar/GetMeetingById"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -878,7 +878,7 @@ func RegisterMeetingGatewayHandlerServer(ctx context.Context, mux *runtime.Serve
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GetMeetingByGroupUUID", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/GetMeetingByGroupUUID"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GetMeetingByGroupUUID", runtime.WithHTTPPathPattern("/calendar/GetMeetingByGroupUUID"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -902,7 +902,7 @@ func RegisterMeetingGatewayHandlerServer(ctx context.Context, mux *runtime.Serve
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/CreateMeeting", runtime.WithHTTPPathPattern("/gateway/v1/meeting.calendar/CreateMeeting"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/CreateMeeting", runtime.WithHTTPPathPattern("/calendar/CreateMeeting"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -926,7 +926,7 @@ func RegisterMeetingGatewayHandlerServer(ctx context.Context, mux *runtime.Serve
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/UpdateMeeting", runtime.WithHTTPPathPattern("/gateway/v1/meeting.calendar/UpdateMeeting"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/UpdateMeeting", runtime.WithHTTPPathPattern("/calendar/UpdateMeeting"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -950,7 +950,7 @@ func RegisterMeetingGatewayHandlerServer(ctx context.Context, mux *runtime.Serve
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/DeleteMeeting", runtime.WithHTTPPathPattern("/gateway/v1/meeting.calendar/DeleteMeeting"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/DeleteMeeting", runtime.WithHTTPPathPattern("/calendar/DeleteMeeting"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -974,7 +974,7 @@ func RegisterMeetingGatewayHandlerServer(ctx context.Context, mux *runtime.Serve
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GetMeetingMembers", runtime.WithHTTPPathPattern("/gateway/v1/meeting.calendar/GetMeetingMembers"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GetMeetingMembers", runtime.WithHTTPPathPattern("/calendar/GetMeetingMembers"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -998,7 +998,7 @@ func RegisterMeetingGatewayHandlerServer(ctx context.Context, mux *runtime.Serve
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/AddMemberInMeeting", runtime.WithHTTPPathPattern("/gateway/v1/meeting.calendar/AddMemberInMeeting"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/AddMemberInMeeting", runtime.WithHTTPPathPattern("/calendar/AddMemberInMeeting"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1022,7 +1022,7 @@ func RegisterMeetingGatewayHandlerServer(ctx context.Context, mux *runtime.Serve
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/UpdateMemberInMeeting", runtime.WithHTTPPathPattern("/gateway/v1/meeting.calendar/UpdateMemberInMeeting"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/UpdateMemberInMeeting", runtime.WithHTTPPathPattern("/calendar/UpdateMemberInMeeting"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1046,7 +1046,7 @@ func RegisterMeetingGatewayHandlerServer(ctx context.Context, mux *runtime.Serve
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/DeleteMemberFromMeeting", runtime.WithHTTPPathPattern("/gateway/v1/meeting.calendar/DeleteMemberFromMeeting"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/DeleteMemberFromMeeting", runtime.WithHTTPPathPattern("/calendar/DeleteMemberFromMeeting"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1070,7 +1070,7 @@ func RegisterMeetingGatewayHandlerServer(ctx context.Context, mux *runtime.Serve
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/UpdateMeetingCell", runtime.WithHTTPPathPattern("/gateway/v1/meeting.calendar/UpdateMeetingCell"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/UpdateMeetingCell", runtime.WithHTTPPathPattern("/calendar/UpdateMeetingCell"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1094,7 +1094,7 @@ func RegisterMeetingGatewayHandlerServer(ctx context.Context, mux *runtime.Serve
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/DeleteMeetingCell", runtime.WithHTTPPathPattern("/gateway/v1/meeting.calendar/DeleteMeetingCell"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/DeleteMeetingCell", runtime.WithHTTPPathPattern("/calendar/DeleteMeetingCell"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1118,7 +1118,7 @@ func RegisterMeetingGatewayHandlerServer(ctx context.Context, mux *runtime.Serve
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GenerateMeetingCells", runtime.WithHTTPPathPattern("/gateway/v1/meeting.calendar/GenerateMeetingCells"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GenerateMeetingCells", runtime.WithHTTPPathPattern("/calendar/GenerateMeetingCells"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1142,7 +1142,7 @@ func RegisterMeetingGatewayHandlerServer(ctx context.Context, mux *runtime.Serve
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/ConvertFrequencyToString", runtime.WithHTTPPathPattern("/gateway/v1/meeting.calendar/ConvertFrequencyToString"))
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/ConvertFrequencyToString", runtime.WithHTTPPathPattern("/calendar/ConvertFrequencyToString"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1205,7 +1205,7 @@ func RegisterMeetingGatewayHandlerClient(ctx context.Context, mux *runtime.Serve
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GetMeetings", runtime.WithHTTPPathPattern("/gateway/v1/meeting.calendar/GetMeetings"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GetMeetings", runtime.WithHTTPPathPattern("/calendar/GetMeetings"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1226,7 +1226,7 @@ func RegisterMeetingGatewayHandlerClient(ctx context.Context, mux *runtime.Serve
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GetAnotherMeetings", runtime.WithHTTPPathPattern("/gateway/v1/meeting.calendar/GetAnotherMeetings"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GetAnotherMeetings", runtime.WithHTTPPathPattern("/calendar/GetAnotherMeetings"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1247,7 +1247,7 @@ func RegisterMeetingGatewayHandlerClient(ctx context.Context, mux *runtime.Serve
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GetMeetingsInstances", runtime.WithHTTPPathPattern("/gateway/v1/meeting.calendar/GetMeetingsInstances"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GetMeetingsInstances", runtime.WithHTTPPathPattern("/calendar/GetMeetingsInstances"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1268,7 +1268,7 @@ func RegisterMeetingGatewayHandlerClient(ctx context.Context, mux *runtime.Serve
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GetMeetingsDates", runtime.WithHTTPPathPattern("/gateway/v1/meeting.calendar/GetMeetingsDates"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GetMeetingsDates", runtime.WithHTTPPathPattern("/calendar/GetMeetingsDates"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1289,7 +1289,7 @@ func RegisterMeetingGatewayHandlerClient(ctx context.Context, mux *runtime.Serve
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GetMeetingsCounts", runtime.WithHTTPPathPattern("/gateway/v1/meeting.calendar/GetMeetingsCounts"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GetMeetingsCounts", runtime.WithHTTPPathPattern("/calendar/GetMeetingsCounts"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1310,7 +1310,7 @@ func RegisterMeetingGatewayHandlerClient(ctx context.Context, mux *runtime.Serve
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GetMeetingsGroupsByInterval", runtime.WithHTTPPathPattern("/gateway/v1/meeting.calendar/GetMeetingsGroupsByInterval"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GetMeetingsGroupsByInterval", runtime.WithHTTPPathPattern("/calendar/GetMeetingsGroupsByInterval"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1331,7 +1331,7 @@ func RegisterMeetingGatewayHandlerClient(ctx context.Context, mux *runtime.Serve
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GetMeetingById", runtime.WithHTTPPathPattern("/gateway/v1/meeting.calendar/GetMeetingById"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GetMeetingById", runtime.WithHTTPPathPattern("/calendar/GetMeetingById"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1352,7 +1352,7 @@ func RegisterMeetingGatewayHandlerClient(ctx context.Context, mux *runtime.Serve
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GetMeetingByGroupUUID", runtime.WithHTTPPathPattern("/api/v1/meeting.calendar/GetMeetingByGroupUUID"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GetMeetingByGroupUUID", runtime.WithHTTPPathPattern("/calendar/GetMeetingByGroupUUID"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1373,7 +1373,7 @@ func RegisterMeetingGatewayHandlerClient(ctx context.Context, mux *runtime.Serve
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/CreateMeeting", runtime.WithHTTPPathPattern("/gateway/v1/meeting.calendar/CreateMeeting"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/CreateMeeting", runtime.WithHTTPPathPattern("/calendar/CreateMeeting"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1394,7 +1394,7 @@ func RegisterMeetingGatewayHandlerClient(ctx context.Context, mux *runtime.Serve
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/UpdateMeeting", runtime.WithHTTPPathPattern("/gateway/v1/meeting.calendar/UpdateMeeting"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/UpdateMeeting", runtime.WithHTTPPathPattern("/calendar/UpdateMeeting"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1415,7 +1415,7 @@ func RegisterMeetingGatewayHandlerClient(ctx context.Context, mux *runtime.Serve
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/DeleteMeeting", runtime.WithHTTPPathPattern("/gateway/v1/meeting.calendar/DeleteMeeting"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/DeleteMeeting", runtime.WithHTTPPathPattern("/calendar/DeleteMeeting"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1436,7 +1436,7 @@ func RegisterMeetingGatewayHandlerClient(ctx context.Context, mux *runtime.Serve
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GetMeetingMembers", runtime.WithHTTPPathPattern("/gateway/v1/meeting.calendar/GetMeetingMembers"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GetMeetingMembers", runtime.WithHTTPPathPattern("/calendar/GetMeetingMembers"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1457,7 +1457,7 @@ func RegisterMeetingGatewayHandlerClient(ctx context.Context, mux *runtime.Serve
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/AddMemberInMeeting", runtime.WithHTTPPathPattern("/gateway/v1/meeting.calendar/AddMemberInMeeting"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/AddMemberInMeeting", runtime.WithHTTPPathPattern("/calendar/AddMemberInMeeting"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1478,7 +1478,7 @@ func RegisterMeetingGatewayHandlerClient(ctx context.Context, mux *runtime.Serve
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/UpdateMemberInMeeting", runtime.WithHTTPPathPattern("/gateway/v1/meeting.calendar/UpdateMemberInMeeting"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/UpdateMemberInMeeting", runtime.WithHTTPPathPattern("/calendar/UpdateMemberInMeeting"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1499,7 +1499,7 @@ func RegisterMeetingGatewayHandlerClient(ctx context.Context, mux *runtime.Serve
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/DeleteMemberFromMeeting", runtime.WithHTTPPathPattern("/gateway/v1/meeting.calendar/DeleteMemberFromMeeting"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/DeleteMemberFromMeeting", runtime.WithHTTPPathPattern("/calendar/DeleteMemberFromMeeting"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1520,7 +1520,7 @@ func RegisterMeetingGatewayHandlerClient(ctx context.Context, mux *runtime.Serve
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/UpdateMeetingCell", runtime.WithHTTPPathPattern("/gateway/v1/meeting.calendar/UpdateMeetingCell"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/UpdateMeetingCell", runtime.WithHTTPPathPattern("/calendar/UpdateMeetingCell"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1541,7 +1541,7 @@ func RegisterMeetingGatewayHandlerClient(ctx context.Context, mux *runtime.Serve
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/DeleteMeetingCell", runtime.WithHTTPPathPattern("/gateway/v1/meeting.calendar/DeleteMeetingCell"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/DeleteMeetingCell", runtime.WithHTTPPathPattern("/calendar/DeleteMeetingCell"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1562,7 +1562,7 @@ func RegisterMeetingGatewayHandlerClient(ctx context.Context, mux *runtime.Serve
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GenerateMeetingCells", runtime.WithHTTPPathPattern("/gateway/v1/meeting.calendar/GenerateMeetingCells"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/GenerateMeetingCells", runtime.WithHTTPPathPattern("/calendar/GenerateMeetingCells"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1583,7 +1583,7 @@ func RegisterMeetingGatewayHandlerClient(ctx context.Context, mux *runtime.Serve
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
-		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/ConvertFrequencyToString", runtime.WithHTTPPathPattern("/gateway/v1/meeting.calendar/ConvertFrequencyToString"))
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/tada.gateway.admin.meeting.MeetingGateway/ConvertFrequencyToString", runtime.WithHTTPPathPattern("/calendar/ConvertFrequencyToString"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1603,43 +1603,43 @@ func RegisterMeetingGatewayHandlerClient(ctx context.Context, mux *runtime.Serve
 }
 
 var (
-	pattern_MeetingGateway_GetMeetings_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"gateway", "v1", "meeting.calendar", "GetMeetings"}, ""))
+	pattern_MeetingGateway_GetMeetings_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"calendar", "GetMeetings"}, ""))
 
-	pattern_MeetingGateway_GetAnotherMeetings_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"gateway", "v1", "meeting.calendar", "GetAnotherMeetings"}, ""))
+	pattern_MeetingGateway_GetAnotherMeetings_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"calendar", "GetAnotherMeetings"}, ""))
 
-	pattern_MeetingGateway_GetMeetingsInstances_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"gateway", "v1", "meeting.calendar", "GetMeetingsInstances"}, ""))
+	pattern_MeetingGateway_GetMeetingsInstances_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"calendar", "GetMeetingsInstances"}, ""))
 
-	pattern_MeetingGateway_GetMeetingsDates_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"gateway", "v1", "meeting.calendar", "GetMeetingsDates"}, ""))
+	pattern_MeetingGateway_GetMeetingsDates_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"calendar", "GetMeetingsDates"}, ""))
 
-	pattern_MeetingGateway_GetMeetingsCounts_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"gateway", "v1", "meeting.calendar", "GetMeetingsCounts"}, ""))
+	pattern_MeetingGateway_GetMeetingsCounts_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"calendar", "GetMeetingsCounts"}, ""))
 
-	pattern_MeetingGateway_GetMeetingsGroupsByInterval_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"gateway", "v1", "meeting.calendar", "GetMeetingsGroupsByInterval"}, ""))
+	pattern_MeetingGateway_GetMeetingsGroupsByInterval_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"calendar", "GetMeetingsGroupsByInterval"}, ""))
 
-	pattern_MeetingGateway_GetMeetingById_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"gateway", "v1", "meeting.calendar", "GetMeetingById"}, ""))
+	pattern_MeetingGateway_GetMeetingById_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"calendar", "GetMeetingById"}, ""))
 
-	pattern_MeetingGateway_GetMeetingByGroupUUID_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "v1", "meeting.calendar", "GetMeetingByGroupUUID"}, ""))
+	pattern_MeetingGateway_GetMeetingByGroupUUID_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"calendar", "GetMeetingByGroupUUID"}, ""))
 
-	pattern_MeetingGateway_CreateMeeting_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"gateway", "v1", "meeting.calendar", "CreateMeeting"}, ""))
+	pattern_MeetingGateway_CreateMeeting_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"calendar", "CreateMeeting"}, ""))
 
-	pattern_MeetingGateway_UpdateMeeting_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"gateway", "v1", "meeting.calendar", "UpdateMeeting"}, ""))
+	pattern_MeetingGateway_UpdateMeeting_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"calendar", "UpdateMeeting"}, ""))
 
-	pattern_MeetingGateway_DeleteMeeting_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"gateway", "v1", "meeting.calendar", "DeleteMeeting"}, ""))
+	pattern_MeetingGateway_DeleteMeeting_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"calendar", "DeleteMeeting"}, ""))
 
-	pattern_MeetingGateway_GetMeetingMembers_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"gateway", "v1", "meeting.calendar", "GetMeetingMembers"}, ""))
+	pattern_MeetingGateway_GetMeetingMembers_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"calendar", "GetMeetingMembers"}, ""))
 
-	pattern_MeetingGateway_AddMemberInMeeting_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"gateway", "v1", "meeting.calendar", "AddMemberInMeeting"}, ""))
+	pattern_MeetingGateway_AddMemberInMeeting_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"calendar", "AddMemberInMeeting"}, ""))
 
-	pattern_MeetingGateway_UpdateMemberInMeeting_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"gateway", "v1", "meeting.calendar", "UpdateMemberInMeeting"}, ""))
+	pattern_MeetingGateway_UpdateMemberInMeeting_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"calendar", "UpdateMemberInMeeting"}, ""))
 
-	pattern_MeetingGateway_DeleteMemberFromMeeting_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"gateway", "v1", "meeting.calendar", "DeleteMemberFromMeeting"}, ""))
+	pattern_MeetingGateway_DeleteMemberFromMeeting_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"calendar", "DeleteMemberFromMeeting"}, ""))
 
-	pattern_MeetingGateway_UpdateMeetingCell_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"gateway", "v1", "meeting.calendar", "UpdateMeetingCell"}, ""))
+	pattern_MeetingGateway_UpdateMeetingCell_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"calendar", "UpdateMeetingCell"}, ""))
 
-	pattern_MeetingGateway_DeleteMeetingCell_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"gateway", "v1", "meeting.calendar", "DeleteMeetingCell"}, ""))
+	pattern_MeetingGateway_DeleteMeetingCell_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"calendar", "DeleteMeetingCell"}, ""))
 
-	pattern_MeetingGateway_GenerateMeetingCells_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"gateway", "v1", "meeting.calendar", "GenerateMeetingCells"}, ""))
+	pattern_MeetingGateway_GenerateMeetingCells_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"calendar", "GenerateMeetingCells"}, ""))
 
-	pattern_MeetingGateway_ConvertFrequencyToString_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"gateway", "v1", "meeting.calendar", "ConvertFrequencyToString"}, ""))
+	pattern_MeetingGateway_ConvertFrequencyToString_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"calendar", "ConvertFrequencyToString"}, ""))
 )
 
 var (

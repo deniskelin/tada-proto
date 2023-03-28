@@ -8,7 +8,7 @@ package meetingGatewayPb
 
 import (
 	context "context"
-	meeting "github.com/deniskelin/tada-proto/tada/api/meeting"
+	meeting "gitlab.tada.team/tdapis/go-genproto/tada/api/meeting"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
