@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	team_0 "github.com/deniskelin/tada-proto/tada/billing/api/personal_account/team/v1"
+	"github.com/deniskelin/tada-proto/tada/billing/api/personal_account/team/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -33,7 +33,7 @@ var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
 func request_TeamService_Add_0(ctx context.Context, marshaler runtime.Marshaler, client TeamServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq team_0.AddRequest
+	var protoReq team.AddRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -50,7 +50,7 @@ func request_TeamService_Add_0(ctx context.Context, marshaler runtime.Marshaler,
 }
 
 func local_request_TeamService_Add_0(ctx context.Context, marshaler runtime.Marshaler, server TeamServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq team_0.AddRequest
+	var protoReq team.AddRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -67,7 +67,7 @@ func local_request_TeamService_Add_0(ctx context.Context, marshaler runtime.Mars
 }
 
 func request_TeamService_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client TeamServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq team_0.DeleteRequest
+	var protoReq team.DeleteRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -84,7 +84,7 @@ func request_TeamService_Delete_0(ctx context.Context, marshaler runtime.Marshal
 }
 
 func local_request_TeamService_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server TeamServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq team_0.DeleteRequest
+	var protoReq team.DeleteRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -101,7 +101,7 @@ func local_request_TeamService_Delete_0(ctx context.Context, marshaler runtime.M
 }
 
 func request_TeamService_Get_0(ctx context.Context, marshaler runtime.Marshaler, client TeamServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq team_0.GetRequest
+	var protoReq team.GetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -118,7 +118,7 @@ func request_TeamService_Get_0(ctx context.Context, marshaler runtime.Marshaler,
 }
 
 func local_request_TeamService_Get_0(ctx context.Context, marshaler runtime.Marshaler, server TeamServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq team_0.GetRequest
+	var protoReq team.GetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -135,7 +135,7 @@ func local_request_TeamService_Get_0(ctx context.Context, marshaler runtime.Mars
 }
 
 func request_TeamService_Check_0(ctx context.Context, marshaler runtime.Marshaler, client TeamServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq team_0.CheckRequest
+	var protoReq team.CheckRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -152,7 +152,7 @@ func request_TeamService_Check_0(ctx context.Context, marshaler runtime.Marshale
 }
 
 func local_request_TeamService_Check_0(ctx context.Context, marshaler runtime.Marshaler, server TeamServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq team_0.CheckRequest
+	var protoReq team.CheckRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)

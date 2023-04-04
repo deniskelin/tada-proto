@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	workplace_0 "github.com/deniskelin/tada-proto/tada/billing/api/personal_account/workplace/v1"
+	"github.com/deniskelin/tada-proto/tada/billing/api/personal_account/workplace/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -33,7 +33,7 @@ var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
 func request_WorkplaceService_Add_0(ctx context.Context, marshaler runtime.Marshaler, client WorkplaceServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq workplace_0.AddRequest
+	var protoReq workplace.AddRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -50,7 +50,7 @@ func request_WorkplaceService_Add_0(ctx context.Context, marshaler runtime.Marsh
 }
 
 func local_request_WorkplaceService_Add_0(ctx context.Context, marshaler runtime.Marshaler, server WorkplaceServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq workplace_0.AddRequest
+	var protoReq workplace.AddRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -67,7 +67,7 @@ func local_request_WorkplaceService_Add_0(ctx context.Context, marshaler runtime
 }
 
 func request_WorkplaceService_Activate_0(ctx context.Context, marshaler runtime.Marshaler, client WorkplaceServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq workplace_0.ActivateRequest
+	var protoReq workplace.ActivateRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -84,7 +84,7 @@ func request_WorkplaceService_Activate_0(ctx context.Context, marshaler runtime.
 }
 
 func local_request_WorkplaceService_Activate_0(ctx context.Context, marshaler runtime.Marshaler, server WorkplaceServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq workplace_0.ActivateRequest
+	var protoReq workplace.ActivateRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -101,7 +101,7 @@ func local_request_WorkplaceService_Activate_0(ctx context.Context, marshaler ru
 }
 
 func request_WorkplaceService_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client WorkplaceServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq workplace_0.DeleteRequest
+	var protoReq workplace.DeleteRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -118,7 +118,7 @@ func request_WorkplaceService_Delete_0(ctx context.Context, marshaler runtime.Ma
 }
 
 func local_request_WorkplaceService_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server WorkplaceServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq workplace_0.DeleteRequest
+	var protoReq workplace.DeleteRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -135,7 +135,7 @@ func local_request_WorkplaceService_Delete_0(ctx context.Context, marshaler runt
 }
 
 func request_WorkplaceService_AddUser_0(ctx context.Context, marshaler runtime.Marshaler, client WorkplaceServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq workplace_0.AddUserRequest
+	var protoReq workplace.AddUserRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -152,7 +152,7 @@ func request_WorkplaceService_AddUser_0(ctx context.Context, marshaler runtime.M
 }
 
 func local_request_WorkplaceService_AddUser_0(ctx context.Context, marshaler runtime.Marshaler, server WorkplaceServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq workplace_0.AddUserRequest
+	var protoReq workplace.AddUserRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -203,7 +203,7 @@ func local_request_WorkplaceService_AddUserByContact_0(ctx context.Context, mars
 }
 
 func request_WorkplaceService_DeleteUser_0(ctx context.Context, marshaler runtime.Marshaler, client WorkplaceServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq workplace_0.DeleteUserRequest
+	var protoReq workplace.DeleteUserRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -220,7 +220,7 @@ func request_WorkplaceService_DeleteUser_0(ctx context.Context, marshaler runtim
 }
 
 func local_request_WorkplaceService_DeleteUser_0(ctx context.Context, marshaler runtime.Marshaler, server WorkplaceServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq workplace_0.DeleteUserRequest
+	var protoReq workplace.DeleteUserRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -237,7 +237,7 @@ func local_request_WorkplaceService_DeleteUser_0(ctx context.Context, marshaler 
 }
 
 func request_WorkplaceService_Get_0(ctx context.Context, marshaler runtime.Marshaler, client WorkplaceServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq workplace_0.GetRequest
+	var protoReq workplace.GetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -254,7 +254,7 @@ func request_WorkplaceService_Get_0(ctx context.Context, marshaler runtime.Marsh
 }
 
 func local_request_WorkplaceService_Get_0(ctx context.Context, marshaler runtime.Marshaler, server WorkplaceServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq workplace_0.GetRequest
+	var protoReq workplace.GetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -271,7 +271,7 @@ func local_request_WorkplaceService_Get_0(ctx context.Context, marshaler runtime
 }
 
 func request_WorkplaceService_GetEnriched_0(ctx context.Context, marshaler runtime.Marshaler, client WorkplaceServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq workplace_0.GetRequest
+	var protoReq workplace.GetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -288,7 +288,7 @@ func request_WorkplaceService_GetEnriched_0(ctx context.Context, marshaler runti
 }
 
 func local_request_WorkplaceService_GetEnriched_0(ctx context.Context, marshaler runtime.Marshaler, server WorkplaceServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq workplace_0.GetRequest
+	var protoReq workplace.GetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)

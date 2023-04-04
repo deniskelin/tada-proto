@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	responsible_person_0 "github.com/deniskelin/tada-proto/tada/billing/api/personal_account/responsible_person/v1"
+	"github.com/deniskelin/tada-proto/tada/billing/api/personal_account/responsible_person/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -33,7 +33,7 @@ var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
 func request_ResponsiblePersonService_Create_0(ctx context.Context, marshaler runtime.Marshaler, client ResponsiblePersonServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq responsible_person_0.CreateRequest
+	var protoReq responsible_person.CreateRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -50,7 +50,7 @@ func request_ResponsiblePersonService_Create_0(ctx context.Context, marshaler ru
 }
 
 func local_request_ResponsiblePersonService_Create_0(ctx context.Context, marshaler runtime.Marshaler, server ResponsiblePersonServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq responsible_person_0.CreateRequest
+	var protoReq responsible_person.CreateRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -67,7 +67,7 @@ func local_request_ResponsiblePersonService_Create_0(ctx context.Context, marsha
 }
 
 func request_ResponsiblePersonService_Update_0(ctx context.Context, marshaler runtime.Marshaler, client ResponsiblePersonServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq responsible_person_0.UpdateRequest
+	var protoReq responsible_person.UpdateRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -84,7 +84,7 @@ func request_ResponsiblePersonService_Update_0(ctx context.Context, marshaler ru
 }
 
 func local_request_ResponsiblePersonService_Update_0(ctx context.Context, marshaler runtime.Marshaler, server ResponsiblePersonServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq responsible_person_0.UpdateRequest
+	var protoReq responsible_person.UpdateRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -101,7 +101,7 @@ func local_request_ResponsiblePersonService_Update_0(ctx context.Context, marsha
 }
 
 func request_ResponsiblePersonService_Get_0(ctx context.Context, marshaler runtime.Marshaler, client ResponsiblePersonServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq responsible_person_0.GetRequest
+	var protoReq responsible_person.GetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -118,7 +118,7 @@ func request_ResponsiblePersonService_Get_0(ctx context.Context, marshaler runti
 }
 
 func local_request_ResponsiblePersonService_Get_0(ctx context.Context, marshaler runtime.Marshaler, server ResponsiblePersonServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq responsible_person_0.GetRequest
+	var protoReq responsible_person.GetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -135,7 +135,7 @@ func local_request_ResponsiblePersonService_Get_0(ctx context.Context, marshaler
 }
 
 func request_ResponsiblePersonService_GetList_0(ctx context.Context, marshaler runtime.Marshaler, client ResponsiblePersonServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq responsible_person_0.GetListRequest
+	var protoReq responsible_person.GetListRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -152,7 +152,7 @@ func request_ResponsiblePersonService_GetList_0(ctx context.Context, marshaler r
 }
 
 func local_request_ResponsiblePersonService_GetList_0(ctx context.Context, marshaler runtime.Marshaler, server ResponsiblePersonServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq responsible_person_0.GetListRequest
+	var protoReq responsible_person.GetListRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -169,7 +169,7 @@ func local_request_ResponsiblePersonService_GetList_0(ctx context.Context, marsh
 }
 
 func request_ResponsiblePersonService_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client ResponsiblePersonServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq responsible_person_0.DeleteRequest
+	var protoReq responsible_person.DeleteRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -186,7 +186,7 @@ func request_ResponsiblePersonService_Delete_0(ctx context.Context, marshaler ru
 }
 
 func local_request_ResponsiblePersonService_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server ResponsiblePersonServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq responsible_person_0.DeleteRequest
+	var protoReq responsible_person.DeleteRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
