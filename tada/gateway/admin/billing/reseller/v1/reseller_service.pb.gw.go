@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	reseller_0 "github.com/deniskelin/tada-proto/tada/billing/api/reseller/v1"
+	"github.com/deniskelin/tada-proto/tada/billing/api/reseller/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -33,7 +33,7 @@ var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
 func request_ResellerService_Create_0(ctx context.Context, marshaler runtime.Marshaler, client ResellerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq reseller_0.CreateRequest
+	var protoReq reseller.CreateRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -50,7 +50,7 @@ func request_ResellerService_Create_0(ctx context.Context, marshaler runtime.Mar
 }
 
 func local_request_ResellerService_Create_0(ctx context.Context, marshaler runtime.Marshaler, server ResellerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq reseller_0.CreateRequest
+	var protoReq reseller.CreateRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -67,7 +67,7 @@ func local_request_ResellerService_Create_0(ctx context.Context, marshaler runti
 }
 
 func request_ResellerService_Update_0(ctx context.Context, marshaler runtime.Marshaler, client ResellerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq reseller_0.UpdateRequest
+	var protoReq reseller.UpdateRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -84,7 +84,7 @@ func request_ResellerService_Update_0(ctx context.Context, marshaler runtime.Mar
 }
 
 func local_request_ResellerService_Update_0(ctx context.Context, marshaler runtime.Marshaler, server ResellerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq reseller_0.UpdateRequest
+	var protoReq reseller.UpdateRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -101,7 +101,7 @@ func local_request_ResellerService_Update_0(ctx context.Context, marshaler runti
 }
 
 func request_ResellerService_Get_0(ctx context.Context, marshaler runtime.Marshaler, client ResellerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq reseller_0.GetRequest
+	var protoReq reseller.GetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -118,7 +118,7 @@ func request_ResellerService_Get_0(ctx context.Context, marshaler runtime.Marsha
 }
 
 func local_request_ResellerService_Get_0(ctx context.Context, marshaler runtime.Marshaler, server ResellerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq reseller_0.GetRequest
+	var protoReq reseller.GetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -135,7 +135,7 @@ func local_request_ResellerService_Get_0(ctx context.Context, marshaler runtime.
 }
 
 func request_ResellerService_GetList_0(ctx context.Context, marshaler runtime.Marshaler, client ResellerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq reseller_0.GetListRequest
+	var protoReq reseller.GetListRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -152,7 +152,7 @@ func request_ResellerService_GetList_0(ctx context.Context, marshaler runtime.Ma
 }
 
 func local_request_ResellerService_GetList_0(ctx context.Context, marshaler runtime.Marshaler, server ResellerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq reseller_0.GetListRequest
+	var protoReq reseller.GetListRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -169,7 +169,7 @@ func local_request_ResellerService_GetList_0(ctx context.Context, marshaler runt
 }
 
 func request_ResellerService_Delete_0(ctx context.Context, marshaler runtime.Marshaler, client ResellerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq reseller_0.DeleteRequest
+	var protoReq reseller.DeleteRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -186,7 +186,7 @@ func request_ResellerService_Delete_0(ctx context.Context, marshaler runtime.Mar
 }
 
 func local_request_ResellerService_Delete_0(ctx context.Context, marshaler runtime.Marshaler, server ResellerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq reseller_0.DeleteRequest
+	var protoReq reseller.DeleteRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)

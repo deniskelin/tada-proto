@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/deniskelin/tada-proto/tada/billing/api/tariff/v1"
+	tariff_0 "github.com/deniskelin/tada-proto/tada/billing/api/tariff/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -33,7 +33,7 @@ var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
 func request_TariffService_Create_0(ctx context.Context, marshaler runtime.Marshaler, client TariffServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq tariff.CreateRequest
+	var protoReq tariff_0.CreateRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -50,7 +50,7 @@ func request_TariffService_Create_0(ctx context.Context, marshaler runtime.Marsh
 }
 
 func local_request_TariffService_Create_0(ctx context.Context, marshaler runtime.Marshaler, server TariffServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq tariff.CreateRequest
+	var protoReq tariff_0.CreateRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -67,7 +67,7 @@ func local_request_TariffService_Create_0(ctx context.Context, marshaler runtime
 }
 
 func request_TariffService_Assign_0(ctx context.Context, marshaler runtime.Marshaler, client TariffServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq tariff.AssignRequest
+	var protoReq tariff_0.AssignRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -84,7 +84,7 @@ func request_TariffService_Assign_0(ctx context.Context, marshaler runtime.Marsh
 }
 
 func local_request_TariffService_Assign_0(ctx context.Context, marshaler runtime.Marshaler, server TariffServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq tariff.AssignRequest
+	var protoReq tariff_0.AssignRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -101,7 +101,7 @@ func local_request_TariffService_Assign_0(ctx context.Context, marshaler runtime
 }
 
 func request_TariffService_Get_0(ctx context.Context, marshaler runtime.Marshaler, client TariffServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq tariff.GetRequest
+	var protoReq tariff_0.GetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -118,7 +118,7 @@ func request_TariffService_Get_0(ctx context.Context, marshaler runtime.Marshale
 }
 
 func local_request_TariffService_Get_0(ctx context.Context, marshaler runtime.Marshaler, server TariffServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq tariff.GetRequest
+	var protoReq tariff_0.GetRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -135,7 +135,7 @@ func local_request_TariffService_Get_0(ctx context.Context, marshaler runtime.Ma
 }
 
 func request_TariffService_GetList_0(ctx context.Context, marshaler runtime.Marshaler, client TariffServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq tariff.GetListRequest
+	var protoReq tariff_0.GetListRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -152,7 +152,7 @@ func request_TariffService_GetList_0(ctx context.Context, marshaler runtime.Mars
 }
 
 func local_request_TariffService_GetList_0(ctx context.Context, marshaler runtime.Marshaler, server TariffServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq tariff.GetListRequest
+	var protoReq tariff_0.GetListRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -169,7 +169,7 @@ func local_request_TariffService_GetList_0(ctx context.Context, marshaler runtim
 }
 
 func request_TariffService_Update_0(ctx context.Context, marshaler runtime.Marshaler, client TariffServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq tariff.UpdateRequest
+	var protoReq tariff_0.UpdateRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -186,7 +186,7 @@ func request_TariffService_Update_0(ctx context.Context, marshaler runtime.Marsh
 }
 
 func local_request_TariffService_Update_0(ctx context.Context, marshaler runtime.Marshaler, server TariffServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq tariff.UpdateRequest
+	var protoReq tariff_0.UpdateRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -203,7 +203,7 @@ func local_request_TariffService_Update_0(ctx context.Context, marshaler runtime
 }
 
 func request_TariffService_Close_0(ctx context.Context, marshaler runtime.Marshaler, client TariffServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq tariff.CloseRequest
+	var protoReq tariff_0.CloseRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -220,7 +220,7 @@ func request_TariffService_Close_0(ctx context.Context, marshaler runtime.Marsha
 }
 
 func local_request_TariffService_Close_0(ctx context.Context, marshaler runtime.Marshaler, server TariffServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq tariff.CloseRequest
+	var protoReq tariff_0.CloseRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -237,7 +237,7 @@ func local_request_TariffService_Close_0(ctx context.Context, marshaler runtime.
 }
 
 func request_TariffService_SetAsDefault_0(ctx context.Context, marshaler runtime.Marshaler, client TariffServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq tariff.SetAsDefaultRequest
+	var protoReq tariff_0.SetAsDefaultRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -254,7 +254,7 @@ func request_TariffService_SetAsDefault_0(ctx context.Context, marshaler runtime
 }
 
 func local_request_TariffService_SetAsDefault_0(ctx context.Context, marshaler runtime.Marshaler, server TariffServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq tariff.SetAsDefaultRequest
+	var protoReq tariff_0.SetAsDefaultRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
