@@ -13,7 +13,7 @@ import (
 	"io"
 	"net/http"
 
-	currency_0 "github.com/deniskelin/tada-proto/tada/billing/api/currency/v1"
+	"github.com/deniskelin/tada-proto/tada/billing/api/currency/v1"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/utilities"
 	"google.golang.org/grpc"
@@ -33,7 +33,7 @@ var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
 func request_CurrencyService_GetList_0(ctx context.Context, marshaler runtime.Marshaler, client CurrencyServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq currency_0.GetListRequest
+	var protoReq currency.GetListRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -50,7 +50,7 @@ func request_CurrencyService_GetList_0(ctx context.Context, marshaler runtime.Ma
 }
 
 func local_request_CurrencyService_GetList_0(ctx context.Context, marshaler runtime.Marshaler, server CurrencyServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq currency_0.GetListRequest
+	var protoReq currency.GetListRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -67,7 +67,7 @@ func local_request_CurrencyService_GetList_0(ctx context.Context, marshaler runt
 }
 
 func request_CurrencyService_Update_0(ctx context.Context, marshaler runtime.Marshaler, client CurrencyServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq currency_0.UpdateRequest
+	var protoReq currency.UpdateRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -84,7 +84,7 @@ func request_CurrencyService_Update_0(ctx context.Context, marshaler runtime.Mar
 }
 
 func local_request_CurrencyService_Update_0(ctx context.Context, marshaler runtime.Marshaler, server CurrencyServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq currency_0.UpdateRequest
+	var protoReq currency.UpdateRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)

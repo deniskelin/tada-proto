@@ -20,7 +20,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// EnquiryStatus - Статус заявки
+// EnquiryPaymentStatus - Статус оплаты заявки
 type EnquiryPaymentStatus int32
 
 const (
@@ -76,6 +76,7 @@ func (EnquiryPaymentStatus) EnumDescriptor() ([]byte, []int) {
 	return file_tada_billing_api_personal_account_enquiry_v1_enquiry_types_proto_rawDescGZIP(), []int{0}
 }
 
+// EnquiryStatus - Статус оплаты заявки
 type EnquiryStatus int32
 
 const (

@@ -28,6 +28,7 @@ type EnquiryServiceClient interface {
 	GetList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetListResponse, error)
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
 	ChangeStatus(ctx context.Context, in *ChangeStatusRequest, opts ...grpc.CallOption) (*ChangeStatusResponse, error)
+	ChangePaymentStatus(ctx context.Context, in *ChangePaymentStatusRequest, opts ...grpc.CallOption) (*ChangePaymentStatusResponse, error)
 }
 
 type enquiryServiceClient struct {
@@ -92,6 +93,15 @@ func (c *enquiryServiceClient) ChangeStatus(ctx context.Context, in *ChangeStatu
 	return out, nil
 }
 
+func (c *enquiryServiceClient) ChangePaymentStatus(ctx context.Context, in *ChangePaymentStatusRequest, opts ...grpc.CallOption) (*ChangePaymentStatusResponse, error) {
+	out := new(ChangePaymentStatusResponse)
+	err := c.cc.Invoke(ctx, "/tada.billing.api.personal_account.enquiry.v1.EnquiryService/ChangePaymentStatus", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // EnquiryServiceServer is the server API for EnquiryService service.
 // All implementations must embed UnimplementedEnquiryServiceServer
 // for forward compatibility
@@ -102,6 +112,7 @@ type EnquiryServiceServer interface {
 	GetList(context.Context, *GetListRequest) (*GetListResponse, error)
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
 	ChangeStatus(context.Context, *ChangeStatusRequest) (*ChangeStatusResponse, error)
+	ChangePaymentStatus(context.Context, *ChangePaymentStatusRequest) (*ChangePaymentStatusResponse, error)
 	mustEmbedUnimplementedEnquiryServiceServer()
 }
 
@@ -126,6 +137,9 @@ func (UnimplementedEnquiryServiceServer) Delete(context.Context, *DeleteRequest)
 }
 func (UnimplementedEnquiryServiceServer) ChangeStatus(context.Context, *ChangeStatusRequest) (*ChangeStatusResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangeStatus not implemented")
+}
+func (UnimplementedEnquiryServiceServer) ChangePaymentStatus(context.Context, *ChangePaymentStatusRequest) (*ChangePaymentStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ChangePaymentStatus not implemented")
 }
 func (UnimplementedEnquiryServiceServer) mustEmbedUnimplementedEnquiryServiceServer() {}
 
@@ -248,6 +262,24 @@ func _EnquiryService_ChangeStatus_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _EnquiryService_ChangePaymentStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ChangePaymentStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EnquiryServiceServer).ChangePaymentStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/tada.billing.api.personal_account.enquiry.v1.EnquiryService/ChangePaymentStatus",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EnquiryServiceServer).ChangePaymentStatus(ctx, req.(*ChangePaymentStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // EnquiryService_ServiceDesc is the grpc.ServiceDesc for EnquiryService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -278,6 +310,10 @@ var EnquiryService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ChangeStatus",
 			Handler:    _EnquiryService_ChangeStatus_Handler,
+		},
+		{
+			MethodName: "ChangePaymentStatus",
+			Handler:    _EnquiryService_ChangePaymentStatus_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
