@@ -29,6 +29,7 @@ type EnquiryServiceClient interface {
 	GetList(ctx context.Context, in *v1.GetListRequest, opts ...grpc.CallOption) (*v1.GetListResponse, error)
 	Delete(ctx context.Context, in *v1.DeleteRequest, opts ...grpc.CallOption) (*v1.DeleteResponse, error)
 	ChangeStatus(ctx context.Context, in *v1.ChangeStatusRequest, opts ...grpc.CallOption) (*v1.ChangeStatusResponse, error)
+	SetLifecycleDates(ctx context.Context, in *v1.SetLifecycleDatesRequest, opts ...grpc.CallOption) (*v1.SetLifecycleDatesResponse, error)
 }
 
 type enquiryServiceClient struct {
@@ -93,6 +94,15 @@ func (c *enquiryServiceClient) ChangeStatus(ctx context.Context, in *v1.ChangeSt
 	return out, nil
 }
 
+func (c *enquiryServiceClient) SetLifecycleDates(ctx context.Context, in *v1.SetLifecycleDatesRequest, opts ...grpc.CallOption) (*v1.SetLifecycleDatesResponse, error) {
+	out := new(v1.SetLifecycleDatesResponse)
+	err := c.cc.Invoke(ctx, "/tada.gateway.admin.billing.personal_account.enquiry.v1.EnquiryService/SetLifecycleDates", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // EnquiryServiceServer is the server API for EnquiryService service.
 // All implementations must embed UnimplementedEnquiryServiceServer
 // for forward compatibility
@@ -103,6 +113,7 @@ type EnquiryServiceServer interface {
 	GetList(context.Context, *v1.GetListRequest) (*v1.GetListResponse, error)
 	Delete(context.Context, *v1.DeleteRequest) (*v1.DeleteResponse, error)
 	ChangeStatus(context.Context, *v1.ChangeStatusRequest) (*v1.ChangeStatusResponse, error)
+	SetLifecycleDates(context.Context, *v1.SetLifecycleDatesRequest) (*v1.SetLifecycleDatesResponse, error)
 	mustEmbedUnimplementedEnquiryServiceServer()
 }
 
@@ -127,6 +138,9 @@ func (UnimplementedEnquiryServiceServer) Delete(context.Context, *v1.DeleteReque
 }
 func (UnimplementedEnquiryServiceServer) ChangeStatus(context.Context, *v1.ChangeStatusRequest) (*v1.ChangeStatusResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangeStatus not implemented")
+}
+func (UnimplementedEnquiryServiceServer) SetLifecycleDates(context.Context, *v1.SetLifecycleDatesRequest) (*v1.SetLifecycleDatesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetLifecycleDates not implemented")
 }
 func (UnimplementedEnquiryServiceServer) mustEmbedUnimplementedEnquiryServiceServer() {}
 
@@ -249,6 +263,24 @@ func _EnquiryService_ChangeStatus_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _EnquiryService_SetLifecycleDates_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.SetLifecycleDatesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EnquiryServiceServer).SetLifecycleDates(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/tada.gateway.admin.billing.personal_account.enquiry.v1.EnquiryService/SetLifecycleDates",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EnquiryServiceServer).SetLifecycleDates(ctx, req.(*v1.SetLifecycleDatesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // EnquiryService_ServiceDesc is the grpc.ServiceDesc for EnquiryService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -279,6 +311,10 @@ var EnquiryService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ChangeStatus",
 			Handler:    _EnquiryService_ChangeStatus_Handler,
+		},
+		{
+			MethodName: "SetLifecycleDates",
+			Handler:    _EnquiryService_SetLifecycleDates_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
