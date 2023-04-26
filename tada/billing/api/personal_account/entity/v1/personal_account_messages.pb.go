@@ -341,6 +341,9 @@ type GetListResponse struct {
 	unknownFields protoimpl.UnknownFields
 
 	PersonalAccountList []*Element `protobuf:"bytes,1,rep,name=personal_account_list,json=personalAccountList,proto3" json:"personal_account_list,omitempty"`
+	Total               uint64     `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
+	Offset              *uint64    `protobuf:"varint,3,opt,name=offset,proto3,oneof" json:"offset,omitempty"`
+	Limit               *uint32    `protobuf:"varint,4,opt,name=limit,proto3,oneof" json:"limit,omitempty"`
 }
 
 func (x *GetListResponse) Reset() {
@@ -382,6 +385,74 @@ func (x *GetListResponse) GetPersonalAccountList() []*Element {
 	return nil
 }
 
+func (x *GetListResponse) GetTotal() uint64 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
+}
+
+func (x *GetListResponse) GetOffset() uint64 {
+	if x != nil && x.Offset != nil {
+		return *x.Offset
+	}
+	return 0
+}
+
+func (x *GetListResponse) GetLimit() uint32 {
+	if x != nil && x.Limit != nil {
+		return *x.Limit
+	}
+	return 0
+}
+
+type GetCountsListResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Total uint64 `protobuf:"varint,1,opt,name=total,proto3" json:"total,omitempty"`
+}
+
+func (x *GetCountsListResponse) Reset() {
+	*x = GetCountsListResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetCountsListResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCountsListResponse) ProtoMessage() {}
+
+func (x *GetCountsListResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCountsListResponse.ProtoReflect.Descriptor instead.
+func (*GetCountsListResponse) Descriptor() ([]byte, []int) {
+	return file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *GetCountsListResponse) GetTotal() uint64 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
+}
+
 type GetStatusRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -393,7 +464,7 @@ type GetStatusRequest struct {
 func (x *GetStatusRequest) Reset() {
 	*x = GetStatusRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[7]
+		mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -406,7 +477,7 @@ func (x *GetStatusRequest) String() string {
 func (*GetStatusRequest) ProtoMessage() {}
 
 func (x *GetStatusRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[7]
+	mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -419,7 +490,7 @@ func (x *GetStatusRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetStatusRequest.ProtoReflect.Descriptor instead.
 func (*GetStatusRequest) Descriptor() ([]byte, []int) {
-	return file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_rawDescGZIP(), []int{7}
+	return file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *GetStatusRequest) GetIdentity() *Identity {
@@ -440,7 +511,7 @@ type GetStatusResponse struct {
 func (x *GetStatusResponse) Reset() {
 	*x = GetStatusResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[8]
+		mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -453,7 +524,7 @@ func (x *GetStatusResponse) String() string {
 func (*GetStatusResponse) ProtoMessage() {}
 
 func (x *GetStatusResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[8]
+	mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -466,7 +537,7 @@ func (x *GetStatusResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetStatusResponse.ProtoReflect.Descriptor instead.
 func (*GetStatusResponse) Descriptor() ([]byte, []int) {
-	return file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_rawDescGZIP(), []int{8}
+	return file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *GetStatusResponse) GetStatus() PersonalAccountStatus {
@@ -487,7 +558,7 @@ type ChangeStatusRequest struct {
 func (x *ChangeStatusRequest) Reset() {
 	*x = ChangeStatusRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[9]
+		mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -500,7 +571,7 @@ func (x *ChangeStatusRequest) String() string {
 func (*ChangeStatusRequest) ProtoMessage() {}
 
 func (x *ChangeStatusRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[9]
+	mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -513,7 +584,7 @@ func (x *ChangeStatusRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChangeStatusRequest.ProtoReflect.Descriptor instead.
 func (*ChangeStatusRequest) Descriptor() ([]byte, []int) {
-	return file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_rawDescGZIP(), []int{9}
+	return file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *ChangeStatusRequest) GetId() uint64 {
@@ -532,7 +603,7 @@ type ChangeStatusResponse struct {
 func (x *ChangeStatusResponse) Reset() {
 	*x = ChangeStatusResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[10]
+		mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -545,7 +616,7 @@ func (x *ChangeStatusResponse) String() string {
 func (*ChangeStatusResponse) ProtoMessage() {}
 
 func (x *ChangeStatusResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[10]
+	mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -558,7 +629,7 @@ func (x *ChangeStatusResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChangeStatusResponse.ProtoReflect.Descriptor instead.
 func (*ChangeStatusResponse) Descriptor() ([]byte, []int) {
-	return file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_rawDescGZIP(), []int{10}
+	return file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_rawDescGZIP(), []int{11}
 }
 
 type ChangeNextBillingDateRequest struct {
@@ -573,7 +644,7 @@ type ChangeNextBillingDateRequest struct {
 func (x *ChangeNextBillingDateRequest) Reset() {
 	*x = ChangeNextBillingDateRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[11]
+		mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -586,7 +657,7 @@ func (x *ChangeNextBillingDateRequest) String() string {
 func (*ChangeNextBillingDateRequest) ProtoMessage() {}
 
 func (x *ChangeNextBillingDateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[11]
+	mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -599,7 +670,7 @@ func (x *ChangeNextBillingDateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChangeNextBillingDateRequest.ProtoReflect.Descriptor instead.
 func (*ChangeNextBillingDateRequest) Descriptor() ([]byte, []int) {
-	return file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_rawDescGZIP(), []int{11}
+	return file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *ChangeNextBillingDateRequest) GetId() uint64 {
@@ -625,7 +696,7 @@ type ChangeNextBillingDateResponse struct {
 func (x *ChangeNextBillingDateResponse) Reset() {
 	*x = ChangeNextBillingDateResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[12]
+		mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -638,7 +709,7 @@ func (x *ChangeNextBillingDateResponse) String() string {
 func (*ChangeNextBillingDateResponse) ProtoMessage() {}
 
 func (x *ChangeNextBillingDateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[12]
+	mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -651,7 +722,7 @@ func (x *ChangeNextBillingDateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChangeNextBillingDateResponse.ProtoReflect.Descriptor instead.
 func (*ChangeNextBillingDateResponse) Descriptor() ([]byte, []int) {
-	return file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_rawDescGZIP(), []int{12}
+	return file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_rawDescGZIP(), []int{13}
 }
 
 type GetUsersRequest struct {
@@ -665,7 +736,7 @@ type GetUsersRequest struct {
 func (x *GetUsersRequest) Reset() {
 	*x = GetUsersRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[13]
+		mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -678,7 +749,7 @@ func (x *GetUsersRequest) String() string {
 func (*GetUsersRequest) ProtoMessage() {}
 
 func (x *GetUsersRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[13]
+	mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -691,7 +762,7 @@ func (x *GetUsersRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUsersRequest.ProtoReflect.Descriptor instead.
 func (*GetUsersRequest) Descriptor() ([]byte, []int) {
-	return file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_rawDescGZIP(), []int{13}
+	return file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *GetUsersRequest) GetId() uint64 {
@@ -712,7 +783,7 @@ type GetUsersResponse struct {
 func (x *GetUsersResponse) Reset() {
 	*x = GetUsersResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[14]
+		mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -725,7 +796,7 @@ func (x *GetUsersResponse) String() string {
 func (*GetUsersResponse) ProtoMessage() {}
 
 func (x *GetUsersResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[14]
+	mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -738,7 +809,7 @@ func (x *GetUsersResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUsersResponse.ProtoReflect.Descriptor instead.
 func (*GetUsersResponse) Descriptor() ([]byte, []int) {
-	return file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_rawDescGZIP(), []int{14}
+	return file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *GetUsersResponse) GetUsers() []*UserElement {
@@ -759,7 +830,7 @@ type GetDiskSpaceQuotaRequest struct {
 func (x *GetDiskSpaceQuotaRequest) Reset() {
 	*x = GetDiskSpaceQuotaRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[15]
+		mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[16]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -772,7 +843,7 @@ func (x *GetDiskSpaceQuotaRequest) String() string {
 func (*GetDiskSpaceQuotaRequest) ProtoMessage() {}
 
 func (x *GetDiskSpaceQuotaRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[15]
+	mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[16]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -785,7 +856,7 @@ func (x *GetDiskSpaceQuotaRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetDiskSpaceQuotaRequest.ProtoReflect.Descriptor instead.
 func (*GetDiskSpaceQuotaRequest) Descriptor() ([]byte, []int) {
-	return file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_rawDescGZIP(), []int{15}
+	return file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *GetDiskSpaceQuotaRequest) GetId() uint64 {
@@ -806,7 +877,7 @@ type GetDiskSpaceQuotaResponse struct {
 func (x *GetDiskSpaceQuotaResponse) Reset() {
 	*x = GetDiskSpaceQuotaResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[16]
+		mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[17]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -819,7 +890,7 @@ func (x *GetDiskSpaceQuotaResponse) String() string {
 func (*GetDiskSpaceQuotaResponse) ProtoMessage() {}
 
 func (x *GetDiskSpaceQuotaResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[16]
+	mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[17]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -832,7 +903,7 @@ func (x *GetDiskSpaceQuotaResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetDiskSpaceQuotaResponse.ProtoReflect.Descriptor instead.
 func (*GetDiskSpaceQuotaResponse) Descriptor() ([]byte, []int) {
-	return file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_rawDescGZIP(), []int{16}
+	return file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *GetDiskSpaceQuotaResponse) GetDiskSpaceQuota() float64 {
@@ -854,7 +925,7 @@ type GetCostOfWorkplacesRequest struct {
 func (x *GetCostOfWorkplacesRequest) Reset() {
 	*x = GetCostOfWorkplacesRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[17]
+		mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[18]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -867,7 +938,7 @@ func (x *GetCostOfWorkplacesRequest) String() string {
 func (*GetCostOfWorkplacesRequest) ProtoMessage() {}
 
 func (x *GetCostOfWorkplacesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[17]
+	mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[18]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -880,7 +951,7 @@ func (x *GetCostOfWorkplacesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCostOfWorkplacesRequest.ProtoReflect.Descriptor instead.
 func (*GetCostOfWorkplacesRequest) Descriptor() ([]byte, []int) {
-	return file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_rawDescGZIP(), []int{17}
+	return file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *GetCostOfWorkplacesRequest) GetId() uint64 {
@@ -908,7 +979,7 @@ type GetCostOfWorkplacesResponse struct {
 func (x *GetCostOfWorkplacesResponse) Reset() {
 	*x = GetCostOfWorkplacesResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[18]
+		mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[19]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -921,7 +992,7 @@ func (x *GetCostOfWorkplacesResponse) String() string {
 func (*GetCostOfWorkplacesResponse) ProtoMessage() {}
 
 func (x *GetCostOfWorkplacesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[18]
+	mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[19]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -934,7 +1005,7 @@ func (x *GetCostOfWorkplacesResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCostOfWorkplacesResponse.ProtoReflect.Descriptor instead.
 func (*GetCostOfWorkplacesResponse) Descriptor() ([]byte, []int) {
-	return file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_rawDescGZIP(), []int{18}
+	return file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *GetCostOfWorkplacesResponse) GetCost() float64 {
@@ -953,7 +1024,7 @@ type DeleteRequest struct {
 func (x *DeleteRequest) Reset() {
 	*x = DeleteRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[19]
+		mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[20]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -966,7 +1037,7 @@ func (x *DeleteRequest) String() string {
 func (*DeleteRequest) ProtoMessage() {}
 
 func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[19]
+	mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[20]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -979,7 +1050,7 @@ func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRequest.ProtoReflect.Descriptor instead.
 func (*DeleteRequest) Descriptor() ([]byte, []int) {
-	return file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_rawDescGZIP(), []int{19}
+	return file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_rawDescGZIP(), []int{20}
 }
 
 type DeleteResponse struct {
@@ -991,7 +1062,7 @@ type DeleteResponse struct {
 func (x *DeleteResponse) Reset() {
 	*x = DeleteResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[20]
+		mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1004,7 +1075,7 @@ func (x *DeleteResponse) String() string {
 func (*DeleteResponse) ProtoMessage() {}
 
 func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[20]
+	mi := &file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1017,7 +1088,7 @@ func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteResponse.ProtoReflect.Descriptor instead.
 func (*DeleteResponse) Descriptor() ([]byte, []int) {
-	return file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_rawDescGZIP(), []int{20}
+	return file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_rawDescGZIP(), []int{21}
 }
 
 var File_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto protoreflect.FileDescriptor
@@ -1079,85 +1150,94 @@ var file_tada_billing_api_personal_account_entity_v1_personal_account_messages_p
 	0x00, 0x52, 0x05, 0x6c, 0x69, 0x6d, 0x69, 0x74, 0x88, 0x01, 0x01, 0x12, 0x1b, 0x0a, 0x06, 0x6f,
 	0x66, 0x66, 0x73, 0x65, 0x74, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x48, 0x01, 0x52, 0x06, 0x6f,
 	0x66, 0x66, 0x73, 0x65, 0x74, 0x88, 0x01, 0x01, 0x42, 0x08, 0x0a, 0x06, 0x5f, 0x6c, 0x69, 0x6d,
-	0x69, 0x74, 0x42, 0x09, 0x0a, 0x07, 0x5f, 0x6f, 0x66, 0x66, 0x73, 0x65, 0x74, 0x22, 0x7b, 0x0a,
-	0x0f, 0x47, 0x65, 0x74, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x12, 0x68, 0x0a, 0x15, 0x70, 0x65, 0x72, 0x73, 0x6f, 0x6e, 0x61, 0x6c, 0x5f, 0x61, 0x63, 0x63,
-	0x6f, 0x75, 0x6e, 0x74, 0x5f, 0x6c, 0x69, 0x73, 0x74, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32,
-	0x34, 0x2e, 0x74, 0x61, 0x64, 0x61, 0x2e, 0x62, 0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67, 0x2e, 0x61,
-	0x70, 0x69, 0x2e, 0x70, 0x65, 0x72, 0x73, 0x6f, 0x6e, 0x61, 0x6c, 0x5f, 0x61, 0x63, 0x63, 0x6f,
-	0x75, 0x6e, 0x74, 0x2e, 0x65, 0x6e, 0x74, 0x69, 0x74, 0x79, 0x2e, 0x76, 0x31, 0x2e, 0x45, 0x6c,
-	0x65, 0x6d, 0x65, 0x6e, 0x74, 0x52, 0x13, 0x70, 0x65, 0x72, 0x73, 0x6f, 0x6e, 0x61, 0x6c, 0x41,
-	0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x4c, 0x69, 0x73, 0x74, 0x22, 0x65, 0x0a, 0x10, 0x47, 0x65,
-	0x74, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x51,
-	0x0a, 0x08, 0x69, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x74, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b,
-	0x32, 0x35, 0x2e, 0x74, 0x61, 0x64, 0x61, 0x2e, 0x62, 0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67, 0x2e,
+	0x69, 0x74, 0x42, 0x09, 0x0a, 0x07, 0x5f, 0x6f, 0x66, 0x66, 0x73, 0x65, 0x74, 0x22, 0xde, 0x01,
+	0x0a, 0x0f, 0x47, 0x65, 0x74, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x68, 0x0a, 0x15, 0x70, 0x65, 0x72, 0x73, 0x6f, 0x6e, 0x61, 0x6c, 0x5f, 0x61, 0x63,
+	0x63, 0x6f, 0x75, 0x6e, 0x74, 0x5f, 0x6c, 0x69, 0x73, 0x74, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b,
+	0x32, 0x34, 0x2e, 0x74, 0x61, 0x64, 0x61, 0x2e, 0x62, 0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67, 0x2e,
 	0x61, 0x70, 0x69, 0x2e, 0x70, 0x65, 0x72, 0x73, 0x6f, 0x6e, 0x61, 0x6c, 0x5f, 0x61, 0x63, 0x63,
-	0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x65, 0x6e, 0x74, 0x69, 0x74, 0x79, 0x2e, 0x76, 0x31, 0x2e, 0x49,
-	0x64, 0x65, 0x6e, 0x74, 0x69, 0x74, 0x79, 0x52, 0x08, 0x69, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x74,
-	0x79, 0x22, 0x6f, 0x0a, 0x11, 0x47, 0x65, 0x74, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x5a, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x42, 0x2e, 0x74, 0x61, 0x64, 0x61, 0x2e, 0x62, 0x69,
-	0x6c, 0x6c, 0x69, 0x6e, 0x67, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x70, 0x65, 0x72, 0x73, 0x6f, 0x6e,
-	0x61, 0x6c, 0x5f, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x65, 0x6e, 0x74, 0x69, 0x74,
-	0x79, 0x2e, 0x76, 0x31, 0x2e, 0x50, 0x65, 0x72, 0x73, 0x6f, 0x6e, 0x61, 0x6c, 0x41, 0x63, 0x63,
-	0x6f, 0x75, 0x6e, 0x74, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74,
-	0x75, 0x73, 0x22, 0x25, 0x0a, 0x13, 0x43, 0x68, 0x61, 0x6e, 0x67, 0x65, 0x53, 0x74, 0x61, 0x74,
-	0x75, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x02, 0x69, 0x64, 0x22, 0x16, 0x0a, 0x14, 0x43, 0x68, 0x61,
-	0x6e, 0x67, 0x65, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x22, 0x76, 0x0a, 0x1c, 0x43, 0x68, 0x61, 0x6e, 0x67, 0x65, 0x4e, 0x65, 0x78, 0x74, 0x42,
-	0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67, 0x44, 0x61, 0x74, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x65, 0x6e, 0x74, 0x69, 0x74, 0x79, 0x2e, 0x76, 0x31, 0x2e, 0x45,
+	0x6c, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x52, 0x13, 0x70, 0x65, 0x72, 0x73, 0x6f, 0x6e, 0x61, 0x6c,
+	0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x74,
+	0x6f, 0x74, 0x61, 0x6c, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52, 0x05, 0x74, 0x6f, 0x74, 0x61,
+	0x6c, 0x12, 0x1b, 0x0a, 0x06, 0x6f, 0x66, 0x66, 0x73, 0x65, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28,
+	0x04, 0x48, 0x00, 0x52, 0x06, 0x6f, 0x66, 0x66, 0x73, 0x65, 0x74, 0x88, 0x01, 0x01, 0x12, 0x19,
+	0x0a, 0x05, 0x6c, 0x69, 0x6d, 0x69, 0x74, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0d, 0x48, 0x01, 0x52,
+	0x05, 0x6c, 0x69, 0x6d, 0x69, 0x74, 0x88, 0x01, 0x01, 0x42, 0x09, 0x0a, 0x07, 0x5f, 0x6f, 0x66,
+	0x66, 0x73, 0x65, 0x74, 0x42, 0x08, 0x0a, 0x06, 0x5f, 0x6c, 0x69, 0x6d, 0x69, 0x74, 0x22, 0x2d,
+	0x0a, 0x15, 0x47, 0x65, 0x74, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x73, 0x4c, 0x69, 0x73, 0x74, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x74, 0x6f, 0x74, 0x61, 0x6c,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x05, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x22, 0x65, 0x0a,
+	0x10, 0x47, 0x65, 0x74, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x12, 0x51, 0x0a, 0x08, 0x69, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x74, 0x79, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x35, 0x2e, 0x74, 0x61, 0x64, 0x61, 0x2e, 0x62, 0x69, 0x6c, 0x6c, 0x69,
+	0x6e, 0x67, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x70, 0x65, 0x72, 0x73, 0x6f, 0x6e, 0x61, 0x6c, 0x5f,
+	0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x65, 0x6e, 0x74, 0x69, 0x74, 0x79, 0x2e, 0x76,
+	0x31, 0x2e, 0x49, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x74, 0x79, 0x52, 0x08, 0x69, 0x64, 0x65, 0x6e,
+	0x74, 0x69, 0x74, 0x79, 0x22, 0x6f, 0x0a, 0x11, 0x47, 0x65, 0x74, 0x53, 0x74, 0x61, 0x74, 0x75,
+	0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x5a, 0x0a, 0x06, 0x73, 0x74, 0x61,
+	0x74, 0x75, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x42, 0x2e, 0x74, 0x61, 0x64, 0x61,
+	0x2e, 0x62, 0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x70, 0x65, 0x72,
+	0x73, 0x6f, 0x6e, 0x61, 0x6c, 0x5f, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x65, 0x6e,
+	0x74, 0x69, 0x74, 0x79, 0x2e, 0x76, 0x31, 0x2e, 0x50, 0x65, 0x72, 0x73, 0x6f, 0x6e, 0x61, 0x6c,
+	0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x06, 0x73,
+	0x74, 0x61, 0x74, 0x75, 0x73, 0x22, 0x25, 0x0a, 0x13, 0x43, 0x68, 0x61, 0x6e, 0x67, 0x65, 0x53,
+	0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02,
+	0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x02, 0x69, 0x64, 0x22, 0x16, 0x0a, 0x14,
+	0x43, 0x68, 0x61, 0x6e, 0x67, 0x65, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x76, 0x0a, 0x1c, 0x43, 0x68, 0x61, 0x6e, 0x67, 0x65, 0x4e, 0x65,
+	0x78, 0x74, 0x42, 0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67, 0x44, 0x61, 0x74, 0x65, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04,
+	0x52, 0x02, 0x69, 0x64, 0x12, 0x46, 0x0a, 0x11, 0x6e, 0x65, 0x78, 0x74, 0x5f, 0x62, 0x69, 0x6c,
+	0x6c, 0x69, 0x6e, 0x67, 0x5f, 0x64, 0x61, 0x74, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32,
+	0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75,
+	0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52, 0x0f, 0x6e, 0x65, 0x78,
+	0x74, 0x42, 0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67, 0x44, 0x61, 0x74, 0x65, 0x22, 0x1f, 0x0a, 0x1d,
+	0x43, 0x68, 0x61, 0x6e, 0x67, 0x65, 0x4e, 0x65, 0x78, 0x74, 0x42, 0x69, 0x6c, 0x6c, 0x69, 0x6e,
+	0x67, 0x44, 0x61, 0x74, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x21, 0x0a,
+	0x0f, 0x47, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x02, 0x69, 0x64,
+	0x22, 0x62, 0x0a, 0x10, 0x47, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x73, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x4e, 0x0a, 0x05, 0x75, 0x73, 0x65, 0x72, 0x73, 0x18, 0x01, 0x20,
+	0x03, 0x28, 0x0b, 0x32, 0x38, 0x2e, 0x74, 0x61, 0x64, 0x61, 0x2e, 0x62, 0x69, 0x6c, 0x6c, 0x69,
+	0x6e, 0x67, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x70, 0x65, 0x72, 0x73, 0x6f, 0x6e, 0x61, 0x6c, 0x5f,
+	0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x65, 0x6e, 0x74, 0x69, 0x74, 0x79, 0x2e, 0x76,
+	0x31, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x45, 0x6c, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x52, 0x05, 0x75,
+	0x73, 0x65, 0x72, 0x73, 0x22, 0x36, 0x0a, 0x18, 0x47, 0x65, 0x74, 0x44, 0x69, 0x73, 0x6b, 0x53,
+	0x70, 0x61, 0x63, 0x65, 0x51, 0x75, 0x6f, 0x74, 0x61, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x12, 0x13, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x48, 0x00, 0x52, 0x02,
+	0x69, 0x64, 0x88, 0x01, 0x01, 0x42, 0x05, 0x0a, 0x03, 0x5f, 0x69, 0x64, 0x22, 0x45, 0x0a, 0x19,
+	0x47, 0x65, 0x74, 0x44, 0x69, 0x73, 0x6b, 0x53, 0x70, 0x61, 0x63, 0x65, 0x51, 0x75, 0x6f, 0x74,
+	0x61, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x28, 0x0a, 0x10, 0x64, 0x69, 0x73,
+	0x6b, 0x5f, 0x73, 0x70, 0x61, 0x63, 0x65, 0x5f, 0x71, 0x75, 0x6f, 0x74, 0x61, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x01, 0x52, 0x0e, 0x64, 0x69, 0x73, 0x6b, 0x53, 0x70, 0x61, 0x63, 0x65, 0x51, 0x75,
+	0x6f, 0x74, 0x61, 0x22, 0x57, 0x0a, 0x1a, 0x47, 0x65, 0x74, 0x43, 0x6f, 0x73, 0x74, 0x4f, 0x66,
+	0x57, 0x6f, 0x72, 0x6b, 0x70, 0x6c, 0x61, 0x63, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
 	0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x02, 0x69,
-	0x64, 0x12, 0x46, 0x0a, 0x11, 0x6e, 0x65, 0x78, 0x74, 0x5f, 0x62, 0x69, 0x6c, 0x6c, 0x69, 0x6e,
-	0x67, 0x5f, 0x64, 0x61, 0x74, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67,
-	0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54,
-	0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52, 0x0f, 0x6e, 0x65, 0x78, 0x74, 0x42, 0x69,
-	0x6c, 0x6c, 0x69, 0x6e, 0x67, 0x44, 0x61, 0x74, 0x65, 0x22, 0x1f, 0x0a, 0x1d, 0x43, 0x68, 0x61,
-	0x6e, 0x67, 0x65, 0x4e, 0x65, 0x78, 0x74, 0x42, 0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67, 0x44, 0x61,
-	0x74, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x21, 0x0a, 0x0f, 0x47, 0x65,
-	0x74, 0x55, 0x73, 0x65, 0x72, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a,
-	0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x02, 0x69, 0x64, 0x22, 0x62, 0x0a,
-	0x10, 0x47, 0x65, 0x74, 0x55, 0x73, 0x65, 0x72, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x12, 0x4e, 0x0a, 0x05, 0x75, 0x73, 0x65, 0x72, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b,
-	0x32, 0x38, 0x2e, 0x74, 0x61, 0x64, 0x61, 0x2e, 0x62, 0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67, 0x2e,
-	0x61, 0x70, 0x69, 0x2e, 0x70, 0x65, 0x72, 0x73, 0x6f, 0x6e, 0x61, 0x6c, 0x5f, 0x61, 0x63, 0x63,
-	0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x65, 0x6e, 0x74, 0x69, 0x74, 0x79, 0x2e, 0x76, 0x31, 0x2e, 0x55,
-	0x73, 0x65, 0x72, 0x45, 0x6c, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x52, 0x05, 0x75, 0x73, 0x65, 0x72,
-	0x73, 0x22, 0x36, 0x0a, 0x18, 0x47, 0x65, 0x74, 0x44, 0x69, 0x73, 0x6b, 0x53, 0x70, 0x61, 0x63,
-	0x65, 0x51, 0x75, 0x6f, 0x74, 0x61, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x13, 0x0a,
-	0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x48, 0x00, 0x52, 0x02, 0x69, 0x64, 0x88,
-	0x01, 0x01, 0x42, 0x05, 0x0a, 0x03, 0x5f, 0x69, 0x64, 0x22, 0x45, 0x0a, 0x19, 0x47, 0x65, 0x74,
-	0x44, 0x69, 0x73, 0x6b, 0x53, 0x70, 0x61, 0x63, 0x65, 0x51, 0x75, 0x6f, 0x74, 0x61, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x28, 0x0a, 0x10, 0x64, 0x69, 0x73, 0x6b, 0x5f, 0x73,
-	0x70, 0x61, 0x63, 0x65, 0x5f, 0x71, 0x75, 0x6f, 0x74, 0x61, 0x18, 0x01, 0x20, 0x01, 0x28, 0x01,
-	0x52, 0x0e, 0x64, 0x69, 0x73, 0x6b, 0x53, 0x70, 0x61, 0x63, 0x65, 0x51, 0x75, 0x6f, 0x74, 0x61,
-	0x22, 0x57, 0x0a, 0x1a, 0x47, 0x65, 0x74, 0x43, 0x6f, 0x73, 0x74, 0x4f, 0x66, 0x57, 0x6f, 0x72,
-	0x6b, 0x70, 0x6c, 0x61, 0x63, 0x65, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e,
-	0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x02, 0x69, 0x64, 0x12, 0x29,
-	0x0a, 0x10, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x5f, 0x77, 0x6f, 0x72, 0x6b, 0x70, 0x6c, 0x61, 0x63,
-	0x65, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x0f, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x57,
-	0x6f, 0x72, 0x6b, 0x70, 0x6c, 0x61, 0x63, 0x65, 0x73, 0x22, 0x31, 0x0a, 0x1b, 0x47, 0x65, 0x74,
-	0x43, 0x6f, 0x73, 0x74, 0x4f, 0x66, 0x57, 0x6f, 0x72, 0x6b, 0x70, 0x6c, 0x61, 0x63, 0x65, 0x73,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x63, 0x6f, 0x73, 0x74,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x01, 0x52, 0x04, 0x63, 0x6f, 0x73, 0x74, 0x22, 0x0f, 0x0a, 0x0d,
-	0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x10, 0x0a,
-	0x0e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42,
-	0xeb, 0x01, 0x0a, 0x2b, 0x74, 0x61, 0x64, 0x61, 0x2e, 0x62, 0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67,
-	0x2e, 0x61, 0x70, 0x69, 0x2e, 0x70, 0x65, 0x72, 0x73, 0x6f, 0x6e, 0x61, 0x6c, 0x5f, 0x61, 0x63,
-	0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x65, 0x6e, 0x74, 0x69, 0x74, 0x79, 0x2e, 0x76, 0x31, 0x50,
-	0x01, 0x5a, 0x60, 0x67, 0x69, 0x74, 0x6c, 0x61, 0x62, 0x2e, 0x74, 0x61, 0x64, 0x61, 0x2e, 0x74,
-	0x65, 0x61, 0x6d, 0x2f, 0x74, 0x64, 0x61, 0x70, 0x69, 0x73, 0x2f, 0x67, 0x6f, 0x2d, 0x67, 0x65,
-	0x6e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x74, 0x61, 0x64, 0x61, 0x2f, 0x62, 0x69, 0x6c, 0x6c,
-	0x69, 0x6e, 0x67, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x70, 0x65, 0x72, 0x73, 0x6f, 0x6e, 0x61, 0x6c,
-	0x5f, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2f, 0x65, 0x6e, 0x74, 0x69, 0x74, 0x79, 0x2f,
-	0x76, 0x31, 0x3b, 0x70, 0x65, 0x72, 0x73, 0x6f, 0x6e, 0x61, 0x6c, 0x5f, 0x61, 0x63, 0x63, 0x6f,
-	0x75, 0x6e, 0x74, 0xaa, 0x02, 0x2a, 0x54, 0x61, 0x64, 0x61, 0x2e, 0x42, 0x69, 0x6c, 0x6c, 0x69,
-	0x6e, 0x67, 0x2e, 0x41, 0x70, 0x69, 0x2e, 0x50, 0x65, 0x72, 0x73, 0x6f, 0x6e, 0x61, 0x6c, 0x41,
-	0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x45, 0x6e, 0x74, 0x69, 0x74, 0x79, 0x2e, 0x56, 0x31,
-	0xca, 0x02, 0x2a, 0x54, 0x61, 0x64, 0x61, 0x5c, 0x42, 0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67, 0x5c,
-	0x41, 0x70, 0x69, 0x5c, 0x50, 0x65, 0x72, 0x73, 0x6f, 0x6e, 0x61, 0x6c, 0x41, 0x63, 0x63, 0x6f,
-	0x75, 0x6e, 0x74, 0x5c, 0x45, 0x6e, 0x74, 0x69, 0x74, 0x79, 0x5c, 0x56, 0x31, 0x62, 0x06, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x64, 0x12, 0x29, 0x0a, 0x10, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x5f, 0x77, 0x6f, 0x72, 0x6b, 0x70,
+	0x6c, 0x61, 0x63, 0x65, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x0f, 0x63, 0x6f, 0x75,
+	0x6e, 0x74, 0x57, 0x6f, 0x72, 0x6b, 0x70, 0x6c, 0x61, 0x63, 0x65, 0x73, 0x22, 0x31, 0x0a, 0x1b,
+	0x47, 0x65, 0x74, 0x43, 0x6f, 0x73, 0x74, 0x4f, 0x66, 0x57, 0x6f, 0x72, 0x6b, 0x70, 0x6c, 0x61,
+	0x63, 0x65, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x12, 0x0a, 0x04, 0x63,
+	0x6f, 0x73, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x01, 0x52, 0x04, 0x63, 0x6f, 0x73, 0x74, 0x22,
+	0x0f, 0x0a, 0x0d, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x22, 0x10, 0x0a, 0x0e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x42, 0xeb, 0x01, 0x0a, 0x2b, 0x74, 0x61, 0x64, 0x61, 0x2e, 0x62, 0x69, 0x6c, 0x6c,
+	0x69, 0x6e, 0x67, 0x2e, 0x61, 0x70, 0x69, 0x2e, 0x70, 0x65, 0x72, 0x73, 0x6f, 0x6e, 0x61, 0x6c,
+	0x5f, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x65, 0x6e, 0x74, 0x69, 0x74, 0x79, 0x2e,
+	0x76, 0x31, 0x50, 0x01, 0x5a, 0x60, 0x67, 0x69, 0x74, 0x6c, 0x61, 0x62, 0x2e, 0x74, 0x61, 0x64,
+	0x61, 0x2e, 0x74, 0x65, 0x61, 0x6d, 0x2f, 0x74, 0x64, 0x61, 0x70, 0x69, 0x73, 0x2f, 0x67, 0x6f,
+	0x2d, 0x67, 0x65, 0x6e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x74, 0x61, 0x64, 0x61, 0x2f, 0x62,
+	0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x70, 0x65, 0x72, 0x73, 0x6f,
+	0x6e, 0x61, 0x6c, 0x5f, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2f, 0x65, 0x6e, 0x74, 0x69,
+	0x74, 0x79, 0x2f, 0x76, 0x31, 0x3b, 0x70, 0x65, 0x72, 0x73, 0x6f, 0x6e, 0x61, 0x6c, 0x5f, 0x61,
+	0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0xaa, 0x02, 0x2a, 0x54, 0x61, 0x64, 0x61, 0x2e, 0x42, 0x69,
+	0x6c, 0x6c, 0x69, 0x6e, 0x67, 0x2e, 0x41, 0x70, 0x69, 0x2e, 0x50, 0x65, 0x72, 0x73, 0x6f, 0x6e,
+	0x61, 0x6c, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x45, 0x6e, 0x74, 0x69, 0x74, 0x79,
+	0x2e, 0x56, 0x31, 0xca, 0x02, 0x2a, 0x54, 0x61, 0x64, 0x61, 0x5c, 0x42, 0x69, 0x6c, 0x6c, 0x69,
+	0x6e, 0x67, 0x5c, 0x41, 0x70, 0x69, 0x5c, 0x50, 0x65, 0x72, 0x73, 0x6f, 0x6e, 0x61, 0x6c, 0x41,
+	0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x5c, 0x45, 0x6e, 0x74, 0x69, 0x74, 0x79, 0x5c, 0x56, 0x31,
+	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -1172,7 +1252,7 @@ func file_tada_billing_api_personal_account_entity_v1_personal_account_messages_
 	return file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_rawDescData
 }
 
-var file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes = make([]protoimpl.MessageInfo, 21)
+var file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes = make([]protoimpl.MessageInfo, 22)
 var file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_goTypes = []interface{}{
 	(*CreateRequest)(nil),                 // 0: tada.billing.api.personal_account.entity.v1.CreateRequest
 	(*CreateResponse)(nil),                // 1: tada.billing.api.personal_account.entity.v1.CreateResponse
@@ -1181,35 +1261,36 @@ var file_tada_billing_api_personal_account_entity_v1_personal_account_messages_p
 	(*GetRequest)(nil),                    // 4: tada.billing.api.personal_account.entity.v1.GetRequest
 	(*GetListRequest)(nil),                // 5: tada.billing.api.personal_account.entity.v1.GetListRequest
 	(*GetListResponse)(nil),               // 6: tada.billing.api.personal_account.entity.v1.GetListResponse
-	(*GetStatusRequest)(nil),              // 7: tada.billing.api.personal_account.entity.v1.GetStatusRequest
-	(*GetStatusResponse)(nil),             // 8: tada.billing.api.personal_account.entity.v1.GetStatusResponse
-	(*ChangeStatusRequest)(nil),           // 9: tada.billing.api.personal_account.entity.v1.ChangeStatusRequest
-	(*ChangeStatusResponse)(nil),          // 10: tada.billing.api.personal_account.entity.v1.ChangeStatusResponse
-	(*ChangeNextBillingDateRequest)(nil),  // 11: tada.billing.api.personal_account.entity.v1.ChangeNextBillingDateRequest
-	(*ChangeNextBillingDateResponse)(nil), // 12: tada.billing.api.personal_account.entity.v1.ChangeNextBillingDateResponse
-	(*GetUsersRequest)(nil),               // 13: tada.billing.api.personal_account.entity.v1.GetUsersRequest
-	(*GetUsersResponse)(nil),              // 14: tada.billing.api.personal_account.entity.v1.GetUsersResponse
-	(*GetDiskSpaceQuotaRequest)(nil),      // 15: tada.billing.api.personal_account.entity.v1.GetDiskSpaceQuotaRequest
-	(*GetDiskSpaceQuotaResponse)(nil),     // 16: tada.billing.api.personal_account.entity.v1.GetDiskSpaceQuotaResponse
-	(*GetCostOfWorkplacesRequest)(nil),    // 17: tada.billing.api.personal_account.entity.v1.GetCostOfWorkplacesRequest
-	(*GetCostOfWorkplacesResponse)(nil),   // 18: tada.billing.api.personal_account.entity.v1.GetCostOfWorkplacesResponse
-	(*DeleteRequest)(nil),                 // 19: tada.billing.api.personal_account.entity.v1.DeleteRequest
-	(*DeleteResponse)(nil),                // 20: tada.billing.api.personal_account.entity.v1.DeleteResponse
-	(*Element)(nil),                       // 21: tada.billing.api.personal_account.entity.v1.Element
-	(*Identity)(nil),                      // 22: tada.billing.api.personal_account.entity.v1.Identity
-	(PersonalAccountStatus)(0),            // 23: tada.billing.api.personal_account.entity.v1.PersonalAccountStatus
-	(*timestamppb.Timestamp)(nil),         // 24: google.protobuf.Timestamp
-	(*UserElement)(nil),                   // 25: tada.billing.api.personal_account.entity.v1.UserElement
+	(*GetCountsListResponse)(nil),         // 7: tada.billing.api.personal_account.entity.v1.GetCountsListResponse
+	(*GetStatusRequest)(nil),              // 8: tada.billing.api.personal_account.entity.v1.GetStatusRequest
+	(*GetStatusResponse)(nil),             // 9: tada.billing.api.personal_account.entity.v1.GetStatusResponse
+	(*ChangeStatusRequest)(nil),           // 10: tada.billing.api.personal_account.entity.v1.ChangeStatusRequest
+	(*ChangeStatusResponse)(nil),          // 11: tada.billing.api.personal_account.entity.v1.ChangeStatusResponse
+	(*ChangeNextBillingDateRequest)(nil),  // 12: tada.billing.api.personal_account.entity.v1.ChangeNextBillingDateRequest
+	(*ChangeNextBillingDateResponse)(nil), // 13: tada.billing.api.personal_account.entity.v1.ChangeNextBillingDateResponse
+	(*GetUsersRequest)(nil),               // 14: tada.billing.api.personal_account.entity.v1.GetUsersRequest
+	(*GetUsersResponse)(nil),              // 15: tada.billing.api.personal_account.entity.v1.GetUsersResponse
+	(*GetDiskSpaceQuotaRequest)(nil),      // 16: tada.billing.api.personal_account.entity.v1.GetDiskSpaceQuotaRequest
+	(*GetDiskSpaceQuotaResponse)(nil),     // 17: tada.billing.api.personal_account.entity.v1.GetDiskSpaceQuotaResponse
+	(*GetCostOfWorkplacesRequest)(nil),    // 18: tada.billing.api.personal_account.entity.v1.GetCostOfWorkplacesRequest
+	(*GetCostOfWorkplacesResponse)(nil),   // 19: tada.billing.api.personal_account.entity.v1.GetCostOfWorkplacesResponse
+	(*DeleteRequest)(nil),                 // 20: tada.billing.api.personal_account.entity.v1.DeleteRequest
+	(*DeleteResponse)(nil),                // 21: tada.billing.api.personal_account.entity.v1.DeleteResponse
+	(*Element)(nil),                       // 22: tada.billing.api.personal_account.entity.v1.Element
+	(*Identity)(nil),                      // 23: tada.billing.api.personal_account.entity.v1.Identity
+	(PersonalAccountStatus)(0),            // 24: tada.billing.api.personal_account.entity.v1.PersonalAccountStatus
+	(*timestamppb.Timestamp)(nil),         // 25: google.protobuf.Timestamp
+	(*UserElement)(nil),                   // 26: tada.billing.api.personal_account.entity.v1.UserElement
 }
 var file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_depIdxs = []int32{
-	21, // 0: tada.billing.api.personal_account.entity.v1.CreateResponse.personal_account:type_name -> tada.billing.api.personal_account.entity.v1.Element
-	21, // 1: tada.billing.api.personal_account.entity.v1.UpdateResponse.personal_account:type_name -> tada.billing.api.personal_account.entity.v1.Element
-	22, // 2: tada.billing.api.personal_account.entity.v1.GetRequest.identity:type_name -> tada.billing.api.personal_account.entity.v1.Identity
-	21, // 3: tada.billing.api.personal_account.entity.v1.GetListResponse.personal_account_list:type_name -> tada.billing.api.personal_account.entity.v1.Element
-	22, // 4: tada.billing.api.personal_account.entity.v1.GetStatusRequest.identity:type_name -> tada.billing.api.personal_account.entity.v1.Identity
-	23, // 5: tada.billing.api.personal_account.entity.v1.GetStatusResponse.status:type_name -> tada.billing.api.personal_account.entity.v1.PersonalAccountStatus
-	24, // 6: tada.billing.api.personal_account.entity.v1.ChangeNextBillingDateRequest.next_billing_date:type_name -> google.protobuf.Timestamp
-	25, // 7: tada.billing.api.personal_account.entity.v1.GetUsersResponse.users:type_name -> tada.billing.api.personal_account.entity.v1.UserElement
+	22, // 0: tada.billing.api.personal_account.entity.v1.CreateResponse.personal_account:type_name -> tada.billing.api.personal_account.entity.v1.Element
+	22, // 1: tada.billing.api.personal_account.entity.v1.UpdateResponse.personal_account:type_name -> tada.billing.api.personal_account.entity.v1.Element
+	23, // 2: tada.billing.api.personal_account.entity.v1.GetRequest.identity:type_name -> tada.billing.api.personal_account.entity.v1.Identity
+	22, // 3: tada.billing.api.personal_account.entity.v1.GetListResponse.personal_account_list:type_name -> tada.billing.api.personal_account.entity.v1.Element
+	23, // 4: tada.billing.api.personal_account.entity.v1.GetStatusRequest.identity:type_name -> tada.billing.api.personal_account.entity.v1.Identity
+	24, // 5: tada.billing.api.personal_account.entity.v1.GetStatusResponse.status:type_name -> tada.billing.api.personal_account.entity.v1.PersonalAccountStatus
+	25, // 6: tada.billing.api.personal_account.entity.v1.ChangeNextBillingDateRequest.next_billing_date:type_name -> google.protobuf.Timestamp
+	26, // 7: tada.billing.api.personal_account.entity.v1.GetUsersResponse.users:type_name -> tada.billing.api.personal_account.entity.v1.UserElement
 	8,  // [8:8] is the sub-list for method output_type
 	8,  // [8:8] is the sub-list for method input_type
 	8,  // [8:8] is the sub-list for extension type_name
@@ -1310,7 +1391,7 @@ func file_tada_billing_api_personal_account_entity_v1_personal_account_messages_
 			}
 		}
 		file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetStatusRequest); i {
+			switch v := v.(*GetCountsListResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1322,7 +1403,7 @@ func file_tada_billing_api_personal_account_entity_v1_personal_account_messages_
 			}
 		}
 		file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetStatusResponse); i {
+			switch v := v.(*GetStatusRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1334,7 +1415,7 @@ func file_tada_billing_api_personal_account_entity_v1_personal_account_messages_
 			}
 		}
 		file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ChangeStatusRequest); i {
+			switch v := v.(*GetStatusResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1346,7 +1427,7 @@ func file_tada_billing_api_personal_account_entity_v1_personal_account_messages_
 			}
 		}
 		file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ChangeStatusResponse); i {
+			switch v := v.(*ChangeStatusRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1358,7 +1439,7 @@ func file_tada_billing_api_personal_account_entity_v1_personal_account_messages_
 			}
 		}
 		file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ChangeNextBillingDateRequest); i {
+			switch v := v.(*ChangeStatusResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1370,7 +1451,7 @@ func file_tada_billing_api_personal_account_entity_v1_personal_account_messages_
 			}
 		}
 		file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ChangeNextBillingDateResponse); i {
+			switch v := v.(*ChangeNextBillingDateRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1382,7 +1463,7 @@ func file_tada_billing_api_personal_account_entity_v1_personal_account_messages_
 			}
 		}
 		file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetUsersRequest); i {
+			switch v := v.(*ChangeNextBillingDateResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1394,7 +1475,7 @@ func file_tada_billing_api_personal_account_entity_v1_personal_account_messages_
 			}
 		}
 		file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetUsersResponse); i {
+			switch v := v.(*GetUsersRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1406,7 +1487,7 @@ func file_tada_billing_api_personal_account_entity_v1_personal_account_messages_
 			}
 		}
 		file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetDiskSpaceQuotaRequest); i {
+			switch v := v.(*GetUsersResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1418,7 +1499,7 @@ func file_tada_billing_api_personal_account_entity_v1_personal_account_messages_
 			}
 		}
 		file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetDiskSpaceQuotaResponse); i {
+			switch v := v.(*GetDiskSpaceQuotaRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1430,7 +1511,7 @@ func file_tada_billing_api_personal_account_entity_v1_personal_account_messages_
 			}
 		}
 		file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetCostOfWorkplacesRequest); i {
+			switch v := v.(*GetDiskSpaceQuotaResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1442,7 +1523,7 @@ func file_tada_billing_api_personal_account_entity_v1_personal_account_messages_
 			}
 		}
 		file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetCostOfWorkplacesResponse); i {
+			switch v := v.(*GetCostOfWorkplacesRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1454,7 +1535,7 @@ func file_tada_billing_api_personal_account_entity_v1_personal_account_messages_
 			}
 		}
 		file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteRequest); i {
+			switch v := v.(*GetCostOfWorkplacesResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1466,6 +1547,18 @@ func file_tada_billing_api_personal_account_entity_v1_personal_account_messages_
 			}
 		}
 		file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DeleteResponse); i {
 			case 0:
 				return &v.state
@@ -1480,14 +1573,15 @@ func file_tada_billing_api_personal_account_entity_v1_personal_account_messages_
 	}
 	file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[0].OneofWrappers = []interface{}{}
 	file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[5].OneofWrappers = []interface{}{}
-	file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[15].OneofWrappers = []interface{}{}
+	file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[6].OneofWrappers = []interface{}{}
+	file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_msgTypes[16].OneofWrappers = []interface{}{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_tada_billing_api_personal_account_entity_v1_personal_account_messages_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   21,
+			NumMessages:   22,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

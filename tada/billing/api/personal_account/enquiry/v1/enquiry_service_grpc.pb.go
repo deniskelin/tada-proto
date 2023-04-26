@@ -26,6 +26,7 @@ type EnquiryServiceClient interface {
 	Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error)
 	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetListResponse, error)
 	GetList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetListResponse, error)
+	GetCountsList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetCountsListResponse, error)
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
 	ChangeStatus(ctx context.Context, in *ChangeStatusRequest, opts ...grpc.CallOption) (*ChangeStatusResponse, error)
 	ChangePaymentStatus(ctx context.Context, in *ChangePaymentStatusRequest, opts ...grpc.CallOption) (*ChangePaymentStatusResponse, error)
@@ -76,6 +77,15 @@ func (c *enquiryServiceClient) GetList(ctx context.Context, in *GetListRequest, 
 	return out, nil
 }
 
+func (c *enquiryServiceClient) GetCountsList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetCountsListResponse, error) {
+	out := new(GetCountsListResponse)
+	err := c.cc.Invoke(ctx, "/tada.billing.api.personal_account.enquiry.v1.EnquiryService/GetCountsList", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *enquiryServiceClient) Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error) {
 	out := new(DeleteResponse)
 	err := c.cc.Invoke(ctx, "/tada.billing.api.personal_account.enquiry.v1.EnquiryService/Delete", in, out, opts...)
@@ -120,6 +130,7 @@ type EnquiryServiceServer interface {
 	Update(context.Context, *UpdateRequest) (*UpdateResponse, error)
 	Get(context.Context, *GetRequest) (*GetListResponse, error)
 	GetList(context.Context, *GetListRequest) (*GetListResponse, error)
+	GetCountsList(context.Context, *GetListRequest) (*GetCountsListResponse, error)
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
 	ChangeStatus(context.Context, *ChangeStatusRequest) (*ChangeStatusResponse, error)
 	ChangePaymentStatus(context.Context, *ChangePaymentStatusRequest) (*ChangePaymentStatusResponse, error)
@@ -142,6 +153,9 @@ func (UnimplementedEnquiryServiceServer) Get(context.Context, *GetRequest) (*Get
 }
 func (UnimplementedEnquiryServiceServer) GetList(context.Context, *GetListRequest) (*GetListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetList not implemented")
+}
+func (UnimplementedEnquiryServiceServer) GetCountsList(context.Context, *GetListRequest) (*GetCountsListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCountsList not implemented")
 }
 func (UnimplementedEnquiryServiceServer) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
@@ -240,6 +254,24 @@ func _EnquiryService_GetList_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _EnquiryService_GetCountsList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EnquiryServiceServer).GetCountsList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/tada.billing.api.personal_account.enquiry.v1.EnquiryService/GetCountsList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EnquiryServiceServer).GetCountsList(ctx, req.(*GetListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _EnquiryService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteRequest)
 	if err := dec(in); err != nil {
@@ -334,6 +366,10 @@ var EnquiryService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetList",
 			Handler:    _EnquiryService_GetList_Handler,
+		},
+		{
+			MethodName: "GetCountsList",
+			Handler:    _EnquiryService_GetCountsList_Handler,
 		},
 		{
 			MethodName: "Delete",

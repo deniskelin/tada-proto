@@ -27,6 +27,7 @@ type ResponsiblePersonServiceClient interface {
 	Update(ctx context.Context, in *v1.UpdateRequest, opts ...grpc.CallOption) (*v1.UpdateResponse, error)
 	Get(ctx context.Context, in *v1.GetRequest, opts ...grpc.CallOption) (*v1.GetListResponse, error)
 	GetList(ctx context.Context, in *v1.GetListRequest, opts ...grpc.CallOption) (*v1.GetListResponse, error)
+	GetCountsList(ctx context.Context, in *v1.GetListRequest, opts ...grpc.CallOption) (*v1.GetCountsListResponse, error)
 	Delete(ctx context.Context, in *v1.DeleteRequest, opts ...grpc.CallOption) (*v1.DeleteResponse, error)
 }
 
@@ -74,6 +75,15 @@ func (c *responsiblePersonServiceClient) GetList(ctx context.Context, in *v1.Get
 	return out, nil
 }
 
+func (c *responsiblePersonServiceClient) GetCountsList(ctx context.Context, in *v1.GetListRequest, opts ...grpc.CallOption) (*v1.GetCountsListResponse, error) {
+	out := new(v1.GetCountsListResponse)
+	err := c.cc.Invoke(ctx, "/tada.gateway.admin.billing.personal_account.responsible_person.v1.ResponsiblePersonService/GetCountsList", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *responsiblePersonServiceClient) Delete(ctx context.Context, in *v1.DeleteRequest, opts ...grpc.CallOption) (*v1.DeleteResponse, error) {
 	out := new(v1.DeleteResponse)
 	err := c.cc.Invoke(ctx, "/tada.gateway.admin.billing.personal_account.responsible_person.v1.ResponsiblePersonService/Delete", in, out, opts...)
@@ -91,6 +101,7 @@ type ResponsiblePersonServiceServer interface {
 	Update(context.Context, *v1.UpdateRequest) (*v1.UpdateResponse, error)
 	Get(context.Context, *v1.GetRequest) (*v1.GetListResponse, error)
 	GetList(context.Context, *v1.GetListRequest) (*v1.GetListResponse, error)
+	GetCountsList(context.Context, *v1.GetListRequest) (*v1.GetCountsListResponse, error)
 	Delete(context.Context, *v1.DeleteRequest) (*v1.DeleteResponse, error)
 	mustEmbedUnimplementedResponsiblePersonServiceServer()
 }
@@ -110,6 +121,9 @@ func (UnimplementedResponsiblePersonServiceServer) Get(context.Context, *v1.GetR
 }
 func (UnimplementedResponsiblePersonServiceServer) GetList(context.Context, *v1.GetListRequest) (*v1.GetListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetList not implemented")
+}
+func (UnimplementedResponsiblePersonServiceServer) GetCountsList(context.Context, *v1.GetListRequest) (*v1.GetCountsListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCountsList not implemented")
 }
 func (UnimplementedResponsiblePersonServiceServer) Delete(context.Context, *v1.DeleteRequest) (*v1.DeleteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
@@ -200,6 +214,24 @@ func _ResponsiblePersonService_GetList_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ResponsiblePersonService_GetCountsList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(v1.GetListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ResponsiblePersonServiceServer).GetCountsList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/tada.gateway.admin.billing.personal_account.responsible_person.v1.ResponsiblePersonService/GetCountsList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ResponsiblePersonServiceServer).GetCountsList(ctx, req.(*v1.GetListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ResponsiblePersonService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(v1.DeleteRequest)
 	if err := dec(in); err != nil {
@@ -240,6 +272,10 @@ var ResponsiblePersonService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetList",
 			Handler:    _ResponsiblePersonService_GetList_Handler,
+		},
+		{
+			MethodName: "GetCountsList",
+			Handler:    _ResponsiblePersonService_GetCountsList_Handler,
 		},
 		{
 			MethodName: "Delete",

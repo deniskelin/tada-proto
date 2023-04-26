@@ -26,6 +26,7 @@ type ResellerServiceClient interface {
 	Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error)
 	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetListResponse, error)
 	GetList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetListResponse, error)
+	GetCountsList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetCountsListResponse, error)
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
 }
 
@@ -73,6 +74,15 @@ func (c *resellerServiceClient) GetList(ctx context.Context, in *GetListRequest,
 	return out, nil
 }
 
+func (c *resellerServiceClient) GetCountsList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetCountsListResponse, error) {
+	out := new(GetCountsListResponse)
+	err := c.cc.Invoke(ctx, "/tada.billing.api.reseller.v1.ResellerService/GetCountsList", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *resellerServiceClient) Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error) {
 	out := new(DeleteResponse)
 	err := c.cc.Invoke(ctx, "/tada.billing.api.reseller.v1.ResellerService/Delete", in, out, opts...)
@@ -90,6 +100,7 @@ type ResellerServiceServer interface {
 	Update(context.Context, *UpdateRequest) (*UpdateResponse, error)
 	Get(context.Context, *GetRequest) (*GetListResponse, error)
 	GetList(context.Context, *GetListRequest) (*GetListResponse, error)
+	GetCountsList(context.Context, *GetListRequest) (*GetCountsListResponse, error)
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
 	mustEmbedUnimplementedResellerServiceServer()
 }
@@ -109,6 +120,9 @@ func (UnimplementedResellerServiceServer) Get(context.Context, *GetRequest) (*Ge
 }
 func (UnimplementedResellerServiceServer) GetList(context.Context, *GetListRequest) (*GetListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetList not implemented")
+}
+func (UnimplementedResellerServiceServer) GetCountsList(context.Context, *GetListRequest) (*GetCountsListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCountsList not implemented")
 }
 func (UnimplementedResellerServiceServer) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
@@ -198,6 +212,24 @@ func _ResellerService_GetList_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ResellerService_GetCountsList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ResellerServiceServer).GetCountsList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/tada.billing.api.reseller.v1.ResellerService/GetCountsList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ResellerServiceServer).GetCountsList(ctx, req.(*GetListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ResellerService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteRequest)
 	if err := dec(in); err != nil {
@@ -238,6 +270,10 @@ var ResellerService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetList",
 			Handler:    _ResellerService_GetList_Handler,
+		},
+		{
+			MethodName: "GetCountsList",
+			Handler:    _ResellerService_GetCountsList_Handler,
 		},
 		{
 			MethodName: "Delete",

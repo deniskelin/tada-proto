@@ -26,6 +26,7 @@ type PaymentInvoiceServiceClient interface {
 	Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error)
 	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetListResponse, error)
 	GetList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetListResponse, error)
+	GetCountsList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetCountsListResponse, error)
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
 }
 
@@ -73,6 +74,15 @@ func (c *paymentInvoiceServiceClient) GetList(ctx context.Context, in *GetListRe
 	return out, nil
 }
 
+func (c *paymentInvoiceServiceClient) GetCountsList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetCountsListResponse, error) {
+	out := new(GetCountsListResponse)
+	err := c.cc.Invoke(ctx, "/tada.billing.api.personal_account.payment_invoice.v1.PaymentInvoiceService/GetCountsList", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *paymentInvoiceServiceClient) Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error) {
 	out := new(DeleteResponse)
 	err := c.cc.Invoke(ctx, "/tada.billing.api.personal_account.payment_invoice.v1.PaymentInvoiceService/Delete", in, out, opts...)
@@ -90,6 +100,7 @@ type PaymentInvoiceServiceServer interface {
 	Update(context.Context, *UpdateRequest) (*UpdateResponse, error)
 	Get(context.Context, *GetRequest) (*GetListResponse, error)
 	GetList(context.Context, *GetListRequest) (*GetListResponse, error)
+	GetCountsList(context.Context, *GetListRequest) (*GetCountsListResponse, error)
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
 	mustEmbedUnimplementedPaymentInvoiceServiceServer()
 }
@@ -109,6 +120,9 @@ func (UnimplementedPaymentInvoiceServiceServer) Get(context.Context, *GetRequest
 }
 func (UnimplementedPaymentInvoiceServiceServer) GetList(context.Context, *GetListRequest) (*GetListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetList not implemented")
+}
+func (UnimplementedPaymentInvoiceServiceServer) GetCountsList(context.Context, *GetListRequest) (*GetCountsListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCountsList not implemented")
 }
 func (UnimplementedPaymentInvoiceServiceServer) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
@@ -198,6 +212,24 @@ func _PaymentInvoiceService_GetList_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PaymentInvoiceService_GetCountsList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PaymentInvoiceServiceServer).GetCountsList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/tada.billing.api.personal_account.payment_invoice.v1.PaymentInvoiceService/GetCountsList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PaymentInvoiceServiceServer).GetCountsList(ctx, req.(*GetListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _PaymentInvoiceService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteRequest)
 	if err := dec(in); err != nil {
@@ -238,6 +270,10 @@ var PaymentInvoiceService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetList",
 			Handler:    _PaymentInvoiceService_GetList_Handler,
+		},
+		{
+			MethodName: "GetCountsList",
+			Handler:    _PaymentInvoiceService_GetCountsList_Handler,
 		},
 		{
 			MethodName: "Delete",

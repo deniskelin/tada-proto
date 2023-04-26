@@ -25,6 +25,7 @@ type PersonalAccountServiceClient interface {
 	Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error)
 	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetListResponse, error)
 	GetList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetListResponse, error)
+	GetCountsList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetCountsListResponse, error)
 	GetStatus(ctx context.Context, in *GetStatusRequest, opts ...grpc.CallOption) (*GetStatusResponse, error)
 	Activate(ctx context.Context, in *ChangeStatusRequest, opts ...grpc.CallOption) (*ChangeStatusResponse, error)
 	Block(ctx context.Context, in *ChangeStatusRequest, opts ...grpc.CallOption) (*ChangeStatusResponse, error)
@@ -67,6 +68,15 @@ func (c *personalAccountServiceClient) Get(ctx context.Context, in *GetRequest, 
 func (c *personalAccountServiceClient) GetList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetListResponse, error) {
 	out := new(GetListResponse)
 	err := c.cc.Invoke(ctx, "/tada.billing.api.personal_account.entity.v1.PersonalAccountService/GetList", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *personalAccountServiceClient) GetCountsList(ctx context.Context, in *GetListRequest, opts ...grpc.CallOption) (*GetCountsListResponse, error) {
+	out := new(GetCountsListResponse)
+	err := c.cc.Invoke(ctx, "/tada.billing.api.personal_account.entity.v1.PersonalAccountService/GetCountsList", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -179,6 +189,7 @@ type PersonalAccountServiceServer interface {
 	Create(context.Context, *CreateRequest) (*CreateResponse, error)
 	Get(context.Context, *GetRequest) (*GetListResponse, error)
 	GetList(context.Context, *GetListRequest) (*GetListResponse, error)
+	GetCountsList(context.Context, *GetListRequest) (*GetCountsListResponse, error)
 	GetStatus(context.Context, *GetStatusRequest) (*GetStatusResponse, error)
 	Activate(context.Context, *ChangeStatusRequest) (*ChangeStatusResponse, error)
 	Block(context.Context, *ChangeStatusRequest) (*ChangeStatusResponse, error)
@@ -205,6 +216,9 @@ func (UnimplementedPersonalAccountServiceServer) Get(context.Context, *GetReques
 }
 func (UnimplementedPersonalAccountServiceServer) GetList(context.Context, *GetListRequest) (*GetListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetList not implemented")
+}
+func (UnimplementedPersonalAccountServiceServer) GetCountsList(context.Context, *GetListRequest) (*GetCountsListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCountsList not implemented")
 }
 func (UnimplementedPersonalAccountServiceServer) GetStatus(context.Context, *GetStatusRequest) (*GetStatusResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStatus not implemented")
@@ -303,6 +317,24 @@ func _PersonalAccountService_GetList_Handler(srv interface{}, ctx context.Contex
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PersonalAccountServiceServer).GetList(ctx, req.(*GetListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PersonalAccountService_GetCountsList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PersonalAccountServiceServer).GetCountsList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/tada.billing.api.personal_account.entity.v1.PersonalAccountService/GetCountsList",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PersonalAccountServiceServer).GetCountsList(ctx, req.(*GetListRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -523,6 +555,10 @@ var PersonalAccountService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetList",
 			Handler:    _PersonalAccountService_GetList_Handler,
+		},
+		{
+			MethodName: "GetCountsList",
+			Handler:    _PersonalAccountService_GetCountsList_Handler,
 		},
 		{
 			MethodName: "GetStatus",
